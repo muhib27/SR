@@ -15,4 +15,7 @@
 
     <color name="rightAnswerColor">#388E3C</color>
     <color name="wrongAnswerColor">#E64A19</color>
+
+    <color name="topicHeaderColor">#68cdc9</color>
+    <color name="topicDescriptionColor">#98e6e3</color>
 </resources>

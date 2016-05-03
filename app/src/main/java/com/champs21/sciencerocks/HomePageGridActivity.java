@@ -75,7 +75,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         listData.add("Quiz");
         listData.add("Episodes");
         listData.add("Daily Doze");
-        listData.add("Meet the Anchor");
+        listData.add("Meet the Anchors");
 
 
         initView();

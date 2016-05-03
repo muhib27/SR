@@ -33,6 +33,7 @@ repositories {
         url "https://jitpack.io"
     }
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -59,4 +60,5 @@ dependencies {
     compile ('com.github.afollestad.material-dialogs:commons:0.8.5.7@aar'){ transitive = true }
     compile 'com.google.android.gms:play-services-auth:8.4.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
 }

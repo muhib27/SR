@@ -1,6 +1,7 @@
 package com.champs21.sciencerocks;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -8,11 +9,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -27,6 +30,7 @@ import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONObject;
 
@@ -76,6 +80,11 @@ public class TopicRootActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(this)
+                        .color(Color.TRANSPARENT)
+                        .sizeResId(R.dimen.recyclerView_divider)
+                        .build());
     }
 
     private void initApiCall(){
@@ -137,6 +146,8 @@ public class TopicRootActivity extends AppCompatActivity {
             TextView txtTopicTitle;
             TextView txtTopicDetails;
             CardView cardView;
+            LinearLayout layoutDescriptionHolder;
+            LinearLayout layoutTopProceedHolder;
 
 
             public MyViewHolder(View itemView) {
@@ -144,6 +155,8 @@ public class TopicRootActivity extends AppCompatActivity {
                 this.txtTopicTitle = (TextView) itemView.findViewById(R.id.txtTopicTitle);
                 this.txtTopicDetails = (TextView)itemView.findViewById(R.id.txtTopicDetails);
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
+                this.layoutDescriptionHolder = (LinearLayout)itemView.findViewById(R.id.layoutDescriptionHolder);
+                this.layoutTopProceedHolder = (LinearLayout)itemView.findViewById(R.id.layoutTopProceedHolder);
             }
         }
 
@@ -156,7 +169,7 @@ public class TopicRootActivity extends AppCompatActivity {
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_topic_layout, parent, false);
+                    .inflate(R.layout.row_topic_layout2, parent, false);
 
             MyViewHolder myViewHolder = new MyViewHolder(view);
             return myViewHolder;
@@ -168,6 +181,18 @@ public class TopicRootActivity extends AppCompatActivity {
             TextView txtTopicTitle = holder.txtTopicTitle;
             TextView txtTopicDetails = holder.txtTopicDetails;
             CardView cardView = holder.cardView;
+            LinearLayout layoutDescriptionHolder = holder.layoutDescriptionHolder;
+            LinearLayout layoutTopProceedHolder = holder.layoutTopProceedHolder;
+
+
+            if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
+                layoutDescriptionHolder.setVisibility(View.GONE);
+                layoutTopProceedHolder.setVisibility(View.VISIBLE);
+            }
+            else {
+                layoutDescriptionHolder.setVisibility(View.VISIBLE);
+                layoutTopProceedHolder.setVisibility(View.GONE);
+            }
 
             txtTopicTitle.setText(dataSet.get(listPosition).getName());
             txtTopicDetails.setText(dataSet.get(listPosition).getDetails());
