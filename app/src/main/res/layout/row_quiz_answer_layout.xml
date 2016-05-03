@@ -4,7 +4,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    card_view:cardBackgroundColor="@color/colorWhite"
+    card_view:cardBackgroundColor="@color/topicDescriptionColor"
     card_view:cardElevation="2dp"
     card_view:cardUseCompatPadding="true"
     android:foreground="?android:attr/selectableItemBackground"

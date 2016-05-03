@@ -33,6 +33,7 @@ import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.CountDownTimerPausable;
 import com.champs21.sciencerocks.utils.ScoreManager;
+import com.champs21.sciencerocks.utils.TextViewPlus;
 import com.champs21.sciencerocks.utils.TimeWatch;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
@@ -48,7 +49,7 @@ import java.util.Map;
 public class QuizActivity extends AppCompatActivity {
 
 
-    private TextView txtTimer;
+    private TextViewPlus txtTimer;
     private TextView txtScore;
     private TextView txtQuestion;
 
@@ -102,7 +103,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void initView(){
 
-        txtTimer = (TextView)this.findViewById(R.id.txtTimer);
+        txtTimer = (TextViewPlus) this.findViewById(R.id.txtTimer);
         txtScore = (TextView)this.findViewById(R.id.txtScore);
         txtQuestion = (TextView)this.findViewById(R.id.txtQuestion);
 
@@ -464,6 +465,7 @@ public class QuizActivity extends AppCompatActivity {
         };
 
         handler.postDelayed(runnable, 2000);
+
 
     }
 
