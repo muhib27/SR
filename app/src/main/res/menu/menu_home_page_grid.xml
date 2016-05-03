@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.champs21.sciencerocks.HomePageGridActivity">
+    <item
+        android:id="@+id/action_skin_choose"
+        android:orderInCategory="100"
+        android:title="@string/skin1_title"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Science Rocks</string>
+    <string name="facebook_app_id">1038110652893074</string>
+    <string name="skin1_title">Skins</string>
+    <string name="title_activity_home_page_grid">HomePageGridActivity</string>
+    <string name="title_activity_play_list">Play List</string>
+    <string name="title_activity_play_list_items">Play List</string>
+    <string name="title_activity_player">PlayerActivity</string>
+    <string name="title_activity_meet_the_anchors_root">Meet The Anchors</string>
+    <string name="title_activity_app_preference">Settings</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="no_data_found_please_try_again_later">No data found, please try again later.</string>
+    <string name="quiz_music">Quiz Music</string>
+    <string name="user_settings">User Settings</string>
+    <string name="title_activity_topic_root">Topics</string>
+    <string name="title_activity_level_root">Difficulty Levels</string>
+    <string name="title_activity_quiz">Quiz</string>
+    <string name="title_activity_result_page">Result</string>
+    <string name="title_activity_daily_doze">Daily Doze</string>
+    <string name="toast_no_internet">No internet connection, please try again later!</string>
+    <string name="title_activity_qa_root">Q\u0026A</string>
+</resources>
