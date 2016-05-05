@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +43,8 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
     private static final int PERMISSION_REQUEST_CODE = 1;
     private boolean isPermissionGranted = false;
     private ImageView imgMainLogo;
+
+    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,13 +157,16 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         recyclerView.setHasFixedSize(true);
         imgMainLogo = (ImageView)this.findViewById(R.id.imgMainLogo);
 
+        scrollView = (ScrollView)this.findViewById(R.id.scrollView);
+
     }
     private void initAction(){
         layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter = new CustomAdapter(listData);
         recyclerView.setAdapter(adapter);
+
+        scrollView.fullScroll(ScrollView.FOCUS_UP);
     }
 
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {

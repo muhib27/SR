@@ -319,66 +319,69 @@ public class QuizActivity extends AppCompatActivity {
 
     private void showDialog(boolean isLastQuestion){
 
-        final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title("Quiz")
-                .customView(R.layout.layout_dialog_explanation_next, false)
-                .cancelable(false)
-                .show();
+        if(!isFinishing()){
+            final MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title("Quiz")
+                    .customView(R.layout.layout_dialog_explanation_next, false)
+                    .cancelable(false)
+                    .show();
 
-        View dialogView = dialog.getCustomView();
+            View dialogView = dialog.getCustomView();
 
-        LinearLayout layoutExplanation = (LinearLayout) dialogView.findViewById(R.id.layoutExplanation);
-        TextView txtExplanation = (TextView)dialogView.findViewById(R.id.txtExplanation);
-        LinearLayout layoutAnswer = (LinearLayout) dialogView.findViewById(R.id.layoutAnswer);
-        TextView txtAnswer = (TextView)dialogView.findViewById(R.id.txtAnswer);
+            LinearLayout layoutExplanation = (LinearLayout) dialogView.findViewById(R.id.layoutExplanation);
+            TextView txtExplanation = (TextView)dialogView.findViewById(R.id.txtExplanation);
+            LinearLayout layoutAnswer = (LinearLayout) dialogView.findViewById(R.id.layoutAnswer);
+            TextView txtAnswer = (TextView)dialogView.findViewById(R.id.txtAnswer);
 
 
 
-        AppCompatButton btnNext = (AppCompatButton) dialogView.findViewById(R.id.btnNext);
-        if(isLastQuestion){
-            txtExplanation.setText(listQuestion.get(currentPosition-1).getExplanation());
-            for(Option op : listQuestion.get(currentPosition-1).getOptions()){
-                if(op.getCorrect().equalsIgnoreCase("1"))
-                    txtAnswer.setText(op.getAnswer());
-            }
-            btnNext.setText("Finish");
-
-            btnNext.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                    Log.e("GO_TO", "result page");
-
-                    scoreManager = new ScoreManager(listQuestion.size(), listCorrect, score, ellapsedTime, totalMarks);
-                    Intent intent = new Intent(QuizActivity.this, ResultPageActivity.class);
-                    String data = new Gson().toJson(scoreManager);
-                    intent.putExtra(AppConstants.QUIZ_SCORE_MANAGER, data);
-                    intent.putExtra(AppConstants.QUIZ_LEVEL_ID, levelId);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-        else {
-            if(currentPosition-1<listQuestion.size()) {
-                txtExplanation.setText(listQuestion.get(currentPosition - 1).getExplanation());
+            AppCompatButton btnNext = (AppCompatButton) dialogView.findViewById(R.id.btnNext);
+            if(isLastQuestion){
+                txtExplanation.setText(listQuestion.get(currentPosition-1).getExplanation());
                 for(Option op : listQuestion.get(currentPosition-1).getOptions()){
                     if(op.getCorrect().equalsIgnoreCase("1"))
                         txtAnswer.setText(op.getAnswer());
                 }
+                btnNext.setText("Finish");
 
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        dialog.dismiss();
+                        Log.e("GO_TO", "result page");
 
-                        if(currentPosition<listQuestion.size()){
-                            populateData(currentPosition);
-                            dialog.dismiss();
-                        }
+                        scoreManager = new ScoreManager(listQuestion.size(), listCorrect, score, ellapsedTime, totalMarks);
+                        Intent intent = new Intent(QuizActivity.this, ResultPageActivity.class);
+                        String data = new Gson().toJson(scoreManager);
+                        intent.putExtra(AppConstants.QUIZ_SCORE_MANAGER, data);
+                        intent.putExtra(AppConstants.QUIZ_LEVEL_ID, levelId);
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }
+            else {
+                if(currentPosition-1<listQuestion.size()) {
+                    txtExplanation.setText(listQuestion.get(currentPosition - 1).getExplanation());
+                    for(Option op : listQuestion.get(currentPosition-1).getOptions()){
+                        if(op.getCorrect().equalsIgnoreCase("1"))
+                            txtAnswer.setText(op.getAnswer());
+                    }
+
+                    btnNext.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if(currentPosition<listQuestion.size()){
+                                populateData(currentPosition);
+                                dialog.dismiss();
+                            }
+                        }
+                    });
+                }
+            }
         }
+
 
     }
 
