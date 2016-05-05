@@ -1,6 +1,7 @@
 package com.champs21.sciencerocks;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,7 @@ import com.champs21.sciencerocks.youtubemodels.Item;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONObject;
 
@@ -99,6 +101,11 @@ public class PlayListItemsActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(this)
+                        .color(Color.TRANSPARENT)
+                        .sizeResId(R.dimen.recyclerViewPlayList_divider)
+                        .build());
 
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -213,7 +220,7 @@ public class PlayListItemsActivity extends AppCompatActivity {
             CardView cardView = holder.cardView;
 
             mImageLoader.get(dataSet.get(listPosition).getSnippet().getThumbnails().getDefault().getUrl(), ImageLoader.getImageListener(imgViewNetwork,
-                    R.drawable.logo, android.R.drawable
+                    R.drawable.youtube_default, android.R.drawable
                             .ic_dialog_alert));
             imgViewNetwork.setImageUrl(dataSet.get(listPosition).getSnippet().getThumbnails().getDefault().getUrl(), mImageLoader);
 

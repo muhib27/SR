@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="@color/colorWhite"
     card_view:cardElevation="2dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    card_view:cardPreventCornerOverlap="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:background="@color/topicHeaderColor"
             android:orientation="horizontal">
 
             <com.android.volley.toolbox.NetworkImageView
@@ -24,16 +26,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/youtube_default"/>
 
             <TextView
                 android:id="@+id/txtPlayListTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="This is play list title"
                 android:layout_margin="5dp"
-                android:textSize="16sp"/>
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
@@ -41,14 +44,8 @@
             android:id="@+id/layoutDescription"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorAccent">
-
-            </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="@color/topicDescriptionColor">
 
             <LinearLayout
                 android:layout_width="match_parent"
