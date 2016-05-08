@@ -1,5 +1,6 @@
 package com.champs21.sciencerocks;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -31,10 +32,12 @@ import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.AppConstants;
+import com.champs21.sciencerocks.utils.AppUtils;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONObject;
 
@@ -97,6 +100,11 @@ public class QaRootActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(
+                new HorizontalDividerItemDecoration.Builder(this)
+                        .color(Color.TRANSPARENT)
+                        .sizeResId(R.dimen.recyclerView_divider)
+                        .build());
 
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -233,7 +241,8 @@ public class QaRootActivity extends AppCompatActivity {
             CardView cardView = holder.cardView;
 
             txtName.setText(dataSet.get(listPosition).getName());
-            txtDate.setText(dataSet.get(listPosition).getDate());
+            //txtDate.setText(dataSet.get(listPosition).getDate());
+            txtDate.setText(AppUtils.getDateString(dataSet.get(listPosition).getDate(), AppUtils.DATE_FORMAT_APP, AppUtils.DATE_FORMAT_SERVER));
             txtQuestion.setText(dataSet.get(listPosition).getQuestion());
             txtAnswer.setText(dataSet.get(listPosition).getAnswer());
 
