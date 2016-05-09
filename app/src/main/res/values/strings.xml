@@ -23,5 +23,6 @@
     <string name="title_activity_result_page">Result</string>
     <string name="title_activity_daily_doze">Daily Doze</string>
     <string name="toast_no_internet">No internet connection, please try again later!</string>
-    <string name="title_activity_qa_root">Q\u0026A</string>
+    <string name="title_activity_qa_root">Q \u0026 A</string>
+    <string name="title_activity_daily_doze_new">Daily Doze</string>
 </resources>

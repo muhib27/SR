@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorWindowBg"
-    tools:context="com.champs21.sciencerocks.MeetTheAnchorsRootActivity">
+    tools:context="com.champs21.sciencerocks.DailyDozeNewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,12 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-
-    <include layout="@layout/content_meet_the_anchors_root2" />
-
-
-
+    <include layout="@layout/content_daily_doze_new" />
 
 
 </android.support.design.widget.CoordinatorLayout>

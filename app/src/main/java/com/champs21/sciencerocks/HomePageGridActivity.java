@@ -256,7 +256,8 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
                     //daily doze
                     else if(listPosition == 2){
                         if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
-                            Intent intent = new Intent(HomePageGridActivity.this, DailyDozeActivity.class);
+                            //Intent intent = new Intent(HomePageGridActivity.this, DailyDozeActivity.class);
+                            Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
                             startActivity(intent);
                         }
                         else {

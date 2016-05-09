@@ -19,9 +19,7 @@
             android:orientation="vertical"
             android:paddingTop="10dp">
 
-            <include layout="@layout/card_anchor_details" />
-
-            <include layout="@layout/card_anchor_bio" />
+            <include layout="@layout/layout_anchor_details" />
 
         </LinearLayout>
 

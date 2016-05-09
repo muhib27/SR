@@ -14,11 +14,13 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
 
     private CollapsingToolbarLayout collapsingToolbar;
     private ImageView imgProfile;
-    private TextView txtName;
+    //private TextView txtName;
     private TextView txtAge;
-    private TextView txtBioDescription;
+    //private TextView txtBioDescription;
 
     private String selectedAnchor = "";
+    private TextView txtJobTitle;
+    private TextView txtBioDetails;
 
 
 
@@ -61,11 +63,9 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
 
     private void initView(){
         imgProfile = (ImageView)this.findViewById(R.id.imgProfile);
-
-        txtName = (TextView)this.findViewById(R.id.txtName);
         txtAge = (TextView)this.findViewById(R.id.txtAge);
-
-        txtBioDescription = (TextView)this.findViewById(R.id.txtBioDescription);
+        txtJobTitle = (TextView)this.findViewById(R.id.txtJobTitle);
+        txtBioDetails = (TextView)this.findViewById(R.id.txtBioDetails);
     }
 
     private void initAction(){
@@ -73,14 +73,16 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
         if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_MALE)){
             collapsingToolbar.setTitle("Leonardo Dicaprio");
             imgProfile.setImageResource(R.drawable.male_anchor);
-            txtName.setText("Leonardo Dicaprio");
-            txtAge.setText("28 Years");
+            txtAge.setText("28 years");
+            txtJobTitle.setText("Teacher, Adademia");
+            //txtBioDetails.setText("blah blah");
         }
         else if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_FEMALE)){
             collapsingToolbar.setTitle("Anne Hathaway");
             imgProfile.setImageResource(R.drawable.female_anchor);
-            txtName.setText("Anne Hathaway");
-            txtAge.setText("25 Years");
+            txtAge.setText("25 years");
+            txtJobTitle.setText("TV Personality, Channeli");
+            //txtBioDetails.setText("blah blah");
         }
 
     }
