@@ -18,4 +18,6 @@
 
     <color name="topicHeaderColor">#68cdc9</color>
     <color name="topicDescriptionColor">#98e6e3</color>
+
+    <color name="qaListDateColor">#e8ffc4</color>
 </resources>

@@ -16,6 +16,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,12 +31,14 @@ import android.widget.Toast;
 
 import com.champs21.sciencerocks.app.AppPreferences;
 import com.champs21.sciencerocks.app.ApplicationSingleton;
+import com.champs21.sciencerocks.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageGridActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    private static final int REQUST_TOPIC_ACTIVITY = 10;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
     private List<String> listData;
@@ -45,6 +48,8 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
     private ImageView imgMainLogo;
 
     private ScrollView scrollView;
+    private NavigationView navigationView;
+    private boolean isSoundOff = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -82,6 +87,22 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
         initView();
         initAction();
+
+        if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == true){
+            navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_off_black_24dp);
+            isSoundOff = true;
+            navigationView.getMenu().getItem(0).setChecked(true);
+        }else {
+            isSoundOff = false;
+            navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_up_black_24dp);
+            navigationView.getMenu().getItem(0).setChecked(false);
+        }
+
+        View headerLayout = navigationView.getHeaderView(0);
+        TextView txtUserName = (TextView)headerLayout.findViewById(R.id.txtUserName);
+        if(!TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME))){
+            txtUserName.setText(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME));
+        }
 
         Log.e("KEY_HASH", ApplicationSingleton.getInstance().printHashKey(getApplicationContext()));
     }
@@ -133,12 +154,23 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
         if (id == R.id.nav_music) {
             // Handle the camera action
+            isSoundOff = !isSoundOff;
+
+            if(isSoundOff){
+                navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_off_black_24dp);
+                ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, true);
+                navigationView.getMenu().getItem(0).setChecked(true);
+            }else{
+                navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_up_black_24dp);
+                ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, false);
+                navigationView.getMenu().getItem(0).setChecked(false);
+            }
+
         }
 
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);*/
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -235,7 +267,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
                         if(ApplicationSingleton.getInstance().isNetworkConnected() == true){
                             Intent intent = new Intent(HomePageGridActivity.this, TopicRootActivity.class);
-                            startActivity(intent);
+                            startActivityForResult(intent, REQUST_TOPIC_ACTIVITY);
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
@@ -309,6 +341,12 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
+        if (requestCode == REQUST_TOPIC_ACTIVITY) {
+            finish();
+            startActivity(getIntent());
+        }
+    }
 }

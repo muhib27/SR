@@ -1,6 +1,5 @@
 package com.champs21.sciencerocks;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +36,6 @@ import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONObject;
 
@@ -100,11 +98,12 @@ public class QaRootActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(
+        /*recyclerView.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(this)
                         .color(Color.TRANSPARENT)
-                        .sizeResId(R.dimen.recyclerView_divider)
-                        .build());
+                        .sizeResId(R.dimen.recyclerViewQaList_divider)
+                        .color(Color.parseColor("#"+Integer.toHexString(ContextCompat.getColor(QaRootActivity.this, R.color.topicDescriptionColor) & 0x00ffffff)))
+                        .build());*/
 
         mSwipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -225,7 +224,7 @@ public class QaRootActivity extends AppCompatActivity {
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_qa_list_layout, parent, false);
+                    .inflate(R.layout.row_qa_list_layout2, parent, false);
 
             MyViewHolder myViewHolder = new MyViewHolder(view);
             return myViewHolder;

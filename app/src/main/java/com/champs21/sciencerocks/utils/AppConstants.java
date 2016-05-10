@@ -23,4 +23,6 @@ public class AppConstants {
     public static final String GOOGLE_AUTH_DISPLAY_NAME = "GOOGLE_AUTH_DISPLAY_NAME";
     public static final String GOOGLE_AUTH_EMAIL = "GOOGLE_AUTH_EMAIL";
     public static final String GOOGLE_AUTH_PROFILE_IMAGE = "GOOGLE_AUTH_PROFILE_IMAGE";
+
+    public static final String QUIZ_MUSIC_TOGGLE = "QUIZ_MUSIC_TOGGLE";
 }
