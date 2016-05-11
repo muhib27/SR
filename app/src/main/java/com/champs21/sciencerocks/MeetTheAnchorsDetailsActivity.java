@@ -33,7 +33,7 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
 
 
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("Anchor");
+        collapsingToolbar.setTitle(getString(R.string.mta_anchor));
 
 
         /*CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
@@ -71,17 +71,17 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
     private void initAction(){
 
         if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_MALE)){
-            collapsingToolbar.setTitle("Leonardo Dicaprio");
+            collapsingToolbar.setTitle(getString(R.string.mta_male_anchor_name));
             imgProfile.setImageResource(R.drawable.male_anchor);
-            txtAge.setText("28 years");
-            txtJobTitle.setText("Teacher, Adademia");
+            txtAge.setText(R.string.mta_male_anchor_age);
+            txtJobTitle.setText(R.string.mta_male_anchor_job_title);
             //txtBioDetails.setText("blah blah");
         }
         else if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_FEMALE)){
-            collapsingToolbar.setTitle("Anne Hathaway");
+            collapsingToolbar.setTitle(getString(R.string.mta_female_anchor_name));
             imgProfile.setImageResource(R.drawable.female_anchor);
-            txtAge.setText("25 years");
-            txtJobTitle.setText("TV Personality, Channeli");
+            txtAge.setText(R.string.mta_female_anchor_age);
+            txtJobTitle.setText(R.string.mta_female_anchor_job_title);
             //txtBioDetails.setText("blah blah");
         }
 

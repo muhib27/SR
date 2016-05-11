@@ -45,7 +45,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Total Marks"
+                            android:text="@string/txt_total_marks"
                             android:id="@+id/textView7" />
 
                         <TextView
@@ -70,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Total Question"
+                            android:text="@string/txt_total_question"
                             android:id="@+id/textView9" />
 
                         <TextView
@@ -94,7 +94,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Correct Answer"
+                            android:text="@string/txt_correct_answer"
                             android:id="@+id/textView10" />
 
                         <TextView
@@ -134,7 +134,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Your Score"
+                            android:text="@string/txt_your_score"
                             android:id="@+id/textView11" />
 
                         <TextView
@@ -159,7 +159,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Total Time"
+                            android:text="@string/txt_total_time"
                             android:id="@+id/textView12" />
 
                         <TextView
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp"
-                            android:text="Wrong Answer"
+                            android:text="@string/txt_wrong_answer"
                             android:id="@+id/textView13" />
 
                         <TextView
@@ -209,14 +209,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Save Score"/>
+                    android:text="@string/txt_save_score"/>
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btnShare"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Share"/>
+                    android:text="@string/txt_share"/>
 
 
 

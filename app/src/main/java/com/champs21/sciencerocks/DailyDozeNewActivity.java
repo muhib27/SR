@@ -101,7 +101,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
                     currentPosition--;
                     initAction();
                 }else {
-                    Toast.makeText(DailyDozeNewActivity.this, "No previous data is found!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DailyDozeNewActivity.this, R.string.daily_doze_new_activity_no_previous_data, Toast.LENGTH_SHORT).show();
                 }
 
                 new Handler().postDelayed(new Runnable() {
@@ -142,7 +142,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
                     currentPosition--;
                     initAction();
                 }else {
-                    Toast.makeText(DailyDozeNewActivity.this, "No previous data is found!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DailyDozeNewActivity.this, R.string.daily_doze_new_activity_no_next_data, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -174,7 +174,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         }
         else if (currentPosition == listItems.size() && hasNext == false){
             currentPosition--;
-            Toast.makeText(DailyDozeNewActivity.this, "No next data is found!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DailyDozeNewActivity.this, R.string.daily_doze_new_activity_no_next_data, Toast.LENGTH_SHORT).show();
             //lodWebViewData(webView, listItems.get(currentPosition).getContent());
         }
         else{
@@ -272,6 +272,8 @@ public class DailyDozeNewActivity extends AppCompatActivity {
                         if(currentPosition > 0){
                             currentPosition--;
                             initAction();
+                        }else {
+                            Toast.makeText(DailyDozeNewActivity.this, R.string.daily_doze_new_activity_no_next_data, Toast.LENGTH_SHORT).show();
                         }
                         return true;
                     } //bottom to top, go to next document

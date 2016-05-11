@@ -79,10 +79,10 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
 
         listData = new ArrayList<String>();
-        listData.add("Quiz");
-        listData.add("Episodes");
-        listData.add("Daily Doze");
-        listData.add("Meet the Anchors");
+        listData.add(getString(R.string.home_page_grid_quiz));
+        listData.add(getString(R.string.home_page_grid_episodes));
+        listData.add(getString(R.string.home_page_grid_daily_doze));
+        listData.add(getString(R.string.home_page_grid_mta));
 
 
         initView();

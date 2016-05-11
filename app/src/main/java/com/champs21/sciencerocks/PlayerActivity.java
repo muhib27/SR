@@ -52,7 +52,7 @@ public class PlayerActivity extends YouTubeBaseActivity implements YouTubePlayer
         if (errorReason.isUserRecoverableError()) {
             errorReason.getErrorDialog(this, RECOVERY_REQUEST).show();
         } else {
-            Toast.makeText(this, "Player error", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.youtube_player_error, Toast.LENGTH_LONG).show();
         }
     }
 

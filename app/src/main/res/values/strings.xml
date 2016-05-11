@@ -1,18 +1,17 @@
 <resources>
     <string name="app_name">Science Rocks</string>
+    <string name="app_play_store_link">https://play.google.com/store/apps/details?id=com.classtune.app</string>
     <string name="facebook_app_id">1038110652893074</string>
+
+
     <string name="skin1_title">Skins</string>
-    <string name="title_activity_home_page_grid">HomePageGridActivity</string>
     <string name="title_activity_play_list">Play List</string>
     <string name="title_activity_play_list_items">Play List</string>
     <string name="title_activity_player">PlayerActivity</string>
     <string name="title_activity_meet_the_anchors_root">Meet The Anchors</string>
     <string name="title_activity_app_preference">Settings</string>
-    <string name="title_activity_base">BaseActivity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
     <string name="no_data_found_please_try_again_later">No data found, please try again later.</string>
     <string name="quiz_music">Quiz Music</string>
@@ -23,6 +22,57 @@
     <string name="title_activity_result_page">Result</string>
     <string name="title_activity_daily_doze">Daily Doze</string>
     <string name="toast_no_internet">No internet connection, please try again later!</string>
-    <string name="title_activity_qa_root">Q \u0026 A</string>
+    <string name="title_activity_qa_root">Q\u0026A</string>
     <string name="title_activity_daily_doze_new">Daily Doze</string>
+    <string name="daily_doze_new_activity_no_previous_data">No previous data is found!</string>
+    <string name="daily_doze_new_activity_no_next_data">No previous data is found!</string>
+    <string name="home_page_grid_quiz">Quiz</string>
+    <string name="home_page_grid_episodes">Episodes</string>
+    <string name="home_page_grid_daily_doze">Daily Doze</string>
+    <string name="home_page_grid_mta">Meet the Anchors</string>
+    <string name="mta_anchor">Anchor</string>
+    <string name="mta_male_anchor_name">Leonardo Dicaprio</string>
+    <string name="mta_male_anchor_nick_name">Leonardo</string>
+    <string name="mta_male_anchor_age">28 years</string>
+    <string name="mta_male_anchor_job_title">Teacher, Adademia</string>
+    <string name="mta_female_anchor_name">Anne Hathaway</string>
+    <string name="mta_female_anchor_nick_name">Anne</string>
+    <string name="mta_female_anchor_age">25 years</string>
+    <string name="mta_female_anchor_job_title">TV Personality, Channeli</string>
+    <string name="youtube_player_error">Youtube player error, please try again later.</string>
+    <string name="dialog_ask_question">Ask question</string>
+    <string name="dialog_name_empty">Name cannot be empty!</string>
+    <string name="dialog_question_empty">Question cannot be empty!</string>
+    <string name="msg_please_wait">Please wait!</string>
+    <string name="question_submit_success">Your question successfully submitted!</string>
+    <string name="dialog_title_quiz">Quiz</string>
+    <string name="btn_text_finish">Finish</string>
+    <string name="msg_already_saved_score">You have already saved your score!</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_hint_your_name">Your name</string>
+    <string name="txt_question">Question</string>
+    <string name="txt_hint_your_question">Your question</string>
+    <string name="btn_text_submit">Submit</string>
+    <string name="btn_text_cancel">Cancel</string>
+    <string name="quiz_page_time">Time</string>
+    <string name="quiz_page_score">Score</string>
+    <string name="txt_row_proceed">Proceed</string>
+    <string name="txt_total_marks">Total Marks</string>
+    <string name="txt_your_score">Your Score</string>
+    <string name="txt_total_question">Total Question</string>
+    <string name="txt_total_time">Total Time</string>
+    <string name="txt_correct_answer">Correct Answer</string>
+    <string name="txt_wrong_answer">Wrong Answer</string>
+    <string name="txt_save_score">Save Score</string>
+    <string name="txt_share">Share</string>
+    <string name="txt_answer">Answer</string>
+    <string name="txt_explanation">Explanation</string>
+    <string name="text_next">Next</string>
+    <string name="mta_meet_anchors">Meet Anchors</string>
+    <string name="mta_meet_anchors_details">Leonardo Dicaprio and Anne Hatheway are the most prominent anchors of TV show. Leonardo is a school teacher and science enthusiastic while Anne is a tv star.</string>
+    <string name="btn_previous">Previous</string>
+    <string name="btn_next">Next</string>
+    <string name="str_00">00</string>
+    <string name="msg_score_saved_successfully">Your score saved successfully.</string>
+
 </resources>

@@ -27,7 +27,7 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="Name"
+                    android:text="@string/txt_name"
                     android:id="@+id/textView1" />
 
                 <android.support.design.widget.TextInputLayout
@@ -38,7 +38,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Your name"
+                        android:hint="@string/txt_hint_your_name"
                         android:layout_marginTop="5dp"
                         android:id="@+id/txtName" />
 
@@ -61,7 +61,7 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="Question"
+                    android:text="@string/txt_question"
                     android:id="@+id/textView2" />
 
                 <android.support.design.widget.TextInputLayout
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:hint="Your question"
+                        android:hint="@string/txt_hint_your_question"
                         android:id="@+id/txtQuestion" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -93,14 +93,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Submit"/>
+                    android:text="@string/btn_text_submit"/>
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btnCancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Cancel"/>
+                    android:text="@string/btn_text_cancel"/>
 
             </LinearLayout>
         </LinearLayout>

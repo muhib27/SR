@@ -321,7 +321,7 @@ public class QuizActivity extends AppCompatActivity {
 
         if(!isFinishing()){
             final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                    .title("Quiz")
+                    .title(R.string.dialog_title_quiz)
                     .customView(R.layout.layout_dialog_explanation_next, false)
                     .cancelable(false)
                     .show();
@@ -342,7 +342,7 @@ public class QuizActivity extends AppCompatActivity {
                     if(op.getCorrect().equalsIgnoreCase("1"))
                         txtAnswer.setText(op.getAnswer());
                 }
-                btnNext.setText("Finish");
+                btnNext.setText(R.string.btn_text_finish);
 
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override

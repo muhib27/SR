@@ -61,7 +61,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
                             android:layout_marginLeft="10dp"
-                            android:text="Leonardo"/>
+                            android:text="@string/mta_male_anchor_nick_name"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -102,7 +102,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/colorPrimary"
                             android:layout_marginLeft="10dp"
-                            android:text="Anne"/>
+                            android:text="@string/mta_female_anchor_nick_name"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Meet Anchors"
+                    android:text="@string/mta_meet_anchors"
                     android:textStyle="bold"
                     android:textColor="@color/colorWhite"
                     android:textSize="32sp"
@@ -136,7 +136,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
                     android:layout_marginTop="25dp"
-                    android:text="Leonardo Dicaprio and Anne Hatheway are the most prominent anchors of TV show. Leonardo is a school teacher and science enthusiastic while Anne is a tv star."/>
+                    android:text="@string/mta_meet_anchors_details"/>
 
 
             </LinearLayout>

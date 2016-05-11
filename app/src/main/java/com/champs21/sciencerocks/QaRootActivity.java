@@ -284,7 +284,7 @@ public class QaRootActivity extends AppCompatActivity {
 
     private void showAskPopup(){
         final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title("Ask question")
+                .title(R.string.dialog_ask_question)
                 .customView(R.layout.layout_dialog_ask_question, false)
                 .cancelable(true)
                 .show();
@@ -328,12 +328,12 @@ public class QaRootActivity extends AppCompatActivity {
         boolean isValid = true;
         if(TextUtils.isEmpty(txtName.getText().toString())){
             isValid = false;
-            Toast.makeText(QaRootActivity.this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(QaRootActivity.this, R.string.dialog_name_empty, Toast.LENGTH_SHORT).show();
         }
 
         else if(TextUtils.isEmpty(txtQuestion.getText().toString())){
             isValid = false;
-            Toast.makeText(QaRootActivity.this, "Question cannot be empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(QaRootActivity.this, R.string.dialog_question_empty, Toast.LENGTH_SHORT).show();
         }
 
 
@@ -343,7 +343,7 @@ public class QaRootActivity extends AppCompatActivity {
     private void initApiCallSubmitQuestion(String name, String question){
 
         final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .content("Please wait!")
+                .content(R.string.msg_please_wait)
                 .progress(true, 0)
                 .progressIndeterminateStyle(false)
                 .show();
@@ -362,7 +362,7 @@ public class QaRootActivity extends AppCompatActivity {
                 }
                 ModelBase mb = ModelBase.getInstance().setResponse(response);
                 if(mb.getStatus().getCode() == 200){
-                    Toast.makeText(QaRootActivity.this, "Your question successfully submitted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QaRootActivity.this, R.string.question_submit_success, Toast.LENGTH_SHORT).show();
                 }
 
             }

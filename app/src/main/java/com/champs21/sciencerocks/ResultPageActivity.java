@@ -188,7 +188,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
                     }
                 }
                 else{
-                    Toast.makeText(ResultPageActivity.this, "You have already saved your score!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ResultPageActivity.this, R.string.msg_already_saved_score, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -203,9 +203,9 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentTitle("Science Rocks")
+                            .setContentTitle(getString(R.string.app_name))
                             .setContentDescription("I have scored "+String.valueOf(rightScoreCount)+" out of "+String.valueOf(rightScoreCount+wrongScoreCount)+" in science rocks.")
-                            .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.classtune.app"))
+                            .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
                             .build();
 
                     shareDialog.show(linkContent);
@@ -350,6 +350,8 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
                 if(mb.getStatus().getCode() == 200){
 
                     isSavedButonClicked = true;
+
+                    Toast.makeText(ResultPageActivity.this, R.string.msg_score_saved_successfully, Toast.LENGTH_SHORT).show();
                 }
 
             }
