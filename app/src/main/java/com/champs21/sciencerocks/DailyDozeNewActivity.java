@@ -1,6 +1,7 @@
 package com.champs21.sciencerocks;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -10,7 +11,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -42,6 +46,11 @@ public class DailyDozeNewActivity extends AppCompatActivity {
     private int pageNumber = 1;
     private CustomWebView webView;
     private int currentPosition = 0;
+
+    private LinearLayout layoutPreviousHolder;
+    private LinearLayout layoutNextHolder;
+    private ImageButton btnPrevious;
+    private ImageButton btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +87,79 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         webView = (CustomWebView)this.findViewById(R.id.webView);
         webView.setGestureDetector(new GestureDetector(this, new CustomeGestureDetector()));
 
+        layoutPreviousHolder = (LinearLayout)this.findViewById(R.id.layoutPreviousHolder);
+        layoutNextHolder = (LinearLayout)this.findViewById(R.id.layoutNextHolder);
+        btnPrevious = (ImageButton)this.findViewById(R.id.btnPrevious);
+        btnNext = (ImageButton)this.findViewById(R.id.btnNext);
+
+        layoutPreviousHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnPrevious.setSelected(true);
+
+                if(currentPosition > 0){
+                    currentPosition--;
+                    initAction();
+                }else {
+                    Toast.makeText(DailyDozeNewActivity.this, "No previous data is found!", Toast.LENGTH_SHORT).show();
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnPrevious.setSelected(false);
+                    }
+                }, 100);
+            }
+        });
+
+        layoutNextHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnNext.setSelected(true);
+
+                if(currentPosition == listItems.size()){
+                    initAction();
+                }
+                else if(currentPosition < listItems.size()){
+                    currentPosition++;
+                    initAction();
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnNext.setSelected(false);
+                    }
+                }, 100);
+            }
+        });
+
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(currentPosition > 0){
+                    currentPosition--;
+                    initAction();
+                }else {
+                    Toast.makeText(DailyDozeNewActivity.this, "No previous data is found!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(currentPosition == listItems.size()){
+                    initAction();
+                }
+                else if(currentPosition < listItems.size()){
+                    currentPosition++;
+                    initAction();
+                }
+            }
+        });
+
     }
 
 
@@ -92,11 +174,14 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         }
         else if (currentPosition == listItems.size() && hasNext == false){
             currentPosition--;
-            lodWebViewData(webView, listItems.get(currentPosition).getContent());
+            Toast.makeText(DailyDozeNewActivity.this, "No next data is found!", Toast.LENGTH_SHORT).show();
+            //lodWebViewData(webView, listItems.get(currentPosition).getContent());
         }
         else{
             lodWebViewData(webView, listItems.get(currentPosition).getContent());
         }
+
+
 
     }
 
