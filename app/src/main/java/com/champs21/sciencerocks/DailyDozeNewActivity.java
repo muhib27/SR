@@ -78,6 +78,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
     }
 
 
+
     private void initView(){
 
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
@@ -86,6 +87,8 @@ public class DailyDozeNewActivity extends AppCompatActivity {
 
         webView = (CustomWebView)this.findViewById(R.id.webView);
         webView.setGestureDetector(new GestureDetector(this, new CustomeGestureDetector()));
+
+
 
         layoutPreviousHolder = (LinearLayout)this.findViewById(R.id.layoutPreviousHolder);
         layoutNextHolder = (LinearLayout)this.findViewById(R.id.layoutNextHolder);
@@ -189,6 +192,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         WebSettings settings = webView.getSettings();
         settings.setDefaultTextEncodingName("utf-8");
         webView.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
+
     }
 
 

@@ -1,6 +1,9 @@
 package com.champs21.sciencerocks;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +28,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.models.Option;
 import com.champs21.sciencerocks.models.Question;
@@ -70,6 +74,9 @@ public class QuizActivity extends AppCompatActivity {
     private long ellapsedTime = 0;
     private int totalMarks = 0;
 
+    private MediaPlayer mp = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +97,11 @@ public class QuizActivity extends AppCompatActivity {
         initView();
         initApiCall();
         initAction();
+
+        if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == false){
+            initMusic();
+        }
+
 
     }
 
@@ -507,5 +519,35 @@ public class QuizActivity extends AppCompatActivity {
         Log.e("ELLAPSED_TIME", "is: "+ellapsedTime/1000);
     }
 
+    private void initMusic(){
+        if (mp != null) {
+            mp.stop();
+            mp.release();
+            mp = null;
+        }
 
+        AudioManager mAudioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/2, 0);
+
+        mp = MediaPlayer.create(this, R.raw.bg_music);
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+
+                mp.start();
+            }
+        });
+        mp.setLooping(true);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mp!=null){
+            mp.stop();
+            mp.release();
+            mp = null;
+        }
+    }
 }

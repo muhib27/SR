@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -59,6 +60,8 @@ dependencies {
     compile ('com.github.afollestad.material-dialogs:core:0.8.5.7@aar'){ transitive = true }
     compile ('com.github.afollestad.material-dialogs:commons:0.8.5.7@aar'){ transitive = true }
     compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
+    compile 'com.android.support:multidex:1.0.0'
 }
