@@ -2,6 +2,7 @@
     <string name="app_name">Science Rocks</string>
     <string name="app_play_store_link">https://play.google.com/store/apps/details?id=com.classtune.app</string>
     <string name="facebook_app_id">1038110652893074</string>
+    <string name="admob_ad_id">ca-app-pub-2004076542613855/6931025122</string>
 
 
     <string name="skin1_title">Skins</string>

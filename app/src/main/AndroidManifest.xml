@@ -42,6 +42,7 @@
             android:authorities="com.facebook.app.FacebookContentProvider1038110652893074"
             android:exported="true" />
 
+
         <activity
             android:name=".PlayListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

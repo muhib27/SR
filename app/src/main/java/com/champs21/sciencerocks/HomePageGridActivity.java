@@ -105,6 +105,9 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         }
 
         Log.e("KEY_HASH", ApplicationSingleton.getInstance().printHashKey(getApplicationContext()));
+
+
+        ApplicationSingleton.getInstance().requestAdMob(this);
     }
 
    /* @Override

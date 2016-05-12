@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.champs21.sciencerocks.HomePageGridActivity"
     tools:showIn="@layout/activity_drawer_home_page_grid">
@@ -15,7 +11,8 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,6 +41,11 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <include
+        layout="@layout/layout_admob">
+
+    </include>
 
 
 

@@ -34,4 +34,9 @@
 
     </include>
 
+    <include
+        layout="@layout/layout_admob">
+
+    </include>
+
 </RelativeLayout>
