@@ -142,6 +142,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
             }
         });
 
+        ApplicationSingleton.getInstance().requestAdMob(this);
     }
 
     @Override

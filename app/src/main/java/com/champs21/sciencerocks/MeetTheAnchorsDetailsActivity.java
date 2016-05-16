@@ -5,15 +5,15 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.champs21.sciencerocks.utils.AppConstants;
+import com.champs21.sciencerocks.utils.ProportionalImageView;
 
 public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
 
     private CollapsingToolbarLayout collapsingToolbar;
-    private ImageView imgProfile;
+    private ProportionalImageView imgProfile;
     //private TextView txtName;
     private TextView txtAge;
     //private TextView txtBioDescription;
@@ -62,7 +62,7 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        imgProfile = (ImageView)this.findViewById(R.id.imgProfile);
+        imgProfile = (ProportionalImageView)this.findViewById(R.id.imgProfile);
         txtAge = (TextView)this.findViewById(R.id.txtAge);
         txtJobTitle = (TextView)this.findViewById(R.id.txtJobTitle);
         txtBioDetails = (TextView)this.findViewById(R.id.txtBioDetails);

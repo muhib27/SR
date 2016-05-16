@@ -72,6 +72,7 @@ public class QaRootActivity extends AppCompatActivity {
         initApiCall();
         initAction();
 
+        ApplicationSingleton.getInstance().requestAdMob(this);
 
     }
 

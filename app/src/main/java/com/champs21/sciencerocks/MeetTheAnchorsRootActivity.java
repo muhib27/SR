@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.utils.AppConstants;
 
 public class MeetTheAnchorsRootActivity extends AppCompatActivity {
@@ -38,6 +40,8 @@ public class MeetTheAnchorsRootActivity extends AppCompatActivity {
 
         initView();
         initAction();
+
+        ApplicationSingleton.getInstance().requestAdMob(this);
     }
 
     @Override
@@ -82,13 +86,23 @@ public class MeetTheAnchorsRootActivity extends AppCompatActivity {
             }
         });
 
+
+
         btnQA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MeetTheAnchorsRootActivity.this, QaRootActivity.class);
-                startActivity(intent);
+                if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
+
+                    Intent intent = new Intent(MeetTheAnchorsRootActivity.this, QaRootActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(MeetTheAnchorsRootActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+
     }
 
 }

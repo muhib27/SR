@@ -11,6 +11,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 
 import com.champs21.sciencerocks.R;
 import com.google.android.gms.ads.AdRequest;
@@ -38,11 +39,7 @@ public class ApplicationSingleton extends MultiDexApplication {
         MultiDex.install(this);
     }
 
-    public void requestAdMob(Activity activity){
-        AdView mAdView = (AdView) activity.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
+
 
     @Override
     public void onCreate() {
@@ -114,4 +111,19 @@ public class ApplicationSingleton extends MultiDexApplication {
         }
         return  hashKey;
     }
+
+    public void requestAdMob(Activity activity){
+        AdView mAdView = (AdView) activity.findViewById(R.id.adView);
+
+        if(isNetworkConnected()){
+            mAdView.setVisibility(View.VISIBLE);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
+        else{
+            mAdView.setVisibility(View.GONE);
+        }
+
+    }
+
 }

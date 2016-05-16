@@ -46,71 +46,91 @@
     </include>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
+        android:gravity="center"
         android:id="@+id/linearLayout2">
 
         <LinearLayout
-            android:id="@+id/layoutPreviousHolder"
             android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@color/colorPrimary"
-            android:layout_marginRight="1dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:clickable="true"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_btn_previous"
-                android:background="@android:color/transparent"
-                android:id="@+id/btnPrevious" />
+            <LinearLayout
+                android:id="@+id/layoutPreviousHolder"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_marginRight="1dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:clickable="true"
+                android:layout_weight="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_previous"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:id="@+id/textView14" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_btn_previous"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/btnPrevious" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_previous"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNextHolder"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="1dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:clickable="true"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_next"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView15" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/selector_btn_next"
+                    android:id="@+id/btnNext" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutNextHolder"
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@color/colorPrimary"
-            android:layout_marginLeft="1dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:clickable="true"
-            android:layout_weight="1">
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/admob_ad_id">
+        </com.google.android.gms.ads.AdView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_next"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:id="@+id/textView15" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/selector_btn_next"
-                android:id="@+id/btnNext" />
-        </LinearLayout>
     </LinearLayout>
+
 
 </RelativeLayout>

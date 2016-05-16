@@ -34,14 +34,14 @@
 
                     <RelativeLayout
                         android:id="@+id/layoutMaleHolder"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
+                        <com.champs21.sciencerocks.utils.ProportionalImageView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@drawable/male_anchor"
-                            android:scaleType="center"
                             android:id="@+id/imgViewMale" />
 
                     </RelativeLayout>
@@ -49,7 +49,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:gravity="center_vertical"
                         android:background="@color/topicHeaderColor">
                         <TextView
@@ -75,14 +75,14 @@
 
                     <RelativeLayout
                         android:id="@+id/layoutFemaleHolder"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
+                        <com.champs21.sciencerocks.utils.ProportionalImageView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:src="@drawable/female_anchor"
-                            android:scaleType="center"
                             android:id="@+id/imgViewFemale" />
 
 
@@ -90,7 +90,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:gravity="center_vertical"
                         android:background="@color/topicHeaderColor">
                         <TextView
@@ -150,20 +150,30 @@
     </ScrollView>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:gravity="center"
         android:id="@+id/linearLayout">
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnQA"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="22sp"
             android:text="@string/title_activity_qa_root"/>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/admob_ad_id">
+        </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 

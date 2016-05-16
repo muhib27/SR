@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.Level;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
@@ -66,6 +67,8 @@ public class LevelRootActivity extends AppCompatActivity {
         initView();
         initApiCall();
         initAction();
+
+        ApplicationSingleton.getInstance().requestAdMob(this);
 
     }
 

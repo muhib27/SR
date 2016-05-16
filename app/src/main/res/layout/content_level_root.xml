@@ -13,6 +13,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentTop="true"
         android:scrollbars="vertical" />
 
     <TextView
@@ -33,5 +35,15 @@
         android:layout_centerInParent="true">
 
     </include>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:adSize="BANNER"
+        app:adUnitId="@string/admob_ad_id">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

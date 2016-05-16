@@ -102,6 +102,8 @@ public class QuizActivity extends AppCompatActivity {
             initMusic();
         }
 
+        ApplicationSingleton.getInstance().requestAdMob(this);
+
 
     }
 
