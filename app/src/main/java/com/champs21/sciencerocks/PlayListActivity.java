@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,6 +54,7 @@ public class PlayListActivity extends AppCompatActivity {
     private SwipyRefreshLayout mSwipyRefreshLayout;
     private String pageToken = "";
     private TextView txtMessage;
+    private AppCompatButton btnWinnerList;
 
 
     @Override
@@ -85,6 +87,7 @@ public class PlayListActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
         mSwipyRefreshLayout = (SwipyRefreshLayout)this.findViewById(R.id.swipyrefreshlayout);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
+        btnWinnerList = (AppCompatButton)this.findViewById(R.id.btnWinnerList);
     }
     private void initAction(){
         layoutManager = new LinearLayoutManager(this);
@@ -106,6 +109,14 @@ public class PlayListActivity extends AppCompatActivity {
                 else{
                     stopLoader();
                 }
+            }
+        });
+
+        btnWinnerList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PlayListActivity.this, WinnerListRootActivity.class);
+                startActivity(intent);
             }
         });
     }

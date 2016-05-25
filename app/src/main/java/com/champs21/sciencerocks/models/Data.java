@@ -40,6 +40,10 @@ public class Data {
     @Expose
     private List<Asktheanchor> asktheanchor = new ArrayList<Asktheanchor>();
 
+    @SerializedName("episodes")
+    @Expose
+    private List<Episode> episodes = new ArrayList<Episode>();
+
     /**
      *
      * @return
@@ -167,6 +171,24 @@ public class Data {
      */
     public void setAsktheanchor(List<Asktheanchor> asktheanchor) {
         this.asktheanchor = asktheanchor;
+    }
+
+    /**
+     *
+     * @return
+     * The episodes
+     */
+    public List<Episode> getEpisodes() {
+        return episodes;
+    }
+
+    /**
+     *
+     * @param episodes
+     * The episodes
+     */
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
     }
 
 }

@@ -75,5 +75,16 @@
     <string name="btn_next">Next</string>
     <string name="str_00">00</string>
     <string name="msg_score_saved_successfully">Your score saved successfully.</string>
+    <string name="txt_button_episode_winner_list">Episodic Winner List</string>
+    <string name="title_activity_winner_list_root">Episodic Winner List</string>
+    <string name="txt_btn_winner_List">Winner List</string>
+    <string name="txt_question1">Question1</string>
+    <string name="txt_question2">Question2</string>
+    <string name="txt_answer1">Answer1</string>
+    <string name="txt_answer2">Answer2</string>
+    <string name="txt_winner1">Winner1</string>
+    <string name="txt_winner2">Winner2</string>
+    <string name="txt_btn_ok">OK</string>
+    <string name="txt_button_winner_quiz_answer">Quiz Answers</string>
 
 </resources>

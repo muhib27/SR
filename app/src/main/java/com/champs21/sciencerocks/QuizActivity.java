@@ -1,14 +1,12 @@
 package com.champs21.sciencerocks;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -41,7 +38,6 @@ import com.champs21.sciencerocks.utils.TextViewPlus;
 import com.champs21.sciencerocks.utils.TimeWatch;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
-import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -336,64 +332,16 @@ public class QuizActivity extends AppCompatActivity {
         if(!isFinishing()){
             final MaterialDialog dialog = new MaterialDialog.Builder(this)
                     .title(R.string.dialog_title_quiz)
-                    .customView(R.layout.layout_dialog_explanation_next, false)
+                    .customView(R.layout.layout_dialog_winner_list, false)
                     .cancelable(false)
                     .show();
 
             View dialogView = dialog.getCustomView();
 
-            LinearLayout layoutExplanation = (LinearLayout) dialogView.findViewById(R.id.layoutExplanation);
-            TextView txtExplanation = (TextView)dialogView.findViewById(R.id.txtExplanation);
-            LinearLayout layoutAnswer = (LinearLayout) dialogView.findViewById(R.id.layoutAnswer);
-            TextView txtAnswer = (TextView)dialogView.findViewById(R.id.txtAnswer);
 
 
 
-            AppCompatButton btnNext = (AppCompatButton) dialogView.findViewById(R.id.btnNext);
-            if(isLastQuestion){
-                txtExplanation.setText(listQuestion.get(currentPosition-1).getExplanation());
-                for(Option op : listQuestion.get(currentPosition-1).getOptions()){
-                    if(op.getCorrect().equalsIgnoreCase("1"))
-                        txtAnswer.setText(op.getAnswer());
-                }
-                btnNext.setText(R.string.btn_text_finish);
 
-                btnNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                        Log.e("GO_TO", "result page");
-
-                        scoreManager = new ScoreManager(listQuestion.size(), listCorrect, score, ellapsedTime, totalMarks);
-                        Intent intent = new Intent(QuizActivity.this, ResultPageActivity.class);
-                        String data = new Gson().toJson(scoreManager);
-                        intent.putExtra(AppConstants.QUIZ_SCORE_MANAGER, data);
-                        intent.putExtra(AppConstants.QUIZ_LEVEL_ID, levelId);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-            }
-            else {
-                if(currentPosition-1<listQuestion.size()) {
-                    txtExplanation.setText(listQuestion.get(currentPosition - 1).getExplanation());
-                    for(Option op : listQuestion.get(currentPosition-1).getOptions()){
-                        if(op.getCorrect().equalsIgnoreCase("1"))
-                            txtAnswer.setText(op.getAnswer());
-                    }
-
-                    btnNext.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            if(currentPosition<listQuestion.size()){
-                                populateData(currentPosition);
-                                dialog.dismiss();
-                            }
-                        }
-                    });
-                }
-            }
         }
 
 

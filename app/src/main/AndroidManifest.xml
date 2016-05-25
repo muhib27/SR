@@ -42,7 +42,6 @@
             android:authorities="com.facebook.app.FacebookContentProvider1038110652893074"
             android:exported="true" />
 
-
         <activity
             android:name=".PlayListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -109,6 +108,11 @@
             android:name=".DailyDozeNewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_daily_doze_new"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WinnerListRootActivity"
+            android:label="@string/title_activity_winner_list_root"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
