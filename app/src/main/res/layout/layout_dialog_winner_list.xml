@@ -37,7 +37,40 @@
                     android:text="New Text"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
+                    android:id="@+id/txtQuestion1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutAnswer1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="@string/txt_answer1"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="New Text"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
                     android:id="@+id/txtAnswer1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorAccent">
+
             </LinearLayout>
 
             <LinearLayout
@@ -53,7 +86,7 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="@string/txt_answer1"
+                    android:text="@string/txt_question1"
                     android:id="@+id/textView2" />
 
                 <TextView
@@ -63,10 +96,11 @@
                     android:text="New Text"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    android:id="@+id/txtAnswer2" />
+                    android:id="@+id/txtQuestion2" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutAnswer2"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,8 +112,8 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="@string/txt_question2"
-                    android:id="@+id/textView4" />
+                    android:text="@string/txt_answer1"
+                    android:id="@+id/textView5" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,8 +122,9 @@
                     android:text="New Text"
                     android:textColor="@color/colorBlack"
                     android:textSize="16sp"
-                    android:id="@+id/txtAnswer5" />
+                    android:id="@+id/txtAnswer2" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"

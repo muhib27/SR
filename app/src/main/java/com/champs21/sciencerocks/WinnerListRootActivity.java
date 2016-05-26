@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -114,7 +115,7 @@ public class WinnerListRootActivity extends AppCompatActivity {
 
         final Map<String, String> params = new HashMap<String, String>();
         params.put("page_number", String.valueOf(pageNumber));
-        params.put("page_size", "2");
+        params.put("page_size", "20");
 
 
         MultiPartStringRequest mpr = new MultiPartStringRequest(Request.Method.POST, UrlHelper.newUrl(UrlHelper.URL_GET_EPISODE), new Response.Listener<JSONObject>() {
@@ -191,7 +192,11 @@ public class WinnerListRootActivity extends AppCompatActivity {
             TextView txtWinnerDistrict3;
 
             AppCompatButton btnRowWinnerList;
+            LinearLayout layoutWinnerList;
+            LinearLayout layoutTitleHolder;
             CardView cardView;
+
+            boolean isLayoutOpen = false;
 
 
             public MyViewHolder(View itemView) {
@@ -213,6 +218,8 @@ public class WinnerListRootActivity extends AppCompatActivity {
 
 
                 this.btnRowWinnerList = (AppCompatButton)itemView.findViewById(R.id.btnRowWinnerList);
+                this.layoutWinnerList = (LinearLayout)itemView.findViewById(R.id.layoutWinnerList);
+                this.layoutTitleHolder = (LinearLayout)itemView.findViewById(R.id.layoutTitleHolder);
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
             }
         }
@@ -252,6 +259,8 @@ public class WinnerListRootActivity extends AppCompatActivity {
 
 
             AppCompatButton btnRowWinnerList = holder.btnRowWinnerList;
+            final LinearLayout layoutWinnerList = holder.layoutWinnerList;
+            LinearLayout layoutTitleHolder = holder.layoutTitleHolder;
             CardView cardView = holder.cardView;
 
 
@@ -270,6 +279,21 @@ public class WinnerListRootActivity extends AppCompatActivity {
             textWinnerJob3.setText(listItems.get(listPosition).getWinner3Occupation());
             txtWinnerDistrict3.setText(listItems.get(listPosition).getWinner3District());
 
+            layoutWinnerList.setVisibility(View.GONE);
+
+            layoutTitleHolder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.isLayoutOpen = !holder.isLayoutOpen;
+                    if(holder.isLayoutOpen){
+                        layoutWinnerList.setVisibility(View.VISIBLE);
+                        animate(layoutWinnerList);
+                    }else{
+                        layoutWinnerList.setVisibility(View.GONE);
+                        animate(layoutWinnerList);
+                    }
+                }
+            });
 
 
             cardView.setOnClickListener(new View.OnClickListener() {
@@ -283,11 +307,20 @@ public class WinnerListRootActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
+                    showDialog(listItems.get(listPosition));
                 }
             });
 
 
         }
+
+        private void animate(View view) {
+            view.animate().cancel();
+            view.setTranslationY(view.getHeight());
+            view.setAlpha(0);
+            view.animate().alpha(1.0f).translationY(0).setDuration(300).setStartDelay(100);
+        }
+
 
         @Override
         public int getItemCount() {
@@ -320,11 +353,33 @@ public class WinnerListRootActivity extends AppCompatActivity {
 
             final MaterialDialog dialog = new MaterialDialog.Builder(this)
                     .title(R.string.dialog_title_quiz)
-                    .customView(R.layout.layout_dialog_explanation_next, false)
-                    .cancelable(false)
+                    .customView(R.layout.layout_dialog_winner_list, false)
+                    .cancelable(true)
                     .show();
 
             View dialogView = dialog.getCustomView();
+
+            TextView txtQuestion1 = (TextView)dialogView.findViewById(R.id.txtQuestion1);
+            TextView txtQuestion2 = (TextView)dialogView.findViewById(R.id.txtQuestion2);
+            TextView txtAnswer1 = (TextView)dialogView.findViewById(R.id.txtAnswer1);
+            TextView txtAnswer2 = (TextView)dialogView.findViewById(R.id.txtAnswer2);
+
+
+            AppCompatButton btnOk = (AppCompatButton)dialog.findViewById(R.id.btnOk);
+
+            txtQuestion1.setText(episode.getQuestion1());
+            txtAnswer1.setText(episode.getAns1());
+            txtQuestion2.setText(episode.getQuestion2());
+            txtAnswer2.setText(episode.getAns2());
+
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(dialog!=null){
+                        dialog.dismiss();
+                    }
+                }
+            });
 
 
         }
