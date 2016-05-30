@@ -41,7 +41,7 @@
                         <com.champs21.sciencerocks.utils.ProportionalImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/male_anchor"
+                            android:src="@drawable/male_anch"
                             android:id="@+id/imgViewMale" />
 
                     </RelativeLayout>
@@ -82,7 +82,7 @@
                         <com.champs21.sciencerocks.utils.ProportionalImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/female_anchor"
+                            android:src="@drawable/female_anch"
                             android:id="@+id/imgViewFemale" />
 
 
@@ -136,7 +136,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/colorWhite"
                     android:layout_marginTop="25dp"
-                    android:text="@string/mta_meet_anchors_details"/>
+                    android:text="@string/mta_meet_anchors_intro"/>
 
 
             </LinearLayout>

@@ -135,7 +135,7 @@ public class QuizActivity extends AppCompatActivity {
     private void populateData(int currentPosition){
         txtTimer.setText(listQuestion.get(currentPosition).getTime());
         txtQuestion.setText(listQuestion.get(currentPosition).getQuestion());
-        initTimer(Long.parseLong(listQuestion.get(currentPosition).getTime()) * 1000);
+        initTimer((Long.parseLong(listQuestion.get(currentPosition).getTime()) * 1000)+1*1000);
 
         if(adapter==null){
             adapter = new QuestionAdapter(listQuestion.get(currentPosition).getOptions());
@@ -196,7 +196,8 @@ public class QuizActivity extends AppCompatActivity {
         return result;
     }
 
-    private void initApiCall(){
+    private void
+    initApiCall(){
         progressView.setVisibility(View.VISIBLE);
         progressView.startAnimation();
         listQuestion.clear();

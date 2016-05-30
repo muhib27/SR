@@ -79,9 +79,9 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
 
         listData = new ArrayList<String>();
-        listData.add(getString(R.string.home_page_grid_quiz));
-        listData.add(getString(R.string.home_page_grid_episodes));
         listData.add(getString(R.string.home_page_grid_daily_doze));
+        listData.add(getString(R.string.home_page_grid_episodes));
+        listData.add(getString(R.string.home_page_grid_quiz));
         listData.add(getString(R.string.home_page_grid_mta));
 
 
@@ -232,10 +232,21 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_homepage_grid, parent, false);
 
-            MyViewHolder myViewHolder = new MyViewHolder(view);
+            MyViewHolder myViewHolder = null;
+            if(viewType==0){
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.row_homepage_grid_daily_doze, parent, false);
+
+                myViewHolder = new MyViewHolder(view);
+
+            }
+            else{
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.row_homepage_grid, parent, false);
+
+                myViewHolder = new MyViewHolder(view);
+            }
             return myViewHolder;
         }
 
@@ -249,13 +260,13 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
             txtTitle.setText(dataSet.get(listPosition));
 
             if(listPosition == 0){
-                imgIcon.setImageResource(R.drawable.icon_quiz);
+                imgIcon.setImageResource(R.drawable.icon_daily_doze);
             }
             if(listPosition == 1){
                 imgIcon.setImageResource(R.drawable.icon_episode);
             }
             if(listPosition == 2){
-                imgIcon.setImageResource(R.drawable.icon_daily_doze);
+                imgIcon.setImageResource(R.drawable.icon_quiz);
             }
             if(listPosition == 3){
                 imgIcon.setImageResource(R.drawable.icon_mta);
@@ -268,9 +279,10 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
                     //quiz
                     if(listPosition == 0){
 
-                        if(ApplicationSingleton.getInstance().isNetworkConnected() == true){
-                            Intent intent = new Intent(HomePageGridActivity.this, TopicRootActivity.class);
-                            startActivityForResult(intent, REQUST_TOPIC_ACTIVITY);
+                        if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
+                            //Intent intent = new Intent(HomePageGridActivity.this, DailyDozeActivity.class);
+                            Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
+                            startActivity(intent);
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
@@ -290,14 +302,17 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
 
                     //daily doze
                     else if(listPosition == 2){
-                        if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
-                            //Intent intent = new Intent(HomePageGridActivity.this, DailyDozeActivity.class);
-                            Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
-                            startActivity(intent);
+
+                        if(ApplicationSingleton.getInstance().isNetworkConnected() == true){
+                            Intent intent = new Intent(HomePageGridActivity.this, TopicRootActivity.class);
+                            startActivityForResult(intent, REQUST_TOPIC_ACTIVITY);
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
                         }
+
+
+
                     }
                     //meet the anchors
                     else if(listPosition == 3){

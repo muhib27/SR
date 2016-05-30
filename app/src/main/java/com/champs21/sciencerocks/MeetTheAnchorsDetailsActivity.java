@@ -72,17 +72,17 @@ public class MeetTheAnchorsDetailsActivity extends AppCompatActivity {
 
         if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_MALE)){
             collapsingToolbar.setTitle(getString(R.string.mta_male_anchor_name));
-            imgProfile.setImageResource(R.drawable.male_anchor);
+            imgProfile.setImageResource(R.drawable.male_anch);
             txtAge.setText(R.string.mta_male_anchor_age);
             txtJobTitle.setText(R.string.mta_male_anchor_job_title);
-            //txtBioDetails.setText("blah blah");
+            txtBioDetails.setText(R.string.mta_bio_male_details);
         }
         else if(selectedAnchor.equalsIgnoreCase(AppConstants.ANCHOR_FEMALE)){
             collapsingToolbar.setTitle(getString(R.string.mta_female_anchor_name));
-            imgProfile.setImageResource(R.drawable.female_anchor);
+            imgProfile.setImageResource(R.drawable.female_anch);
             txtAge.setText(R.string.mta_female_anchor_age);
             txtJobTitle.setText(R.string.mta_female_anchor_job_title);
-            //txtBioDetails.setText("blah blah");
+            txtBioDetails.setText(R.string.mta_bio_female_details);
         }
 
     }

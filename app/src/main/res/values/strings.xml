@@ -29,17 +29,17 @@
     <string name="daily_doze_new_activity_no_next_data">No previous data is found!</string>
     <string name="home_page_grid_quiz">Quiz</string>
     <string name="home_page_grid_episodes">Episodes</string>
-    <string name="home_page_grid_daily_doze">Daily Doze</string>
+    <string name="home_page_grid_daily_doze">Daily</string>
     <string name="home_page_grid_mta">Anchors</string>
     <string name="mta_anchor">Anchor</string>
-    <string name="mta_male_anchor_name">Leonardo Dicaprio</string>
-    <string name="mta_male_anchor_nick_name">Leonardo</string>
-    <string name="mta_male_anchor_age">28 years</string>
-    <string name="mta_male_anchor_job_title">Teacher, Adademia</string>
-    <string name="mta_female_anchor_name">Anne Hathaway</string>
-    <string name="mta_female_anchor_nick_name">Anne</string>
-    <string name="mta_female_anchor_age">25 years</string>
-    <string name="mta_female_anchor_job_title">TV Personality, Channeli</string>
+    <string name="mta_male_anchor_name">আফনান শাহ কুরেশী</string>
+    <string name="mta_male_anchor_nick_name">আফনান</string>
+    <string name="mta_male_anchor_age">২৫ বছর,</string>
+    <string name="mta_male_anchor_job_title">শিক্ষক</string>
+    <string name="mta_female_anchor_name">সানজিদা চৌধুরী স্বর্ণা</string>
+    <string name="mta_female_anchor_nick_name">স্বর্ণা</string>
+    <string name="mta_female_anchor_age">২১ বছর,</string>
+    <string name="mta_female_anchor_job_title">শিক্ষার্থী</string>
     <string name="youtube_player_error">Youtube player error, please try again later.</string>
     <string name="dialog_ask_question">Ask question</string>
     <string name="dialog_name_empty">Name cannot be empty!</string>
@@ -70,7 +70,16 @@
     <string name="txt_explanation">Explanation</string>
     <string name="text_next">Next</string>
     <string name="mta_meet_anchors">Meet Anchors</string>
-    <string name="mta_meet_anchors_details">Leonardo Dicaprio and Anne Hatheway are the most prominent anchors of TV show. Leonardo is a school teacher and science enthusiastic while Anne is a tv star.</string>
+    <string name="mta_meet_anchors_intro">বিজ্ঞানের প্রতি আফনানের আকর্ষণ ছোটবেলা থেকেই। আফনানের মতে বিজ্ঞানকে বুঝতে পারলে আমরা আমাদের দৈনন্দিন জীবন আর চারপাশের অনেক ঘটনাবলীকেই খুব সহজে বুঝতে এবং ব্যাখ্যা করতে পারবো। অন্যদিকে, ছোটবেলা থেকেই বিজ্ঞানকে স্বর্ণার দারুণ ভয়। এমনকি বিজ্ঞানের নাম শুনলেই তার হাত-পা কাঁপা শুরু হয়ে যেতো।</string>
+    <string name="mta_bio_male_details">বিজ্ঞানের প্রতি আফনানের আকর্ষণ ছোটবেলা থেকেই। ক্লাস সিক্সে পড়ার সময় আফনানের শিক্ষকের কাছ থেকে সে বিজ্ঞান নিয়ে জানার অনুপ্রেরণা প্রায়। আর বিজ্ঞানের এই যাত্রাটা শুরু হয় রসায়ন দিয়ে। রসায়নের জটিল সব বিক্রিয়া আর অণু-পরমাণুর গঠন তার কাছে হয়ে উঠে মজার বিষয়। ধীরে ধীরে পদার্থেও তার আকর্ষণ বাড়ে। আর গণিতও ছিল তার খুব পছন্দের বিষয়।
+আফনানের মতে বিজ্ঞান আমাদের দৈনন্দিন জীবনেরই একটি অংশ। আর বিজ্ঞানকে বুঝতে পারলে আমরা আমাদের দৈনন্দিন জীবন আর চারপাশের অনেক ঘটনাবলীকেই খুব সহজে বুঝতে এবং ব্যাখ্যা করতে পারবো। এ কারণেই বিজ্ঞানের প্রতি আফনানের আগ্রহটা একটু বেশি।
+আফনানের পুরো নাম আফনান শাহ কুরেশী। আগা খান স্কুল থেকে ও’লেভেল আর এ’লেভেল শেষ করে বি.এস.সি করেছেন বুয়েটের কম্পিউটার সায়েন্স এন্ড ইঞ্জিনিয়ারিং ডিপার্টমেন্ট থেকে। নটরডেম কলেজ আয়োজিত পদার্থবিজ্ঞান অলিম্পিয়াডে হয়েছিলেন দ্বিতীয়।
+তবে বিজ্ঞান নিয়ে নাড়াচাড়া করলেও আফনান কিন্তু মোটেও নিরস বা কাঠখোট্টা নয়। সে বেশ সংস্কৃতিমনা। আফনান খুব ভালো পিয়ানো বাজায় এবং গজল গায়। আফনান বর্তমানে একটি স্কুলে শিক্ষকতা করছে।
+</string>
+    <string name="mta_bio_female_details">আফনানের ঠিক বিপরীত হচ্ছে স্বর্ণা। ছোটবেলা থেকেই বিজ্ঞানকে তার দারুণ ভয়। এমনকি বিজ্ঞানের নাম শুনলেই তার হাত-পা কাঁপা শুরু হয়ে যেতো। বিজ্ঞানের কথা শুনলেই স্বর্ণার যেন দাঁত ভাঙার যোগার। পারতপক্ষে তাই বিজ্ঞানের ধারে কাছে ঘেঁষত না স্বর্ণা। কিন্তু ক্লাস নাইনে সায়েন্স গ্রুপে ভর্তি হওয়ার পর থেকে আসল বিপদ শুরু হলো। বিজ্ঞানের জটিল সব ব্যাখ্যা আর কাঠখোট্টা সব শব্দ শুনেই তার মাথা ঘুরে যেতো। পদার্থবিজ্ঞান, রসায়নবিজ্ঞান, গণিত সবকিছুই ছিল তার কাছে দুরূহ। বিজ্ঞানের কোন পড়াই তার কাছে ভালো লাগতো না।
+স্বর্ণাকে এ বিপদ থেকে উদ্ধার করলো তার আফনান ভাইয়া। স্বর্ণাকে বোঝাল যে একটু চেষ্টা করলেই বিজ্ঞানকে খুব সহজেই বুঝতে পারা যায়। আর এজন্যই তারা বিজ্ঞান নিয়ে শুরু করলো নানা ধরণের এক্সপেরিমেন্ট। আফনানের উৎসাহে ধীরে ধীরে বিজ্ঞানের প্রতি আগ্রহ বাড়তে থাকে স্বর্ণার।
+সানজিদা চৌধুরী স্বর্ণা পড়াশোনা করছে অর্থনীতি নিয়ে ব্র্যাক ইউনিভার্সিটিতে। এর আগে মোহাম্মাদপুর প্রিপারেটরী হায়ার সেকেন্ডারি স্কুল থেকে থেকে করেছে এসএসসি ও এইচএসসি। সেই সাথে ছায়ানটে পড়াশোনা করেছে গান নিয়ে। স্বর্ণা খুব ভালো রবীন্দ্র সংগীত গায়। জাতীয় পর্যায়ে গান গেয়ে অনেক পুরষ্কারও অর্জন করেছে সে।
+</string>
     <string name="btn_previous">Previous</string>
     <string name="btn_next">Next</string>
     <string name="str_00">00</string>

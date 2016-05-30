@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:layout_marginBottom="20dp">
@@ -34,7 +34,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="26 years"
-                android:layout_marginBottom="5dp"
                 android:textColor="@color/colorWhite"/>
 
             <TextView
@@ -44,6 +43,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
+                android:layout_marginLeft="2dp"
                 android:text="Teacher, Academia, Dhaka"/>
 
         </LinearLayout>
