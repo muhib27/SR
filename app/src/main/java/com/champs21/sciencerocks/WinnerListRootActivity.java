@@ -2,6 +2,7 @@ package com.champs21.sciencerocks;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.Episode;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
@@ -66,6 +69,8 @@ public class WinnerListRootActivity extends AppCompatActivity {
         initView();
         initApiCall();
         initAction();
+
+        ApplicationSingleton.getInstance().requestAdMob(this);
 
     }
 
@@ -191,6 +196,9 @@ public class WinnerListRootActivity extends AppCompatActivity {
             TextView textWinnerJob3;
             TextView txtWinnerDistrict3;
 
+            ImageButton imgButtonMore;
+            LinearLayout layoutWinnerListHolder;
+
             AppCompatButton btnRowWinnerList;
             LinearLayout layoutWinnerList;
             LinearLayout layoutTitleHolder;
@@ -216,6 +224,9 @@ public class WinnerListRootActivity extends AppCompatActivity {
                 this.textWinnerJob3 = (TextView)itemView.findViewById(R.id.textWinnerJob3);
                 this.txtWinnerDistrict3 = (TextView)itemView.findViewById(R.id.txtWinnerDistrict3);
 
+                this.imgButtonMore = (ImageButton)itemView.findViewById(R.id.imgButtonMore);
+                this.layoutWinnerListHolder = (LinearLayout)itemView.findViewById(R.id.layoutWinnerListHolder);
+
 
                 this.btnRowWinnerList = (AppCompatButton)itemView.findViewById(R.id.btnRowWinnerList);
                 this.layoutWinnerList = (LinearLayout)itemView.findViewById(R.id.layoutWinnerList);
@@ -233,7 +244,7 @@ public class WinnerListRootActivity extends AppCompatActivity {
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_winner_list_layout, parent, false);
+                    .inflate(R.layout.row_winner_list_layout2, parent, false);
 
             MyViewHolder myViewHolder = new MyViewHolder(view);
             return myViewHolder;
@@ -257,6 +268,8 @@ public class WinnerListRootActivity extends AppCompatActivity {
             TextView textWinnerJob3 = holder.textWinnerJob3;
             TextView txtWinnerDistrict3 = holder.txtWinnerDistrict3;
 
+            final ImageButton imgButtonMore = holder.imgButtonMore;
+            final LinearLayout layoutWinnerListHolder = holder.layoutWinnerListHolder;
 
             AppCompatButton btnRowWinnerList = holder.btnRowWinnerList;
             final LinearLayout layoutWinnerList = holder.layoutWinnerList;
@@ -287,10 +300,29 @@ public class WinnerListRootActivity extends AppCompatActivity {
                     holder.isLayoutOpen = !holder.isLayoutOpen;
                     if(holder.isLayoutOpen){
                         layoutWinnerList.setVisibility(View.VISIBLE);
-                        animate(layoutWinnerList);
+                        imgButtonMore.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                        layoutWinnerListHolder.setBackgroundColor(ContextCompat.getColor(WinnerListRootActivity.this, R.color.topicHeaderColor));
                     }else{
                         layoutWinnerList.setVisibility(View.GONE);
-                        animate(layoutWinnerList);
+                        imgButtonMore.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                        layoutWinnerListHolder.setBackgroundColor(ContextCompat.getColor(WinnerListRootActivity.this, R.color.topicDescriptionColor));
+                    }
+                }
+            });
+
+
+            imgButtonMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.isLayoutOpen = !holder.isLayoutOpen;
+                    if(holder.isLayoutOpen){
+                        layoutWinnerList.setVisibility(View.VISIBLE);
+                        imgButtonMore.setImageResource(R.drawable.ic_expand_less_black_24dp);
+                        layoutWinnerListHolder.setBackgroundColor(ContextCompat.getColor(WinnerListRootActivity.this, R.color.topicHeaderColor));
+                    }else{
+                        layoutWinnerList.setVisibility(View.GONE);
+                        imgButtonMore.setImageResource(R.drawable.ic_expand_more_black_24dp);
+                        layoutWinnerListHolder.setBackgroundColor(ContextCompat.getColor(WinnerListRootActivity.this, R.color.topicDescriptionColor));
                     }
                 }
             });
@@ -314,12 +346,6 @@ public class WinnerListRootActivity extends AppCompatActivity {
 
         }
 
-        private void animate(View view) {
-            view.animate().cancel();
-            view.setTranslationY(view.getHeight());
-            view.setAlpha(0);
-            view.animate().alpha(1.0f).translationY(0).setDuration(300).setStartDelay(100);
-        }
 
 
         @Override
@@ -352,8 +378,7 @@ public class WinnerListRootActivity extends AppCompatActivity {
         if(!isFinishing()){
 
             final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                    .title(R.string.dialog_title_quiz)
-                    .customView(R.layout.layout_dialog_winner_list, false)
+                    .customView(R.layout.layout_dialog_winner_list2, false)
                     .cancelable(true)
                     .show();
 

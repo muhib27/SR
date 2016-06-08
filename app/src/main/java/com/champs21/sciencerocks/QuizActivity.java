@@ -440,7 +440,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
                 cardView.setEnabled(true);
-                cardView.setCardBackgroundColor(getResources().getColor(R.color.colorWhite));
+                cardView.setCardBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.colorWhite));
                 adapter.getRightAnswerCardView().setCardBackgroundColor(ContextCompat.getColor(QuizActivity.this, R.color.colorWhite));
 
                 currentPosition++;

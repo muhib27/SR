@@ -43,4 +43,14 @@
 
     </include>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:adSize="BANNER"
+        app:adUnitId="@string/admob_ad_id">
+    </com.google.android.gms.ads.AdView>
+
 </RelativeLayout>
