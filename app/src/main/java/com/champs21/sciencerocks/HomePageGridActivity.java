@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.champs21.sciencerocks.app.AppPreferences;
 import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.utils.AppConstants;
 
@@ -110,12 +110,12 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         //ApplicationSingleton.getInstance().requestAdMob(this);
     }
 
-   /* @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home_page_grid, menu);
         return true;
-    }*/
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -140,10 +140,14 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         if (menuItem.getItemId() == android.R.id.home) {
             finish();
         }
-        else if (menuItem.getItemId() == R.id.action_skin_choose) {
+        /*else if (menuItem.getItemId() == R.id.action_skin_choose) {
             Intent intent = new Intent(HomePageGridActivity.this, AppPreferences.class);
             startActivity(intent);
+        }*/
+        else if(menuItem.getItemId() == R.id.action_banner_page) {
+
         }
+
         return super.onOptionsItemSelected(menuItem);
     }
 
