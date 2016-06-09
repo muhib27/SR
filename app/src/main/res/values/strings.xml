@@ -15,7 +15,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="no_data_found_please_try_again_later">No data found, please try again later.</string>
-    <string name="quiz_music">Quiz Music</string>
+    <string name="quiz_music">Turn on/off music</string>
+    <string name="nav_about">About Science Rocks</string>
     <string name="user_settings">User</string>
     <string name="title_activity_topic_root">Topics</string>
     <string name="title_activity_level_root">Difficulty Levels</string>
@@ -100,5 +101,72 @@
     <string name="winner_list_winner2">Winner 2</string>
     <string name="winner_list_winner3">Winner 3</string>
     <string name="popup_title_quiz_answers">QUIZ ANSWERS</string>
+    <string name="about_science_rocks"><![CDATA[<P STYLE="margin-bottom: 0.14in"><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">বিজ্ঞান
+খুব মজার একটি বিষয়। আমাদের
+চারপাশে ঘটে যাওয়া দৈনন্দিন
+নানা ঘটনা বিজ্ঞান দিয়ে খুব
+সহজেই ব্যাখ্যা করা যায়। যেমন
+ধরো</SPAN></FONT></FONT></SPAN></FONT>, <FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">রংধনু
+কিভাবে সৃষ্টি হয়</SPAN></FONT></FONT></SPAN></FONT>,
+<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">আকাশ
+কেন নীল দেখায়</SPAN></FONT></FONT></SPAN></FONT>,
+<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">লোহা
+পানিতে ডুবে গেলেও লোহার তৈরি
+জাহাজ কেন পানিতে ভাসে ইত্যাদি।
+এসব জিনিস জানতে পারার পর
+বিজ্ঞানকে আরও মজাদার বলে
+মনে হয় এবং নতুন নতুন বিজ্ঞানভিত্তিক
+জিনিস জানার ইচ্ছা জাগে। </SPAN></FONT></FONT></SPAN></FONT>
+</P>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">অথচ
+বিজ্ঞান নিয়ে অনেকের মনেই
+ভয়ভীতি থাকে। জটিল সব সূত্র</SPAN></FONT></FONT></SPAN></FONT>,
+<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">গাণিতিক
+ব্যাখ্যা আর কঠিন সব শব্দ
+শুনলেই কেমন যেন ভয় ভয় লাগে।
+ একটু বোঝার চেষ্টা করলেই
+বিজ্ঞান তোমাদের কাছে খুব
+সহজেই ধরা দেবে। আর তোমাদের
+জন্য সে কাজটিই করছে ‘</SPAN></FONT></FONT></SPAN></FONT><FONT SIZE=4 STYLE="font-size: 16pt"><B>Science
+Rocks</B></FONT><FONT SIZE=4 STYLE="font-size: 16pt">’</FONT><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">।
+</SPAN></FONT></FONT></SPAN></FONT>
+</P>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">জটিল
+সব ঘটনাকে বৈজ্ঞানিক ব্যাখ্যা
+দিয়ে সহজভাবে তোমাদের কাছে
+তুলে ধরাই এ অনুষ্ঠানের
+উদ্দেশ্য। প্রতি সপ্তাহে ২টি
+করে ৫২ সপ্তাহে মোট ১০৪টি মজার
+মজার বিজ্ঞানের পরীক্ষা দেখানো
+হবে তোমাদের আর বলে দেয়া হবে
+সেটা কেন হলো</SPAN></FONT></FONT></SPAN></FONT>,
+<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">কিভাবে
+হলো। ‘সায়েন্স রকস’ দেখতে
+চোখ রাখো চ্যানেল আই</SPAN></FONT></FONT></SPAN></FONT>-<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">এর
+পর্দায় প্রতি শুক্রবার সকাল
+১১টায়। তবে কোন পর্ব দেখতে
+না পারলে সেটা পরে দেখে নিতে
+পারো চ্যাম্পস টোয়েন্টিওয়ান
+ডট কম ওয়েবসাইটে।  </SPAN></FONT></FONT></SPAN></FONT>
+</P>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">সায়েন্স
+রকস নিয়ে তৈরি করা হয়েছে একটি
+অ্যান্ড্রয়েড অ্যাপসও। বিজ্ঞান
+সংক্রান্ত অনেক মজার বিষয়
+জানা যাবে ও এমনকি প্রতিটি
+পর্বের ভিডিও দেখা যাবে এই
+অ্যাপ থেকে। বিজ্ঞানের মজার
+মজার সব ব্যাপার নিয়ে প্রতিদিন
+থাকছে একটি করে ‘</SPAN></FONT></FONT></SPAN></FONT><FONT SIZE=4 STYLE="font-size: 16pt"><B>Daily
+Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">।</SPAN></FONT></FONT></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">এছাড়া</SPAN></FONT></FONT></SPAN></FONT>,
+<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZE=4><SPAN LANG="bn-IN">প্রতি
+পর্বে তোমাদের জন্য থাকছে
+কুইজ যাতে অংশগ্রহণ করে জিতে
+নিতে পারো দারুণ সব পুরষ্কার।
+</SPAN></FONT></FONT></SPAN></FONT>
+</P>
+]]></string>
+    <string name="title_activity_about_science_rocks">About Science Rocks</string>
 
 </resources>

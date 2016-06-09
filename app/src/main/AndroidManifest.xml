@@ -111,8 +111,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WinnerListRootActivity"
-            android:label="@string/title_activity_winner_list_root"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_winner_list_root"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AboutScienceRocksActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_about_science_rocks"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

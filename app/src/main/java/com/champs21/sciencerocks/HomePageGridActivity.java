@@ -91,11 +91,11 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == true){
             navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_off_black_24dp);
             isSoundOff = true;
-            navigationView.getMenu().getItem(0).setChecked(true);
+            //navigationView.getMenu().getItem(0).setChecked(true);
         }else {
             isSoundOff = false;
             navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_up_black_24dp);
-            navigationView.getMenu().getItem(0).setChecked(false);
+            //navigationView.getMenu().getItem(0).setChecked(false);
         }
 
         View headerLayout = navigationView.getHeaderView(0);
@@ -162,13 +162,16 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
             if(isSoundOff){
                 navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_off_black_24dp);
                 ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, true);
-                navigationView.getMenu().getItem(0).setChecked(true);
+                //navigationView.getMenu().getItem(0).setChecked(true);
             }else{
                 navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_up_black_24dp);
                 ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, false);
-                navigationView.getMenu().getItem(0).setChecked(false);
+                //navigationView.getMenu().getItem(0).setChecked(false);
             }
 
+        }else if(id == R.id.nav_about){
+            Intent intent = new Intent(HomePageGridActivity.this, AboutScienceRocksActivity.class);
+            startActivity(intent);
         }
 
         /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
