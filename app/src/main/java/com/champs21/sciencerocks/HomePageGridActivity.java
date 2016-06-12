@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,12 +28,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.champs21.sciencerocks.app.ApplicationSingleton;
-import com.champs21.sciencerocks.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageGridActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomePageGridActivity extends AppCompatActivity {//implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final int REQUST_TOPIC_ACTIVITY = 10;
     private RecyclerView recyclerView;
@@ -48,7 +44,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
     private ImageView imgMainLogo;
 
     private ScrollView scrollView;
-    private NavigationView navigationView;
+    //private NavigationView navigationView;
     private boolean isSoundOff = false;
 
     @Override
@@ -67,14 +63,14 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
 
 
 
@@ -88,7 +84,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         initView();
         initAction();
 
-        if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == true){
+        /*if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == true){
             navigationView.getMenu().findItem(R.id.nav_music).setIcon(R.drawable.ic_volume_off_black_24dp);
             isSoundOff = true;
             //navigationView.getMenu().getItem(0).setChecked(true);
@@ -102,7 +98,7 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         TextView txtUserName = (TextView)headerLayout.findViewById(R.id.txtUserName);
         if(!TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME))){
             txtUserName.setText(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME));
-        }
+        }*/
 
         Log.e("KEY_HASH", ApplicationSingleton.getInstance().printHashKey(getApplicationContext()));
 
@@ -140,20 +136,24 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
         if (menuItem.getItemId() == android.R.id.home) {
             finish();
         }
+        else if(menuItem.getItemId() == R.id.action_about_sr){
+            Intent intent = new Intent(HomePageGridActivity.this, AboutScienceRocksActivity.class);
+            startActivity(intent);
+        }
         /*else if (menuItem.getItemId() == R.id.action_skin_choose) {
             Intent intent = new Intent(HomePageGridActivity.this, AppPreferences.class);
             startActivity(intent);
         }*/
-        else if(menuItem.getItemId() == R.id.action_banner_page) {
+        /*else if(menuItem.getItemId() == R.id.action_banner_page) {
 
-        }
+        }*/
 
         return super.onOptionsItemSelected(menuItem);
     }
 
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    /*@SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -178,11 +178,11 @@ public class HomePageGridActivity extends AppCompatActivity implements Navigatio
             startActivity(intent);
         }
 
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);*/
+        *//*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);*//*
 
         return true;
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

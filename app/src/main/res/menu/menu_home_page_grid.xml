@@ -9,10 +9,16 @@
         app:showAsAction="never" />-->
 
     <item
+        android:id="@+id/action_about_sr"
+        android:orderInCategory="100"
+        android:title="@string/title_activity_about_science_rocks"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_banner_page"
         android:orderInCategory="200"
         android:icon="@drawable/ic_visibility_white_24dp"
         android:title="@string/title_action_banner_page"
-        app:showAsAction="always" />
+        app:showAsAction="always"/>
 
 </menu>

@@ -86,8 +86,8 @@
     <string name="btn_next">Next</string>
     <string name="str_00">00</string>
     <string name="msg_score_saved_successfully">Your score saved successfully.</string>
-    <string name="txt_button_episode_winner_list">Episodic Winner List</string>
-    <string name="title_activity_winner_list_root">Episodic Winner List</string>
+    <string name="txt_button_episode_winner_list">Episode Wise  Winner List</string>
+    <string name="title_activity_winner_list_root">Episode Wise  Winner List</string>
     <string name="txt_btn_winner_List">Winner List</string>
     <string name="txt_question1">Question 1:</string>
     <string name="txt_question2">Question 2:</string>
