@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,8 @@ public class QuizActivity extends AppCompatActivity {
     private int totalMarks = 0;
 
     private MediaPlayer mp = null;
+    private boolean isSoundOff = false;
+
 
 
 
@@ -98,13 +101,32 @@ public class QuizActivity extends AppCompatActivity {
         initApiCall();
         initAction();
 
-        if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == false){
-            initMusic();
-        }
 
         ApplicationSingleton.getInstance().requestAdMob(this);
 
 
+        if(ApplicationSingleton.getInstance().getPrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE) == true){
+            isSoundOff = true;
+        }else {
+            isSoundOff = false;
+            initMusic();
+        }
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_quiz_page, menu);
+
+        if(isSoundOff == true){
+           menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_volume_off_white_24dp));
+        }else {
+            menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_volume_up_white_24dp));
+        }
+
+        return true;
     }
 
     @Override
@@ -112,6 +134,22 @@ public class QuizActivity extends AppCompatActivity {
         if (menuItem.getItemId() == android.R.id.home) {
             finish();
         }
+        else if(menuItem.getItemId() == R.id.action_quiz_music){
+
+            isSoundOff = !isSoundOff;
+
+            if(isSoundOff){
+                menuItem.setIcon(R.drawable.ic_volume_off_white_24dp);
+                ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, true);
+                stopMusic();
+            }else{
+                menuItem.setIcon(R.drawable.ic_volume_up_white_24dp);
+                ApplicationSingleton.getInstance().savePrefBoolean(AppConstants.QUIZ_MUSIC_TOGGLE, false);
+                initMusic();
+            }
+
+        }
+
         return super.onOptionsItemSelected(menuItem);
     }
 
@@ -541,6 +579,12 @@ public class QuizActivity extends AppCompatActivity {
         });
         mp.setLooping(true);
 
+    }
+
+    private void stopMusic(){
+        if (mp != null) {
+            mp.stop();
+        }
     }
 
     @Override

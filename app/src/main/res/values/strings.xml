@@ -6,7 +6,7 @@
 
 
     <string name="skin1_title">Skins</string>
-    <string name="title_action_banner_page">Banner Page</string>
+    <string name="title_action_banner_page">Banner Popup</string>
     <string name="title_activity_play_list">Play List</string>
     <string name="title_activity_play_list_items">Play List</string>
     <string name="title_activity_player">PlayerActivity</string>
@@ -34,11 +34,11 @@
     <string name="home_page_grid_daily_doze">Daily</string>
     <string name="home_page_grid_mta">Anchors</string>
     <string name="mta_anchor">Anchor</string>
-    <string name="mta_male_anchor_name">আফনান শাহ কুরেশী</string>
+    <string name="mta_male_anchor_name">আফনান</string>
     <string name="mta_male_anchor_nick_name">আফনান</string>
     <string name="mta_male_anchor_age">২৫ বছর,</string>
     <string name="mta_male_anchor_job_title">শিক্ষক</string>
-    <string name="mta_female_anchor_name">সানজিদা চৌধুরী স্বর্ণা</string>
+    <string name="mta_female_anchor_name">স্বর্ণা</string>
     <string name="mta_female_anchor_nick_name">স্বর্ণা</string>
     <string name="mta_female_anchor_age">২১ বছর,</string>
     <string name="mta_female_anchor_job_title">শিক্ষার্থী</string>
@@ -71,7 +71,7 @@
     <string name="txt_answer">Answer</string>
     <string name="txt_explanation">Explanation</string>
     <string name="text_next">Next</string>
-    <string name="mta_meet_anchors">Meet Anchors</string>
+    <string name="mta_meet_anchors">ওদের কথা</string>
     <string name="mta_meet_anchors_intro">বিজ্ঞানের প্রতি আফনানের আকর্ষণ ছোটবেলা থেকেই। আফনানের মতে বিজ্ঞানকে বুঝতে পারলে আমরা আমাদের দৈনন্দিন জীবন আর চারপাশের অনেক ঘটনাবলীকেই খুব সহজে বুঝতে এবং ব্যাখ্যা করতে পারবো। অন্যদিকে, ছোটবেলা থেকেই বিজ্ঞানকে স্বর্ণার দারুণ ভয়। এমনকি বিজ্ঞানের নাম শুনলেই তার হাত-পা কাঁপা শুরু হয়ে যেতো।</string>
     <string name="mta_bio_male_details">বিজ্ঞানের প্রতি আফনানের আকর্ষণ ছোটবেলা থেকেই। ক্লাস সিক্সে পড়ার সময় আফনানের শিক্ষকের কাছ থেকে সে বিজ্ঞান নিয়ে জানার অনুপ্রেরণা প্রায়। আর বিজ্ঞানের এই যাত্রাটা শুরু হয় রসায়ন দিয়ে। রসায়নের জটিল সব বিক্রিয়া আর অণু-পরমাণুর গঠন তার কাছে হয়ে উঠে মজার বিষয়। ধীরে ধীরে পদার্থেও তার আকর্ষণ বাড়ে। আর গণিতও ছিল তার খুব পছন্দের বিষয়।
 আফনানের মতে বিজ্ঞান আমাদের দৈনন্দিন জীবনেরই একটি অংশ। আর বিজ্ঞানকে বুঝতে পারলে আমরা আমাদের দৈনন্দিন জীবন আর চারপাশের অনেক ঘটনাবলীকেই খুব সহজে বুঝতে এবং ব্যাখ্যা করতে পারবো। এ কারণেই বিজ্ঞানের প্রতি আফনানের আগ্রহটা একটু বেশি।

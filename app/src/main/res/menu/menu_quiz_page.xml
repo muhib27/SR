@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.champs21.sciencerocks.HomePageGridActivity">
+
+    <item
+        android:id="@+id/action_quiz_music"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_volume_up_white_24dp"
+        android:title="@string/title_action_banner_page"
+        app:showAsAction="always"/>
+
+</menu>

@@ -1,10 +1,13 @@
 package com.champs21.sciencerocks;
 
 import android.Manifest;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -22,11 +25,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.champs21.sciencerocks.app.ApplicationSingleton;
 
 import java.util.ArrayList;
@@ -140,6 +145,9 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
             Intent intent = new Intent(HomePageGridActivity.this, AboutScienceRocksActivity.class);
             startActivity(intent);
         }
+        else if(menuItem.getItemId() == R.id.action_banner_page){
+            showBannerPopup();
+        }
         /*else if (menuItem.getItemId() == R.id.action_skin_choose) {
             Intent intent = new Intent(HomePageGridActivity.this, AppPreferences.class);
             startActivity(intent);
@@ -149,6 +157,29 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         }*/
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+
+    private void showBannerPopup(){
+
+
+        final MaterialDialog dialog = new MaterialDialog.Builder(this)
+                .customView(R.layout.popup_layout_banner, false)
+                .build();
+        View dialogView = dialog.getCustomView();
+
+        ImageButton btnClose = (ImageButton) dialogView.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dialog != null){
+                    dialog.dismiss();
+                }
+            }
+        });
+
+
+        dialog.show();
     }
 
 
@@ -216,6 +247,12 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         private List<String> dataSet;
         private int lastPosition = -1;
 
+        private AnimatorSet mSetRightOut;
+        private AnimatorSet mSetLeftIn;
+        private AnimatorSet setRightOut;
+        private AnimatorSet setLeftIn;
+        private boolean isBackVisible = false;
+
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView txtTitle;
@@ -233,6 +270,8 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
 
         public CustomAdapter(List<String> data) {
             this.dataSet = data;
+            this.setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(), R.animator.flight_right_out);
+            this.setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getApplicationContext(), R.animator.flight_left_in);
         }
 
 
@@ -279,17 +318,29 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                 imgIcon.setImageResource(R.drawable.icon_mta);
             }
 
+
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Handler h = new Handler();
+                    final View v = view;
+                    v.setEnabled(false);
                     //quiz
                     if(listPosition == 0){
 
                         if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
                             //Intent intent = new Intent(HomePageGridActivity.this, DailyDozeActivity.class);
-                            Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
-                            startActivity(intent);
+
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
+                                    startActivity(intent);
+                                    v.setEnabled(true);
+                                }
+                            }, 500);
+
+
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
@@ -299,8 +350,17 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                     //episodes
                     else if(listPosition == 1){
                         if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
-                            Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
-                            startActivity(intent);
+
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
+                                    startActivity(intent);
+                                    v.setEnabled(true);
+                                }
+                            }, 500);
+
+
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
@@ -311,8 +371,16 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                     else if(listPosition == 2){
 
                         if(ApplicationSingleton.getInstance().isNetworkConnected() == true){
-                            Intent intent = new Intent(HomePageGridActivity.this, TopicRootActivity.class);
-                            startActivityForResult(intent, REQUST_TOPIC_ACTIVITY);
+
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(HomePageGridActivity.this, TopicRootActivity.class);
+                                    startActivityForResult(intent, REQUST_TOPIC_ACTIVITY);
+                                    v.setEnabled(true);
+                                }
+                            }, 500);
+
                         }
                         else {
                             Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
@@ -323,9 +391,20 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                     }
                     //meet the anchors
                     else if(listPosition == 3){
-                        Intent intent = new Intent(HomePageGridActivity.this, MeetTheAnchorsRootActivity.class);
-                        startActivity(intent);
+
+                        h.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(HomePageGridActivity.this, MeetTheAnchorsRootActivity.class);
+                                startActivity(intent);
+                                v.setEnabled(true);
+                            }
+                        }, 500);
+
                     }
+
+                    showFlipAnimation(view);
+
                 }
             });
 
@@ -337,11 +416,29 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
             return dataSet.size();
         }
 
+
         private void setAnimation(View viewToAnimate, int position) {
             if (position > lastPosition) {
                 Animation animation = AnimationUtils.loadAnimation(HomePageGridActivity.this, android.R.anim.slide_in_left);
                 viewToAnimate.startAnimation(animation);
                 lastPosition = position;
+            }
+        }
+
+        private void showFlipAnimation(View view){
+            if(!isBackVisible){
+                setRightOut.setTarget(view);
+                setLeftIn.setTarget(view);
+                setRightOut.start();
+                setLeftIn.start();
+                isBackVisible = true;
+            }
+            else{
+                setRightOut.setTarget(view);
+                setLeftIn.setTarget(view);
+                setRightOut.start();
+                setLeftIn.start();
+                isBackVisible = false;
             }
         }
     }
