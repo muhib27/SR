@@ -205,7 +205,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
                             .setContentTitle(getString(R.string.app_name))
-                            .setContentDescription("I have scored "+String.valueOf(rightScoreCount)+" out of "+String.valueOf(rightScoreCount+wrongScoreCount)+" in science rocks.")
+                            .setContentDescription("I have scored "+String.valueOf(rightScoreCount)+" out of "+String.valueOf(rightScoreCount+wrongScoreCount)+" in Science Rocks!")
                             .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
                             .build();
 

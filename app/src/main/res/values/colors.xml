@@ -20,4 +20,6 @@
     <color name="topicDescriptionColor">#98e6e3</color>
 
     <color name="qaListDateColor">#e8ffc4</color>
+
+    <color name="colorBannerBg">#05274e</color>
 </resources>

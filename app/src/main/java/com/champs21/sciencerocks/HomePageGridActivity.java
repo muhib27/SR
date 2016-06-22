@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -168,7 +168,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                 .build();
         View dialogView = dialog.getCustomView();
 
-        ImageButton btnClose = (ImageButton) dialogView.findViewById(R.id.btnClose);
+        Button btnClose = (Button) dialogView.findViewById(R.id.btnClose);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

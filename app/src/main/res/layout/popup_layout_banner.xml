@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@color/colorBannerBg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,30 +13,27 @@
             android:layout_height="wrap_content">
 
             <com.champs21.sciencerocks.utils.ProportionalImageView
+                android:id="@+id/imgView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/banner_popup"/>
+                android:src="@drawable/banner_pop"/>
 
-            <ImageButton
+            <Button
                 android:id="@+id/btnClose"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/com_facebook_close"
-                android:background="@android:color/transparent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:text="@string/txt_btn_ok"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:textColor="@color/colorBlack"
+                android:layout_below="@+id/imgView" />
 
 
         </RelativeLayout>
 
 
     </ScrollView>
-
-
-
 
 
 
