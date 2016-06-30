@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -78,6 +79,8 @@ public class QuizActivity extends AppCompatActivity {
     private MediaPlayer mp = null;
     private boolean isSoundOff = false;
 
+    private int musicLength = 0;
+
 
 
 
@@ -149,8 +152,42 @@ public class QuizActivity extends AppCompatActivity {
             }
 
         }
+        else if(menuItem.getItemId() == R.id.action_champs){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.champs21.schoolapp"));
+            startActivity(browserIntent);
+        }
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mp != null) {
+            mp.pause();
+            musicLength = mp.getCurrentPosition();
+        }
+
+        if(timer!=null && !timer.isPaused()) {
+            timer.pause();
+        }
+
+        Log.e("CALLED", "on pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mp != null) {
+            mp.seekTo(musicLength);
+            mp.start();
+        }
+
+        if(timer!=null && timer.isPaused()) {
+            timer.start();
+        }
+
+        Log.e("CALLED", "on resume");
     }
 
     private void initView(){

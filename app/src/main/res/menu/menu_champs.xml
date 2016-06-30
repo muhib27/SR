@@ -4,15 +4,8 @@
     tools:context="com.champs21.sciencerocks.HomePageGridActivity">
 
     <item
-        android:id="@+id/action_quiz_music"
-        android:orderInCategory="200"
-        android:icon="@drawable/ic_volume_up_white_24dp"
-        android:title="@string/title_action_banner_page"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/action_champs"
-        android:orderInCategory="600"
+        android:orderInCategory="200"
         android:icon="@drawable/champs21"
         android:title="@string/title_go_to_champs"
         app:showAsAction="always"/>
