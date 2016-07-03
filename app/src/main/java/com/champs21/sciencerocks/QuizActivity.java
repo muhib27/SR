@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -606,15 +607,64 @@ public class QuizActivity extends AppCompatActivity {
         AudioManager mAudioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/2, 0);
 
-        mp = MediaPlayer.create(this, R.raw.bg_music);
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
+        int ranNum = getRandomNumberinRange();
+        Log.e("RANDOM_NUM", "is: "+ranNum);
+        switch (ranNum){
+            case 0:
 
-                mp.start();
-            }
-        });
-        mp.setLooping(true);
+                mp = MediaPlayer.create(this, R.raw.first);
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        mp.start();
+                    }
+                });
+                mp.setLooping(true);
+
+                break;
+            case 1:
+
+                mp = MediaPlayer.create(this, R.raw.second);
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        mp.start();
+                    }
+                });
+                mp.setLooping(true);
+
+                break;
+            case 2:
+
+                mp = MediaPlayer.create(this, R.raw.third);
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        mp.start();
+                    }
+                });
+                mp.setLooping(true);
+
+                break;
+            default:
+
+                mp = MediaPlayer.create(this, R.raw.first);
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+
+                        mp.start();
+                    }
+                });
+                mp.setLooping(true);
+
+                break;
+        }
+
+
 
     }
 
@@ -632,5 +682,11 @@ public class QuizActivity extends AppCompatActivity {
             mp.release();
             mp = null;
         }
+    }
+
+    private int getRandomNumberinRange(){
+        Random r = new Random();
+        int num = r.nextInt(3 - 0) + 0;
+        return num;
     }
 }
