@@ -83,6 +83,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private int musicLength = 0;
 
+    private int ranNum = 0;
+
 
 
 
@@ -105,6 +107,8 @@ public class QuizActivity extends AppCompatActivity {
         initView();
         initApiCall();
         initAction();
+
+        ranNum = getRandomNumberinRange();
 
 
         ApplicationSingleton.getInstance().requestAdMob(this);
@@ -608,7 +612,6 @@ public class QuizActivity extends AppCompatActivity {
         AudioManager mAudioManager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/2, 0);
 
-        int ranNum = getRandomNumberinRange();
         Log.e("RANDOM_NUM", "is: "+ranNum);
         switch (ranNum){
             case 0:
