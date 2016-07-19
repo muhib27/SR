@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Science Rocks</string>
     <string name="app_play_store_link">https://play.google.com/store/apps/details?id=com.champs21.sciencerocks</string>
+    <string name="app_play_store_image_link">https://lh3.googleusercontent.com/A4jdsuLiPvJDPQLtSppQm6VV14NDD9byk5HhC_VIQQ1GwtwzJKEPUkNUVkreqK_B2g=w300-rw</string>
     <string name="facebook_app_id">1038110652893074</string>
     <string name="admob_ad_id">ca-app-pub-2004076542613855/6931025122</string>
 

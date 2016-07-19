@@ -222,6 +222,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
                             .setContentDescription("I have scored "+String.valueOf(scoreManager.getScore()+". \n" +
                                     "Watch Channel i every Friday morning at 11:05 am. Keep rocking with science!"))
                             .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
+                            .setImageUrl(Uri.parse(getString(R.string.app_play_store_image_link)))
                             .build();
 
                     shareDialog.show(linkContent);

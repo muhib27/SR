@@ -440,6 +440,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                 setLeftIn.start();
                 isBackVisible = false;
             }
+            view.setEnabled(true);
         }
     }
 
