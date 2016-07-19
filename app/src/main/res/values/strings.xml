@@ -25,7 +25,7 @@
     <string name="title_activity_quiz">Quiz</string>
     <string name="title_activity_result_page">Result</string>
     <string name="title_activity_daily_doze">Daily Doze</string>
-    <string name="toast_no_internet">No internet connection, please try again later!</string>
+    <string name="toast_no_internet">Connect to internet please.</string>
     <string name="title_activity_qa_root">Q\u0026A</string>
     <string name="title_activity_daily_doze_new">Daily Doze</string>
     <string name="daily_doze_new_activity_no_previous_data">No previous data is found!</string>
