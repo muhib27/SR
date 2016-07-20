@@ -10,7 +10,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnMta"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:id="@+id/txtAbout"
@@ -21,6 +23,17 @@
             android:textColor="@color/colorBlack"/>
 
     </ScrollView>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnMta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:text="@string/title_activity_meet_the_anchors_root"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
