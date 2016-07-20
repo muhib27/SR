@@ -173,5 +173,7 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
 ]]></string>
     <string name="title_activity_about_science_rocks">About Science Rocks</string>
     <string name="title_go_to_champs">Champs21.com</string>
+    <string name="title_share">Share</string>
+    <string name="title_download">Download</string>
 
 </resources>

@@ -26,6 +26,12 @@ public class Dailydose {
     @SerializedName("status")
     @Expose
     private Object status;
+    @SerializedName("image_link")
+    @Expose
+    private String imageLink;
+    @SerializedName("share_content")
+    @Expose
+    private String shareContent;
 
     /**
      *
@@ -133,6 +139,41 @@ public class Dailydose {
      */
     public void setStatus(Object status) {
         this.status = status;
+    }
+    /**
+     *
+     * @return
+     * The shareContent
+     */
+    public String getShareContent() {
+        return shareContent;
+    }
+
+    /**
+     *
+     * @param shareContent
+     * The share_content
+     */
+    public void setShareContent(String shareContent) {
+        this.shareContent = shareContent;
+    }
+
+    /**
+     *
+     * @return
+     * The imageLink
+     */
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    /**
+     *
+     * @param imageLink
+     * The image_link
+     */
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
 }

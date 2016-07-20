@@ -31,6 +31,13 @@ import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.CustomWebView;
 import com.champs21.sciencerocks.utils.UrlHelper;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import org.json.JSONObject;
@@ -56,9 +63,14 @@ public class DailyDozeNewActivity extends AppCompatActivity {
     private ImageButton btnPrevious;
     private ImageButton btnNext;
 
+    private CallbackManager callbackManager;
+    private ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_daily_doze_new);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,6 +84,27 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         //initAction();
 
         ApplicationSingleton.getInstance().requestAdMob(this);
+
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                //Toast.makeText(ResultPageActivity.this, "Successfully posted!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                //Toast.makeText(ResultPageActivity.this, "Something went wrong, try to post later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -91,6 +124,23 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         else if(menuItem.getItemId() == R.id.action_champs){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.champs21.schoolapp"));
             startActivity(browserIntent);
+        }
+        else if(menuItem.getItemId() == R.id.action_share){
+
+            if (ShareDialog.canShow(ShareLinkContent.class)) {
+                ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentDescription("share content here")
+                        .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
+                        .setImageUrl(Uri.parse(getString(R.string.app_play_store_image_link)))
+                        .build();
+
+                shareDialog.show(linkContent);
+            }
+        }
+
+        else if(menuItem.getItemId() == R.id.action_download){
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(listItems.get(currentPosition).getImageLink())));
         }
 
         return super.onOptionsItemSelected(menuItem);
