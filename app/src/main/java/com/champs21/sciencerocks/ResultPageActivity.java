@@ -144,6 +144,8 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         });
 
         ApplicationSingleton.getInstance().requestAdMob(this);
+
+        Log.e("ON_CREATE", "called onCreate()");
     }
 
     @Override

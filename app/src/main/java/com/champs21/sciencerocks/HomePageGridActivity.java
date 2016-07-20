@@ -80,10 +80,14 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
 
 
         listData = new ArrayList<String>();
-        listData.add(getString(R.string.home_page_grid_daily_doze));
-        listData.add(getString(R.string.home_page_grid_episodes));
+        //listData.add(getString(R.string.home_page_grid_daily_doze));
+        //listData.add(getString(R.string.home_page_grid_episodes));
+        //listData.add(getString(R.string.home_page_grid_quiz));
+        //listData.add(getString(R.string.home_page_grid_mta));
+        listData.add(getString(R.string.home_page_grid_rocking_experiments));
+        listData.add(getString(R.string.home_page_grid_funny_videos));
         listData.add(getString(R.string.home_page_grid_quiz));
-        listData.add(getString(R.string.home_page_grid_mta));
+        listData.add(getString(R.string.home_page_grid_daily_doze));
 
 
         initView();
@@ -306,7 +310,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
             txtTitle.setText(dataSet.get(listPosition));
 
             if(listPosition == 0){
-                imgIcon.setImageResource(R.drawable.icon_daily_doze);
+                imgIcon.setImageResource(R.drawable.icon_mta);
             }
             if(listPosition == 1){
                 imgIcon.setImageResource(R.drawable.icon_episode);
@@ -315,7 +319,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                 imgIcon.setImageResource(R.drawable.icon_quiz);
             }
             if(listPosition == 3){
-                imgIcon.setImageResource(R.drawable.icon_mta);
+                imgIcon.setImageResource(R.drawable.icon_daily_doze);
             }
 
 
@@ -334,9 +338,9 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
+                                    /*Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
                                     startActivity(intent);
-                                    v.setEnabled(true);
+                                    v.setEnabled(true);*/
                                 }
                             }, 500);
 
@@ -395,7 +399,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                         h.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(HomePageGridActivity.this, MeetTheAnchorsRootActivity.class);
+                                Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
                                 startActivity(intent);
                                 v.setEnabled(true);
                             }

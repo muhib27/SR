@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,14 +29,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
-import com.champs21.sciencerocks.youtubemodels.YoutubeModelBase;
 import com.champs21.sciencerocks.networks.CustomVolleyRequestQueue;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.champs21.sciencerocks.youtubemodels.Item;
+import com.champs21.sciencerocks.youtubemodels.YoutubeModelBase;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -45,7 +50,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayListItemsActivity extends AppCompatActivity {
+public class PlayListItemsActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener{
 
     private String playListId = "";
 
@@ -57,6 +62,15 @@ public class PlayListItemsActivity extends AppCompatActivity {
     private SwipyRefreshLayout mSwipyRefreshLayout;
     private String pageToken = "";
     private TextView txtMessage;
+
+    private YouTubePlayerSupportFragment myYouTubePlayerFragment;
+    private String vidId = "";
+
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
+
+    YouTubePlayer mYoutubePlayer;
+
+    private boolean isFirstCardCliceked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +124,10 @@ public class PlayListItemsActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
         mSwipyRefreshLayout = (SwipyRefreshLayout)this.findViewById(R.id.swipyrefreshlayout);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
+
+        myYouTubePlayerFragment = (YouTubePlayerSupportFragment)getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
+        myYouTubePlayerFragment.getView().setVisibility(View.GONE);
+
     }
     private void initAction(){
         layoutManager = new LinearLayoutManager(this);
@@ -250,9 +268,22 @@ public class PlayListItemsActivity extends AppCompatActivity {
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(PlayListItemsActivity.this, PlayerActivity.class);
-                    intent.putExtra(AppConstants.ID_VIDEO, dataSet.get(listPosition).getSnippet().getResourceId().getVideoId());
-                    startActivity(intent);
+                    //Intent intent = new Intent(PlayListItemsActivity.this, PlayerActivity.class);
+                    //intent.putExtra(AppConstants.ID_VIDEO, dataSet.get(listPosition).getSnippet().getResourceId().getVideoId());
+                    //startActivity(intent);
+                    Log.e("CARD_CLICKED", "done");
+                    vidId = dataSet.get(listPosition).getSnippet().getResourceId().getVideoId();
+
+                    if(isFirstCardCliceked == false){
+                        myYouTubePlayerFragment.getView().setVisibility(View.VISIBLE);
+                        myYouTubePlayerFragment.initialize(AppConstants.DEV_KEY, PlayListItemsActivity.this);
+                        isFirstCardCliceked = true;
+                    }else{
+                        mYoutubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+                        mYoutubePlayer.loadVideo(vidId);
+                        mYoutubePlayer.play();
+                    }
+
                 }
             });
 
@@ -285,6 +316,39 @@ public class PlayListItemsActivity extends AppCompatActivity {
         }, 500);
     }
 
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                        YouTubeInitializationResult errorReason) {
+        if (errorReason.isUserRecoverableError()) {
+            errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+        } else {
+            String errorMessage = String.format(
+                    "There was an error initializing the YouTubePlayer (%1$s)",
+                    errorReason.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
+    }
 
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
+                                        boolean wasRestored) {
+        if (!wasRestored) {
+            player.cueVideo(vidId);
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+            mYoutubePlayer = player;
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == RECOVERY_DIALOG_REQUEST) {
+            // Retry initialization if user performed a recovery action
+            getYouTubePlayerProvider().initialize(AppConstants.DEV_KEY, this);
+        }
+    }
+
+    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+        return (YouTubePlayerView)findViewById(R.id.youtube_fragment);
+    }
 }

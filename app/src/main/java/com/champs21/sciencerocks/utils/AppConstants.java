@@ -7,6 +7,7 @@ public class AppConstants {
 
     //public static final String YOUTUBE_CHANNEL_ID = "UCywQj51MiCqHzQAa0Mg4KXg"; ////spelling bee channel id
     public static final String YOUTUBE_CHANNEL_ID = "UCMhYK_N84Yx2QOHVekla3kg"; //science rocks channel id
+    public static final String DEV_KEY = "AIzaSyCMnZ5p2UpbEGnctTX6DJdi-k9ELH22r0I";
 
     public static final String ID_PLAY_LIST = "ID_PLAY_LIST";
     public static final String ID_PLAY_LIST_ITEM_TITLE = "ID_PLAY_LIST_ITEM_TITLE";
