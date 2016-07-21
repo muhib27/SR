@@ -81,6 +81,9 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
+    private AppCompatButton btnSummery;
+    private AppCompatButton btnTopScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +185,10 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         btnSaveScore = (AppCompatButton)this.findViewById(R.id.btnSaveScore);
 
         btnShare = (AppCompatButton) this.findViewById(R.id.btnShare);
+
+        btnSummery = (AppCompatButton)this.findViewById(R.id.btnSummery);
+        btnTopScore = (AppCompatButton)this.findViewById(R.id.btnTopScore);
+
     }
 
     private void initAction(){
@@ -229,6 +236,21 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
                     shareDialog.show(linkContent);
                 }
+
+            }
+        });
+
+        btnSummery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ResultPageActivity.this, SummeryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTopScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
         });

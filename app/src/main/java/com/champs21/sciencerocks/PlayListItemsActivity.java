@@ -154,6 +154,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
     private void initView(){
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
         mSwipyRefreshLayout = (SwipyRefreshLayout)this.findViewById(R.id.swipyrefreshlayout);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
 

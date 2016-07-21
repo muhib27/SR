@@ -57,6 +57,7 @@ public class PlayListActivity extends AppCompatActivity {
     private String pageToken = "";
     private TextView txtMessage;
     private AppCompatButton btnWinnerList;
+    private boolean isFromFunnyVideoPage =  false;
 
 
     @Override
@@ -66,6 +67,10 @@ public class PlayListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(getIntent().getExtras()!=null){
+            isFromFunnyVideoPage = getIntent().getExtras().getBoolean(AppConstants.FROM_FUNNY_VIDEO_PAGE);
+        }
 
         listItems = new ArrayList<Item>();
         listItems.clear();
@@ -100,6 +105,7 @@ public class PlayListActivity extends AppCompatActivity {
     private void initView(){
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
         mSwipyRefreshLayout = (SwipyRefreshLayout)this.findViewById(R.id.swipyrefreshlayout);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
         btnWinnerList = (AppCompatButton)this.findViewById(R.id.btnWinnerList);

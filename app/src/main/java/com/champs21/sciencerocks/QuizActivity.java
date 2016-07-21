@@ -239,7 +239,7 @@ public class QuizActivity extends AppCompatActivity {
 
         totalMarks = sum;
 
-        txtToolbarTitle.setText(String.valueOf(currentPosition)+"/"+ String.valueOf(listQuestion.size()));
+        txtToolbarTitle.setText(String.valueOf(currentPosition+1)+"/"+ String.valueOf(listQuestion.size()));
 
     }
 
@@ -305,6 +305,11 @@ public class QuizActivity extends AppCompatActivity {
                     progressView.setVisibility(View.GONE);
 
                 ModelBase mb = ModelBase.getInstance().setResponse(response);
+
+                Gson gson = new Gson();
+                String value = gson.toJson(mb.getData().getQuestions());
+                ApplicationSingleton.getInstance().savePrefString(AppConstants.QUESTION_ANSWER_EXP_SUMMERY, value);
+
 
                 if(mb.getStatus().getCode() == 200){
 

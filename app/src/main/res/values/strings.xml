@@ -70,6 +70,8 @@
     <string name="txt_correct_answer">Correct Answer</string>
     <string name="txt_wrong_answer">Wrong Answer</string>
     <string name="txt_save_score">Save Score</string>
+    <string name="txt_summery">Summary</string>
+    <string name="txt_top_scores">Top Scores</string>
     <string name="txt_share">Share</string>
     <string name="txt_answer">Answer</string>
     <string name="txt_explanation">Explanation</string>
@@ -175,5 +177,6 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="title_go_to_champs">Champs21.com</string>
     <string name="title_share">Share</string>
     <string name="title_download">Download</string>
+    <string name="title_activity_summery">Summary</string>
 
 </resources>

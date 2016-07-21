@@ -28,4 +28,9 @@ public class AppConstants {
     public static final String GOOGLE_AUTH_PROFILE_IMAGE = "GOOGLE_AUTH_PROFILE_IMAGE";
 
     public static final String QUIZ_MUSIC_TOGGLE = "QUIZ_MUSIC_TOGGLE";
+
+    public static final String FROM_FUNNY_VIDEO_PAGE = "FROM_FUNNY_VIDEO_PAGE";
+
+    public static final String QUESTION_ANSWER_EXP_SUMMERY = "QUESTION_ANSWER_EXP_SUMMERY";
+
 }

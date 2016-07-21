@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.champs21.sciencerocks.app.ApplicationSingleton;
+import com.champs21.sciencerocks.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -358,9 +359,10 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    /*Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
+                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
+                                    intent.putExtra(AppConstants.FROM_FUNNY_VIDEO_PAGE, true);
                                     startActivity(intent);
-                                    v.setEnabled(true);*/
+                                    v.setEnabled(true);
                                 }
                             }, 500);
 

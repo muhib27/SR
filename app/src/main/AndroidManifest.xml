@@ -114,6 +114,11 @@
             android:name=".AboutScienceRocksActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_about_science_rocks"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SummeryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_summery"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

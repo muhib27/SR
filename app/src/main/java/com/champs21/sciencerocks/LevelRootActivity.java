@@ -102,6 +102,7 @@ public class LevelRootActivity extends AppCompatActivity {
     private void initView(){
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
     }
 

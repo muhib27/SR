@@ -102,6 +102,7 @@ public class WinnerListRootActivity extends AppCompatActivity {
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
         progressView.setVisibility(View.GONE);
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
+        recyclerView.setNestedScrollingEnabled(false);
         mSwipyRefreshLayout = (SwipyRefreshLayout)this.findViewById(R.id.swipyrefreshlayout);
         txtMessage = (TextView)this.findViewById(R.id.txtMessage);
     }
