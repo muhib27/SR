@@ -111,7 +111,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_champs, menu);
+        getMenuInflater().inflate(R.menu.menu_daily_doze, menu);
 
         return true;
     }
@@ -128,11 +128,11 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         else if(menuItem.getItemId() == R.id.action_share){
 
             if (ShareDialog.canShow(ShareLinkContent.class)) {
+
+                String str = "http://api.champs21.com/api/sciencerocks/sharedaildose?id="+listItems.get(currentPosition).getId();
                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentDescription("share content here")
-                        .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
-                        .setImageUrl(Uri.parse(getString(R.string.app_play_store_image_link)))
+                        .setContentUrl(Uri.parse(str))
                         .build();
 
                 shareDialog.show(linkContent);
@@ -140,7 +140,8 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         }
 
         else if(menuItem.getItemId() == R.id.action_download){
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(listItems.get(currentPosition).getImageLink())));
+            String str = "http://api.champs21.com/api/sciencerocks/Download?id="+listItems.get(currentPosition).getId();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
         }
 
         return super.onOptionsItemSelected(menuItem);

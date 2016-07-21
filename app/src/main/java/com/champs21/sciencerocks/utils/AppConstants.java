@@ -18,7 +18,9 @@ public class AppConstants {
 
     public static final String QUIZ_TOPIC_ID = "QUIZ_TOPIC_ID";
     public static final String QUIZ_LEVEL_ID = "QUIZ_LEVEL_ID";
+    public static final String QUIZ_LEVEL_NAME = "QUIZ_LEVEL_NAME";
     public static final String QUIZ_SCORE_MANAGER = "QUIZ_SCORE_MANAGER";
+    public static final String QUIZ_PLAY_TITLE = "QUIZ_PLAY_TITLE";
 
     public static final String GOOGLE_AUTH_USER_ID = "GOOGLE_AUTH_USER_ID";
     public static final String GOOGLE_AUTH_DISPLAY_NAME = "GOOGLE_AUTH_DISPLAY_NAME";

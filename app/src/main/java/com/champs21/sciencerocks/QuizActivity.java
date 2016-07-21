@@ -84,6 +84,7 @@ public class QuizActivity extends AppCompatActivity {
     private int musicLength = 0;
 
     private int ranNum = 0;
+    private TextView txtToolbarTitle;
 
 
 
@@ -96,12 +97,17 @@ public class QuizActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        txtToolbarTitle = (TextView)toolbar.findViewById(R.id.txtToolbarTitle);
+        txtToolbarTitle.setText("0/0");
+
         if(getIntent().getExtras()!=null){
             levelId = getIntent().getExtras().getString(AppConstants.QUIZ_LEVEL_ID);
         }
 
         listQuestion = new ArrayList<Question>();
         listCorrect = new ArrayList<Boolean>();
+
+        setTitle(ApplicationSingleton.getInstance().getPrefString(AppConstants.QUIZ_PLAY_TITLE));
 
 
         initView();
@@ -232,6 +238,8 @@ public class QuizActivity extends AppCompatActivity {
             sum += Integer.parseInt(listQuestion.get(i).getMark().trim());
 
         totalMarks = sum;
+
+        txtToolbarTitle.setText(String.valueOf(currentPosition)+"/"+ String.valueOf(listQuestion.size()));
 
     }
 

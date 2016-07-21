@@ -51,6 +51,7 @@ public class LevelRootActivity extends AppCompatActivity {
     private LevelAdapter adapter;
     private List<Level> listLevels;
     private String topicId = "";
+    private String topicName = "Level";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,11 @@ public class LevelRootActivity extends AppCompatActivity {
 
         if(getIntent().getExtras()!=null){
             topicId = getIntent().getExtras().getString(AppConstants.QUIZ_TOPIC_ID);
+            topicName = getIntent().getExtras().getString(AppConstants.QUIZ_LEVEL_NAME);
         }
+
+        setTitle(topicName);
+        ApplicationSingleton.getInstance().savePrefString(AppConstants.QUIZ_PLAY_TITLE, topicName);
 
         listLevels = new ArrayList<Level>();
 

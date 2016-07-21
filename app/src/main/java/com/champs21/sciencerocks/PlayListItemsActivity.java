@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,13 @@ import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.champs21.sciencerocks.youtubemodels.Item;
 import com.champs21.sciencerocks.youtubemodels.YoutubeModelBase;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -71,10 +79,14 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
     YouTubePlayer mYoutubePlayer;
 
     private boolean isFirstCardCliceked = false;
+    private CallbackManager callbackManager;
+    private ShareDialog shareDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_play_list_items);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -95,6 +107,26 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
         initView();
         initApiCall();
         initAction();
+
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                //Toast.makeText(ResultPageActivity.this, "Successfully posted!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                //Toast.makeText(ResultPageActivity.this, "Something went wrong, try to post later!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -214,6 +246,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
             TextView txtPlayListDescription;
             LinearLayout layoutDescription;
             CardView cardView;
+            ImageButton imgBtnShare;
 
 
             public MyViewHolder(View itemView) {
@@ -222,6 +255,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
                 this.txtPlayListTitle = (TextView) itemView.findViewById(R.id.txtPlayListTitle);
                 this.txtPlayListDescription = (TextView)itemView.findViewById(R.id.txtPlayListDescription);
                 this.layoutDescription = (LinearLayout)itemView.findViewById(R.id.layoutDescription);
+                this.imgBtnShare = (ImageButton)itemView.findViewById(R.id.imgBtnShare);
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
             }
         }
@@ -249,6 +283,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
             TextView txtPlayListTitle = holder.txtPlayListTitle;
             TextView txtPlayListDescription = holder.txtPlayListDescription;
             LinearLayout layoutDescription = holder.layoutDescription;
+            ImageButton imgBtnShare = holder.imgBtnShare;
             CardView cardView = holder.cardView;
 
             mImageLoader.get(dataSet.get(listPosition).getSnippet().getThumbnails().getDefault().getUrl(), ImageLoader.getImageListener(imgViewNetwork,
@@ -264,6 +299,20 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
                 layoutDescription.setVisibility(View.VISIBLE);
                 txtPlayListDescription.setText(dataSet.get(listPosition).getSnippet().getDescription());
             }
+
+            imgBtnShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                .setContentTitle(getString(R.string.app_name))
+                                .setContentUrl(Uri.parse("https://www.youtube.com/watch?v="+dataSet.get(listPosition).getSnippet().getResourceId().getVideoId()))
+                                .build();
+
+                        shareDialog.show(linkContent);
+                    }
+                }
+            });
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

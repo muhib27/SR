@@ -220,6 +220,7 @@ public class TopicRootActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(TopicRootActivity.this, LevelRootActivity.class);
                     intent.putExtra(AppConstants.QUIZ_TOPIC_ID, dataSet.get(listPosition).getId());
+                    intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
                     startActivity(intent);
                 }
             });

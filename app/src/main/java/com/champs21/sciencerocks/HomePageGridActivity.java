@@ -338,9 +338,9 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    /*Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
+                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
                                     startActivity(intent);
-                                    v.setEnabled(true);*/
+                                    v.setEnabled(true);
                                 }
                             }, 500);
 
@@ -358,9 +358,9 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
+                                    /*Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
                                     startActivity(intent);
-                                    v.setEnabled(true);
+                                    v.setEnabled(true);*/
                                 }
                             }, 500);
 
