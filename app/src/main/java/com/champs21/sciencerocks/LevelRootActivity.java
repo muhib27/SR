@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ import com.champs21.sciencerocks.models.Level;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.RealmLevel;
+import com.champs21.sciencerocks.realm.RealmTopic;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.UrlHelper;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
@@ -42,6 +45,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.realm.Realm;
+import io.realm.RealmList;
+
 public class LevelRootActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -52,6 +58,8 @@ public class LevelRootActivity extends AppCompatActivity {
     private List<Level> listLevels;
     private String topicId = "";
     private String topicName = "Level";
+    private static final int REQUEST_FROM_QUIZ_PAGE = 450;
+    private int countIsNowTopic = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +161,31 @@ public class LevelRootActivity extends AppCompatActivity {
                         txtMessage.setVisibility(View.GONE);
                     }
 
+                    Realm realm = ApplicationSingleton.getInstance().getRealm();
+                    realm.beginTransaction();
+
+                    RealmTopic realmTopic = null;
+                    realmTopic = realm.where(RealmTopic.class).findFirst();
+                    if(realmTopic == null){
+                        realmTopic = realm.createObject(RealmTopic.class);
+                    }
+
+                    RealmList<RealmLevel> listRealmLevel = new RealmList<RealmLevel>();
+
+                    for(int i=0;i<listLevels.size();i++){
+                        RealmLevel rl = realm.createObject(RealmLevel.class);
+
+                        rl.setId(listLevels.get(i).getId());
+                        rl.setNew(true);
+                        rl.setVisitedQuiz(false);
+
+                        listRealmLevel.add(rl);
+                        realmTopic.setListLevels(listRealmLevel);
+                        realm.copyToRealmOrUpdate(realmTopic);
+                    }
+
+                    realm.commitTransaction();
+
                     adapter.notifyDataSetChanged();
 
                 }
@@ -187,6 +220,7 @@ public class LevelRootActivity extends AppCompatActivity {
             CardView cardView;
             LinearLayout layoutDescriptionHolder;
             LinearLayout layoutTopProceedHolder;
+            ImageView imgNew;
 
 
             public MyViewHolder(View itemView) {
@@ -196,6 +230,7 @@ public class LevelRootActivity extends AppCompatActivity {
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
                 this.layoutDescriptionHolder = (LinearLayout)itemView.findViewById(R.id.layoutDescriptionHolder);
                 this.layoutTopProceedHolder = (LinearLayout)itemView.findViewById(R.id.layoutTopProceedHolder);
+                this.imgNew = (ImageView)itemView.findViewById(R.id.imgNew);
             }
         }
 
@@ -222,6 +257,7 @@ public class LevelRootActivity extends AppCompatActivity {
             CardView cardView = holder.cardView;
             LinearLayout layoutDescriptionHolder = holder.layoutDescriptionHolder;
             LinearLayout layoutTopProceedHolder = holder.layoutTopProceedHolder;
+            ImageView imgNew =  holder.imgNew;
 
             if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
                 layoutDescriptionHolder.setVisibility(View.GONE);
@@ -235,13 +271,36 @@ public class LevelRootActivity extends AppCompatActivity {
             txtLevelName.setText(dataSet.get(listPosition).getName());
             txtLevelDetails.setText(dataSet.get(listPosition).getDetails());
 
+            Realm realm = ApplicationSingleton.getInstance().getRealm();
+            realm.beginTransaction();
+            RealmLevel realmLevel = realm.where(RealmLevel.class).equalTo("id", dataSet.get(listPosition).getId()+topicName).findFirst();
+
+            if(realmLevel!=null){
+                imgNew.setVisibility(View.INVISIBLE);
+                countIsNowTopic++;
+            }else{
+                imgNew.setVisibility(View.VISIBLE);
+            }
+
+            RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
+            if(countIsNowTopic == dataSet.size()-1){
+
+                realmTopic.setId(dataSet.get(listPosition).getId()+topicName);
+            }else {
+                realmTopic.setId("");
+            }
+
+
+            realm.commitTransaction();
+
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(LevelRootActivity.this, QuizActivity.class);
                     intent.putExtra(AppConstants.QUIZ_LEVEL_ID, dataSet.get(listPosition).getId());
-                    startActivity(intent);
+                    intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, topicName);
+                    startActivityForResult(intent, REQUEST_FROM_QUIZ_PAGE);
                 }
             });
 
@@ -255,4 +314,11 @@ public class LevelRootActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_FROM_QUIZ_PAGE){
+            initApiCall();
+        }
+    }
 }

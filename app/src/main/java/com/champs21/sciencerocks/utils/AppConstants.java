@@ -29,8 +29,9 @@ public class AppConstants {
 
     public static final String QUIZ_MUSIC_TOGGLE = "QUIZ_MUSIC_TOGGLE";
 
-    public static final String FROM_FUNNY_VIDEO_PAGE = "FROM_FUNNY_VIDEO_PAGE";
-
     public static final String QUESTION_ANSWER_EXP_SUMMERY = "QUESTION_ANSWER_EXP_SUMMERY";
+
+    public static final String KEY_FUNNY_VIDEOS = "KEY_FUNNY_VIDEOS";
+    public static final String PALYLIST_ID_FUNNY_VIDEOS = "PLCd9bO69-7d8JdIcIaSxQVBGCGWzcMSJG";
 
 }

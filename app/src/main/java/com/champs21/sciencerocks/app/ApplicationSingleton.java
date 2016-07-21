@@ -22,6 +22,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.Map;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by BLACK HAT on 17-Apr-16.
  */
@@ -124,6 +127,14 @@ public class ApplicationSingleton extends MultiDexApplication {
             mAdView.setVisibility(View.GONE);
         }
 
+    }
+
+    public Realm getRealm(){
+        RealmConfiguration config = new RealmConfiguration.Builder(this).build();
+        Realm.setDefaultConfiguration(config);
+        Realm realm = Realm.getDefaultInstance();
+
+        return realm;
     }
 
 }

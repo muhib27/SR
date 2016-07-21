@@ -57,7 +57,6 @@ public class PlayListActivity extends AppCompatActivity {
     private String pageToken = "";
     private TextView txtMessage;
     private AppCompatButton btnWinnerList;
-    private boolean isFromFunnyVideoPage =  false;
 
 
     @Override
@@ -68,9 +67,7 @@ public class PlayListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(getIntent().getExtras()!=null){
-            isFromFunnyVideoPage = getIntent().getExtras().getBoolean(AppConstants.FROM_FUNNY_VIDEO_PAGE);
-        }
+
 
         listItems = new ArrayList<Item>();
         listItems.clear();
@@ -160,6 +157,12 @@ public class PlayListActivity extends AppCompatActivity {
                 YoutubeModelBase mb = YoutubeModelBase.getInstance().setResponse(response);
                 pageToken = mb.getPlaylistRoot().getNextPageToken();
                 listItems.addAll(mb.getPlaylistRoot().getItems());
+
+                for (int i=0;i<listItems.size();i++){
+                    if(listItems.get(i).getId().equals(AppConstants.PALYLIST_ID_FUNNY_VIDEOS)){
+                        listItems.remove(listItems.get(i));
+                    }
+                }
 
                 if(listItems.size()<=0){
                     txtMessage.setVisibility(View.VISIBLE);

@@ -36,6 +36,8 @@ import com.champs21.sciencerocks.models.Option;
 import com.champs21.sciencerocks.models.Question;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.RealmLevel;
+import com.champs21.sciencerocks.realm.RealmTopic;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.CountDownTimerPausable;
 import com.champs21.sciencerocks.utils.ScoreManager;
@@ -52,6 +54,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import io.realm.Realm;
 
 
 public class QuizActivity extends AppCompatActivity {
@@ -126,6 +130,24 @@ public class QuizActivity extends AppCompatActivity {
             isSoundOff = false;
             initMusic();
         }
+
+        Realm realm = ApplicationSingleton.getInstance().getRealm();
+        realm.beginTransaction();
+        RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
+
+        for(int i=0;i<realmTopic.getListLevels().size();i++){
+
+            RealmLevel realmLevel = realmTopic.getListLevels().get(i);
+            if(realmLevel.getId().equals(levelId)) {
+                realmLevel.setNew(false);
+                realmLevel.setId(levelId+getIntent().getExtras().getString(AppConstants.QUIZ_LEVEL_NAME));
+                realmLevel.setVisitedQuiz(true);
+                realm.copyToRealmOrUpdate(realmLevel);
+            }
+
+        }
+
+        realm.commitTransaction();
 
 
     }
@@ -706,4 +728,5 @@ public class QuizActivity extends AppCompatActivity {
         int num = r.nextInt(3 - 0) + 0;
         return num;
     }
+
 }

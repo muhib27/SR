@@ -359,8 +359,8 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
-                                    intent.putExtra(AppConstants.FROM_FUNNY_VIDEO_PAGE, true);
+                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListItemsActivity.class);
+                                    intent.putExtra(AppConstants.KEY_FUNNY_VIDEOS, AppConstants.PALYLIST_ID_FUNNY_VIDEOS);
                                     startActivity(intent);
                                     v.setEnabled(true);
                                 }

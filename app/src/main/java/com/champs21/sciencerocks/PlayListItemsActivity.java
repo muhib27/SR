@@ -81,6 +81,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
     private boolean isFirstCardCliceked = false;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
+    private String funnyVideoPlayListId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +95,15 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(getIntent().getExtras()!=null){
-            playListId = getIntent().getExtras().getString(AppConstants.ID_PLAY_LIST);
-            this.setTitle(getIntent().getExtras().getString(AppConstants.ID_PLAY_LIST_ITEM_TITLE));
+            funnyVideoPlayListId = getIntent().getExtras().getString(AppConstants.KEY_FUNNY_VIDEOS);
+            if(TextUtils.isEmpty(funnyVideoPlayListId)){
+                playListId = getIntent().getExtras().getString(AppConstants.ID_PLAY_LIST);
+                this.setTitle(getIntent().getExtras().getString(AppConstants.ID_PLAY_LIST_ITEM_TITLE));
+            }else {
+                playListId = funnyVideoPlayListId;
+                this.setTitle("Funny Videos");
+            }
+
         }
         else{
             this.setTitle(getString(R.string.title_activity_play_list_items));
