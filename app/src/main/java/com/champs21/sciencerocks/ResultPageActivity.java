@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +25,6 @@ import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
-import com.champs21.sciencerocks.realm.HighScoreAttempts;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.ScoreManager;
 import com.champs21.sciencerocks.utils.UrlHelper;
@@ -54,18 +54,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import io.realm.Realm;
-
 public class ResultPageActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private ScoreManager scoreManager;
 
-    private TextView txtTotalQuestion;
-    private TextView txtDataCorrectAnswer;
-    private TextView txtDataWrongAnswer;
+    //private TextView txtTotalQuestion;
+    //private TextView txtDataCorrectAnswer;
+    //private TextView txtDataWrongAnswer;
     private TextView txtTotalMarks;
     private TextView txtYourMarks;
-    private TextView txtTotalTime;
+    //private TextView txtTotalTime;
 
     private int rightScoreCount = 0;
     private int wrongScoreCount = 0;
@@ -86,6 +84,10 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
     private AppCompatButton btnSummery;
     private AppCompatButton btnTopScore;
+    private AppCompatButton btnTryAgain;
+
+    private TextView txtHighestScore;
+    private MaterialDialog md = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +128,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         initView();
         initAction();
+        initApiGetScore();
 
 
 
@@ -181,12 +184,12 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
     private void initView(){
         progressView = (CircularProgressView)this.findViewById(R.id.progressView);
         progressView.setVisibility(View.GONE);
-        txtTotalQuestion = (TextView)this.findViewById(R.id.txtTotalQuestion);
-        txtDataCorrectAnswer = (TextView)this.findViewById(R.id.txtDataCorrectAnswer);
-        txtDataWrongAnswer = (TextView)this.findViewById(R.id.txtDataWrongAnswer);
+        //txtTotalQuestion = (TextView)this.findViewById(R.id.txtTotalQuestion);
+        //txtDataCorrectAnswer = (TextView)this.findViewById(R.id.txtDataCorrectAnswer);
+        //txtDataWrongAnswer = (TextView)this.findViewById(R.id.txtDataWrongAnswer);
         txtTotalMarks = (TextView)this.findViewById(R.id.txtTotalMarks);
         txtYourMarks = (TextView)this.findViewById(R.id.txtYourMarks);
-        txtTotalTime = (TextView)this.findViewById(R.id.txtTotalTime);
+        //txtTotalTime = (TextView)this.findViewById(R.id.txtTotalTime);
 
         btnSaveScore = (AppCompatButton)this.findViewById(R.id.btnSaveScore);
 
@@ -194,16 +197,19 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         btnSummery = (AppCompatButton)this.findViewById(R.id.btnSummery);
         btnTopScore = (AppCompatButton)this.findViewById(R.id.btnTopScore);
+        btnTryAgain = (AppCompatButton)this.findViewById(R.id.btnTryAgain);
+
+        txtHighestScore = (TextView)this.findViewById(R.id.txtHighestScore);
 
     }
 
     private void initAction(){
-        txtTotalQuestion.setText(String.valueOf(scoreManager.getTotalQuestion()));
+        //txtTotalQuestion.setText(String.valueOf(scoreManager.getTotalQuestion()));
         txtTotalMarks.setText(String.valueOf(scoreManager.getTotalScore()));
         txtYourMarks.setText(String.valueOf(scoreManager.getScore()));
-        txtTotalTime.setText(getDurationBreakdown(scoreManager.getTime()));
-        txtDataCorrectAnswer.setText(String.valueOf(rightScoreCount));
-        txtDataWrongAnswer.setText(String.valueOf(wrongScoreCount));
+        //txtTotalTime.setText(getDurationBreakdown(scoreManager.getTime()));
+        //txtDataCorrectAnswer.setText(String.valueOf(rightScoreCount));
+        //txtDataWrongAnswer.setText(String.valueOf(wrongScoreCount));
 
         btnSaveScore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,6 +264,18 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(ResultPageActivity.this, LeaderBoardActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ResultPageActivity.this, QuizActivity.class);
+                intent.putExtra(AppConstants.QUIZ_LEVEL_ID, levelId);
+                startActivity(intent);
             }
         });
 
@@ -419,5 +437,53 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         RequestQueue rq = Volley.newRequestQueue(this, new MultiPartStack());
         rq.add(mpr);
 
+    }
+
+    private void initApiGetScore(){
+
+
+        if(!isFinishing()){
+            md = null;
+            md = new MaterialDialog.Builder(ResultPageActivity.this)
+                    .content(R.string.msg_please_wait)
+                    .progress(true, 0)
+                    .show();
+        }
+
+        MultiPartStringRequest jor = new MultiPartStringRequest(Request.Method.POST, UrlHelper.newUrl(UrlHelper.URL_GET_HIGH_SCORE), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                if(md!=null){
+                    md.dismiss();
+                }
+
+                Log.e("*** RESPONSE ***", "is: "+response);
+                ModelBase mb = ModelBase.getInstance().setResponse(response);
+
+                if(mb.getStatus().getCode() == 200){
+                    txtHighestScore.setText(mb.getData().getScore());
+                }
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+
+            @Override
+            public Map<String, String> getStringUploads() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("level_id", levelId);
+                return params;
+            }
+        };
+
+        RequestQueue rq = Volley.newRequestQueue(ResultPageActivity.this, new MultiPartStack());
+        rq.add(jor);
     }
 }

@@ -119,6 +119,11 @@
             android:name=".SummeryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_summery"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LeaderBoardActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_leader_board"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

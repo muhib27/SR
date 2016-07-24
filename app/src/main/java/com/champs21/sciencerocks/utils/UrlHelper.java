@@ -36,7 +36,8 @@ public class UrlHelper {
     public static final String URL_GET_ANCHOR_LIST = "getanchorquestion";
     public static final String URL_ASK_QUESTION = "ask";
     public static final String URL_GET_EPISODE = "getepisode";
-    public static final String URL_GET_SCORE = "gethighscore";
+    public static final String URL_GET_HIGH_SCORE = "gethighscore";
+    public static final String URL_GET_LEADER_BOARD = "getscoreboard";
 
 
 

@@ -52,6 +52,10 @@ public class Data {
     @SerializedName("total_question")
     @Expose
     private String totalQuestion;
+    @SerializedName("list")
+    @Expose
+    private List<LeaderList> leaderList = new ArrayList<LeaderList>();
+
 
     /**
      *
@@ -252,6 +256,24 @@ public class Data {
      */
     public void setTotalQuestion(String totalQuestion) {
         this.totalQuestion = totalQuestion;
+    }
+
+    /**
+     *
+     * @return
+     * The list
+     */
+    public java.util.List<LeaderList> getLeaderList() {
+        return leaderList;
+    }
+
+    /**
+     *
+     * @param list
+     * The list
+     */
+    public void setLeaderList(List<LeaderList> list) {
+        this.leaderList = list;
     }
 
 }

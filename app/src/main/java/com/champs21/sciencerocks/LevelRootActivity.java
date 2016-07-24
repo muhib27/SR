@@ -395,7 +395,7 @@ public class LevelRootActivity extends AppCompatActivity {
                         .show();
             }
 
-            MultiPartStringRequest jor = new MultiPartStringRequest(Request.Method.POST, UrlHelper.newUrl(UrlHelper.URL_GET_SCORE), new Response.Listener<JSONObject>() {
+            MultiPartStringRequest jor = new MultiPartStringRequest(Request.Method.POST, UrlHelper.newUrl(UrlHelper.URL_GET_HIGH_SCORE), new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
 
@@ -405,10 +405,14 @@ public class LevelRootActivity extends AppCompatActivity {
 
                     Log.e("*** RESPONSE ***", "is: "+response);
                     ModelBase mb = ModelBase.getInstance().setResponse(response);
-                    holder.txtTotalQuestion.setText(mb.getData().getTotalQuestion());
-                    holder.txtTotalScore.setText(mb.getData().getTotalMark());
-                    holder.txtHighScore.setText(mb.getData().getScore());
-                    holder.txtAttempts.setText("0");
+
+                    if(mb.getStatus().getCode() == 200){
+                        holder.txtTotalQuestion.setText(mb.getData().getTotalQuestion());
+                        holder.txtTotalScore.setText(mb.getData().getTotalMark());
+                        holder.txtHighScore.setText(mb.getData().getScore());
+                        holder.txtAttempts.setText("0");
+                    }
+
 
 
                 }
