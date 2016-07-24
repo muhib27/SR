@@ -1,5 +1,6 @@
 package com.champs21.sciencerocks.realm;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -16,6 +17,7 @@ public class HighScoreAttempts extends RealmObject{
     private int valueAttempts = 0;
     private String keyScore;
     private int valueScore = 0;
+    private RealmList<MyMap> map;
 
 
     public String getKey() {
@@ -56,5 +58,13 @@ public class HighScoreAttempts extends RealmObject{
 
     public void setValueScore(int valueScore) {
         this.valueScore = valueScore;
+    }
+
+    public RealmList<MyMap> getMap() {
+        return map;
+    }
+
+    public void setMap(RealmList<MyMap> map) {
+        this.map = map;
     }
 }

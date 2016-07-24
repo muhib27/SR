@@ -15,7 +15,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -150,23 +149,26 @@ public class QuizActivity extends AppCompatActivity {
         }
 
 
-        HighScoreAttempts highScoreAttempts = realm.createObject(HighScoreAttempts.class);
-        highScoreAttempts = realm.where(HighScoreAttempts.class).findFirst();
-
-        if(TextUtils.isEmpty(highScoreAttempts.getKeyAttempts())){
-            highScoreAttempts.setKeyAttempts(levelId);
-        }
-
-        else{
-
-        }
-
-
-
-
         realm.commitTransaction();
 
+        createOrUpdateAttempt(realm, levelId);
 
+
+    }
+
+    private void createOrUpdateAttempt(Realm  realm, String key) {
+        HighScoreAttempts highScoreAttempts = null;
+        highScoreAttempts = realm.where(HighScoreAttempts.class).equalTo("keyAttempts", key).findFirst();
+        realm.beginTransaction();
+        if (highScoreAttempts == null) {
+            highScoreAttempts = realm.createObject(HighScoreAttempts.class);
+            highScoreAttempts.setKeyAttempts(key);
+        } else {
+            highScoreAttempts.setValueAttempts(highScoreAttempts.getValueAttempts()+1);
+        }
+        realm.commitTransaction();
+
+        Log.e("ATTEMPTS", "is: "+highScoreAttempts.getValueAttempts());
     }
 
     @Override
