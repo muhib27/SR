@@ -239,26 +239,24 @@ public class TopicRootActivity extends AppCompatActivity {
             txtTopicDetails.setText(dataSet.get(listPosition).getDetails());
 
 
-            boolean isNew = true;
             Realm realm = ApplicationSingleton.getInstance().getRealm();
             realm.beginTransaction();
-            RealmTopic realmTopic = null;
-            if(realmTopic!=null){
+
+            RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
+            if(realmTopic != null){
                 realmTopic = realm.where(RealmTopic.class).equalTo("id", dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName()).findFirst();
 
-                if(realmTopic!=null){
+                if(realmTopic!=null && realmTopic.isNew() == false){
                     imgNew.setVisibility(View.INVISIBLE);
                 }else{
                     imgNew.setVisibility(View.VISIBLE);
                 }
-                realm.copyToRealmOrUpdate(realmTopic);
+
             }else {
                 realmTopic = realm.createObject(RealmTopic.class);
             }
 
-
             realm.commitTransaction();
-
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

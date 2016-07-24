@@ -32,7 +32,7 @@
     <string name="daily_doze_new_activity_no_next_data">No previous data is found!</string>
     <string name="home_page_grid_quiz">Quiz</string>
     <string name="home_page_grid_episodes">Episodes</string>
-    <string name="home_page_grid_daily_doze">Daily</string>
+    <string name="home_page_grid_daily_doze">Daily Doze</string>
     <string name="home_page_grid_mta">Anchors</string>
     <string name="home_page_grid_rocking_experiments">Rocking Experiments</string>
     <string name="home_page_grid_funny_videos">Funny Videos</string>
@@ -178,5 +178,10 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="title_share">Share</string>
     <string name="title_download">Download</string>
     <string name="title_activity_summery">Summary</string>
+    <string name="total_question">Total Question</string>
+    <string name="total_score">Total Score</string>
+    <string name="high_score">High Score</string>
+    <string name="best_score">Your Best</string>
+    <string name="attempts">Attempts</string>
 
 </resources>

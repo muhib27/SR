@@ -24,6 +24,7 @@ import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.HighScoreAttempts;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.ScoreManager;
 import com.champs21.sciencerocks.utils.UrlHelper;
@@ -52,6 +53,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import io.realm.Realm;
 
 public class ResultPageActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -149,6 +152,9 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         ApplicationSingleton.getInstance().requestAdMob(this);
 
         Log.e("ON_CREATE", "called onCreate()");
+
+
+
     }
 
     @Override

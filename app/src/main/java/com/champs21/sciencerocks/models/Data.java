@@ -43,6 +43,15 @@ public class Data {
     @SerializedName("episodes")
     @Expose
     private List<Episode> episodes = new ArrayList<Episode>();
+    @SerializedName("score")
+    @Expose
+    private String score;
+    @SerializedName("total_mark")
+    @Expose
+    private String totalMark;
+    @SerializedName("total_question")
+    @Expose
+    private String totalQuestion;
 
     /**
      *
@@ -189,6 +198,60 @@ public class Data {
      */
     public void setEpisodes(List<Episode> episodes) {
         this.episodes = episodes;
+    }
+
+    /**
+     *
+     * @return
+     * The score
+     */
+    public String getScore() {
+        return score;
+    }
+
+    /**
+     *
+     * @param score
+     * The score
+     */
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    /**
+     *
+     * @return
+     * The totalMark
+     */
+    public String getTotalMark() {
+        return totalMark;
+    }
+
+    /**
+     *
+     * @param totalMark
+     * The total_mark
+     */
+    public void setTotalMark(String totalMark) {
+        this.totalMark = totalMark;
+    }
+
+    /**
+     *
+     * @return
+     * The totalQuestion
+     */
+    public String getTotalQuestion() {
+        return totalQuestion;
+    }
+
+    /**
+     *
+     * @param totalQuestion
+     * The total_question
+     */
+    public void setTotalQuestion(String totalQuestion) {
+        this.totalQuestion = totalQuestion;
     }
 
 }

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -60,6 +61,7 @@ public class LevelRootActivity extends AppCompatActivity {
     private String topicName = "Level";
     private static final int REQUEST_FROM_QUIZ_PAGE = 450;
     private int countIsNowTopic = 0;
+    private MaterialDialog md = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,9 +211,11 @@ public class LevelRootActivity extends AppCompatActivity {
     }
 
 
+
     public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.MyViewHolder> {
 
         private List<Level> dataSet;
+
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -222,6 +226,19 @@ public class LevelRootActivity extends AppCompatActivity {
             LinearLayout layoutTopProceedHolder;
             ImageView imgNew;
 
+            LinearLayout layoutProceed;
+            LinearLayout layoutInfoHolder;
+            TextView txtTotalQuestion;
+            TextView txtTotalScore;
+            TextView txtHighScore;
+            TextView txtBestScore;
+            TextView txtAttempts;
+            TextView txtPlay;
+            ImageView imgViewPlayTriangle;
+            LinearLayout layoutPlay;
+
+            boolean isPlayClicked = false;
+
 
             public MyViewHolder(View itemView) {
                 super(itemView);
@@ -231,11 +248,23 @@ public class LevelRootActivity extends AppCompatActivity {
                 this.layoutDescriptionHolder = (LinearLayout)itemView.findViewById(R.id.layoutDescriptionHolder);
                 this.layoutTopProceedHolder = (LinearLayout)itemView.findViewById(R.id.layoutTopProceedHolder);
                 this.imgNew = (ImageView)itemView.findViewById(R.id.imgNew);
+
+                this.layoutProceed = (LinearLayout)itemView.findViewById(R.id.layoutProceed);
+                this.layoutInfoHolder = (LinearLayout)itemView.findViewById(R.id.layoutInfoHolder);
+                this.txtTotalQuestion = (TextView)itemView.findViewById(R.id.txtTotalQuestion);
+                this.txtTotalScore = (TextView)itemView.findViewById(R.id.txtTotalScore);
+                this.txtHighScore = (TextView)itemView.findViewById(R.id.txtHighScore);
+                this.txtBestScore = (TextView)itemView.findViewById(R.id.txtBestScore);
+                this.txtAttempts = (TextView)itemView.findViewById(R.id.txtAttempts);
+                this.txtPlay = (TextView)itemView.findViewById(R.id.txtPlay);
+                this.imgViewPlayTriangle = (ImageView) itemView.findViewById(R.id.imgViewPlayTriangle);
+                this.layoutPlay = (LinearLayout)itemView.findViewById(R.id.layoutPlay);
             }
         }
 
         public LevelAdapter(List<Level> data) {
             this.dataSet = data;
+            countIsNowTopic = data.size();
         }
 
 
@@ -246,6 +275,7 @@ public class LevelRootActivity extends AppCompatActivity {
                     .inflate(R.layout.row_level_layout2, parent, false);
 
             MyViewHolder myViewHolder = new MyViewHolder(view);
+
             return myViewHolder;
         }
 
@@ -258,6 +288,18 @@ public class LevelRootActivity extends AppCompatActivity {
             LinearLayout layoutDescriptionHolder = holder.layoutDescriptionHolder;
             LinearLayout layoutTopProceedHolder = holder.layoutTopProceedHolder;
             ImageView imgNew =  holder.imgNew;
+
+            LinearLayout layoutProceed = holder.layoutProceed;
+            final LinearLayout layoutInfoHolder = holder.layoutInfoHolder;
+            TextView txtTotalQuestion = holder.txtTotalQuestion;
+            TextView txtTotalScore = holder.txtTotalScore;
+            TextView txtHighScore = holder.txtHighScore;
+            TextView txtBestScore = holder.txtBestScore;
+            TextView txtAttempts = holder.txtAttempts;
+            TextView txtPlay = holder.txtPlay;
+            ImageView imgViewPlayTriangle = holder.imgViewPlayTriangle;
+            LinearLayout layoutPlay = holder.layoutPlay;
+
 
             if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
                 layoutDescriptionHolder.setVisibility(View.GONE);
@@ -277,24 +319,53 @@ public class LevelRootActivity extends AppCompatActivity {
 
             if(realmLevel!=null){
                 imgNew.setVisibility(View.INVISIBLE);
-                countIsNowTopic++;
+                countIsNowTopic--;
             }else{
                 imgNew.setVisibility(View.VISIBLE);
             }
 
             RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
-            if(countIsNowTopic == dataSet.size()-1){
+            if(countIsNowTopic <= 0){
 
-                realmTopic.setId(dataSet.get(listPosition).getId()+topicName);
-            }else {
+                realmTopic.setId(topicId+topicName);
+                realmTopic.setNew(false);
+            }/*else {
                 realmTopic.setId("");
-            }
+            }*/
 
-
+            realm.copyToRealmOrUpdate(realmTopic);
             realm.commitTransaction();
 
 
-            cardView.setOnClickListener(new View.OnClickListener() {
+            /*cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LevelRootActivity.this, QuizActivity.class);
+                    intent.putExtra(AppConstants.QUIZ_LEVEL_ID, dataSet.get(listPosition).getId());
+                    intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, topicName);
+                    startActivityForResult(intent, REQUEST_FROM_QUIZ_PAGE);
+                }
+            });*/
+
+
+            layoutProceed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.isPlayClicked = !holder.isPlayClicked;
+
+                    if(holder.isPlayClicked){
+
+                        layoutInfoHolder.setVisibility(View.VISIBLE);
+                        initApiGetScore(listPosition, holder);
+
+                    }else{
+                        layoutInfoHolder.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+
+            layoutPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(LevelRootActivity.this, QuizActivity.class);
@@ -312,6 +383,56 @@ public class LevelRootActivity extends AppCompatActivity {
             return dataSet.size();
         }
 
+
+        private void initApiGetScore(final int listPosition, final MyViewHolder holder){
+
+
+            if(!isFinishing()){
+                md = null;
+                md = new MaterialDialog.Builder(LevelRootActivity.this)
+                        .content(R.string.msg_please_wait)
+                        .progress(true, 0)
+                        .show();
+            }
+
+            MultiPartStringRequest jor = new MultiPartStringRequest(Request.Method.POST, UrlHelper.newUrl(UrlHelper.URL_GET_SCORE), new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    if(md!=null){
+                        md.dismiss();
+                    }
+
+                    Log.e("*** RESPONSE ***", "is: "+response);
+                    ModelBase mb = ModelBase.getInstance().setResponse(response);
+                    holder.txtTotalQuestion.setText(mb.getData().getTotalQuestion());
+                    holder.txtTotalScore.setText(mb.getData().getTotalMark());
+                    holder.txtHighScore.setText(mb.getData().getScore());
+                    holder.txtAttempts.setText("0");
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }){
+
+                @Override
+                public Map<String, String> getStringUploads() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("level_id", dataSet.get(listPosition).getId());
+                    return params;
+                }
+            };
+
+            RequestQueue rq = Volley.newRequestQueue(LevelRootActivity.this, new MultiPartStack());
+            rq.add(jor);
+        }
+
+
+
     }
 
     @Override
@@ -321,4 +442,6 @@ public class LevelRootActivity extends AppCompatActivity {
             initApiCall();
         }
     }
+
+
 }

@@ -15,6 +15,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,6 +37,7 @@ import com.champs21.sciencerocks.models.Option;
 import com.champs21.sciencerocks.models.Question;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.HighScoreAttempts;
 import com.champs21.sciencerocks.realm.RealmLevel;
 import com.champs21.sciencerocks.realm.RealmTopic;
 import com.champs21.sciencerocks.utils.AppConstants;
@@ -146,6 +148,21 @@ public class QuizActivity extends AppCompatActivity {
             }
 
         }
+
+
+        HighScoreAttempts highScoreAttempts = realm.createObject(HighScoreAttempts.class);
+        highScoreAttempts = realm.where(HighScoreAttempts.class).findFirst();
+
+        if(TextUtils.isEmpty(highScoreAttempts.getKeyAttempts())){
+            highScoreAttempts.setKeyAttempts(levelId);
+        }
+
+        else{
+
+        }
+
+
+
 
         realm.commitTransaction();
 

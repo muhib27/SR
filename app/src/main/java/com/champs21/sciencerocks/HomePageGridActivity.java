@@ -27,6 +27,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -261,15 +262,16 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView txtTitle;
+            LinearLayout layoutTop;
             CardView cardView;
-            ImageView imgIcon;
 
 
             public MyViewHolder(View itemView) {
                 super(itemView);
                 this.txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
+                this.layoutTop = (LinearLayout)itemView.findViewById(R.id.layoutTop);
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
-                this.imgIcon = (ImageView)itemView.findViewById(R.id.imgIcon);
+
             }
         }
 
@@ -305,22 +307,24 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
             TextView txtTitle = holder.txtTitle;
+            LinearLayout layoutTop = holder.layoutTop;
             CardView cardView = holder.cardView;
-            ImageView imgIcon = holder.imgIcon;
 
             txtTitle.setText(dataSet.get(listPosition));
 
-            if(listPosition == 0){
-                imgIcon.setImageResource(R.drawable.icon_mta);
-            }
-            if(listPosition == 1){
-                imgIcon.setImageResource(R.drawable.icon_episode);
-            }
-            if(listPosition == 2){
-                imgIcon.setImageResource(R.drawable.icon_quiz);
-            }
-            if(listPosition == 3){
-                imgIcon.setImageResource(R.drawable.icon_daily_doze);
+            switch (listPosition){
+                case 0:
+                    layoutTop.setBackgroundResource(R.drawable.grid_1);
+                    break;
+                case 1:
+                    layoutTop.setBackgroundResource(R.drawable.grid_2);
+                    break;
+                case 2:
+                    layoutTop.setBackgroundResource(R.drawable.grid_3);
+                    break;
+                case 3:
+                    layoutTop.setBackgroundResource(R.drawable.grid_4);
+                    break;
             }
 
 
