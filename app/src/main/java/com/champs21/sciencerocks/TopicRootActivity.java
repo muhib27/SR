@@ -162,18 +162,6 @@ public class TopicRootActivity extends AppCompatActivity {
 
     }
 
-    /*private RealmList<RealmLevel> toRealmList(Realm realm, String id, boolean isNew) {
-
-        RealmList<RealmLevel> mRealmList = new RealmList<RealmLevel>();
-        RealmLevel object = new RealmLevel();
-        object.setId(id);
-        object.setNew(isNew);
-        // Copy the standalone object to Realm, and get the returned object which is managed by Realm.
-        object = realm.copyToRealm(object);
-        mRealmList.add(object);
-
-        return mRealmList;
-    }*/
 
     public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.MyViewHolder> {
 
@@ -242,18 +230,18 @@ public class TopicRootActivity extends AppCompatActivity {
             Realm realm = ApplicationSingleton.getInstance().getRealm();
             realm.beginTransaction();
 
-            RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
-            if(realmTopic != null){
-                realmTopic = realm.where(RealmTopic.class).equalTo("id", dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName()).findFirst();
-
-                if(realmTopic!=null && realmTopic.isNew() == false){
-                    imgNew.setVisibility(View.INVISIBLE);
-                }else{
-                    imgNew.setVisibility(View.VISIBLE);
-                }
-
-            }else {
+            RealmTopic realmTopic = null;
+            realmTopic = realm.where(RealmTopic.class).equalTo("id", dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName()).findFirst();
+            if(realmTopic == null){
                 realmTopic = realm.createObject(RealmTopic.class);
+                realmTopic.setId(dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName());
+                realmTopic.setNew(true);
+            }
+
+            if(realmTopic.isNew()){
+                imgNew.setVisibility(View.VISIBLE);
+            }else{
+                imgNew.setVisibility(View.GONE);
             }
 
             realm.commitTransaction();

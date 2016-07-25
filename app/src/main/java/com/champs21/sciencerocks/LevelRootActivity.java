@@ -48,7 +48,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 
 public class LevelRootActivity extends AppCompatActivity {
 
@@ -61,7 +60,6 @@ public class LevelRootActivity extends AppCompatActivity {
     private String topicId = "";
     private String topicName = "Level";
     private static final int REQUEST_FROM_QUIZ_PAGE = 450;
-    private int countIsNowTopic = 0;
     private MaterialDialog md = null;
 
     @Override
@@ -164,31 +162,6 @@ public class LevelRootActivity extends AppCompatActivity {
                         txtMessage.setVisibility(View.GONE);
                     }
 
-                    Realm realm = ApplicationSingleton.getInstance().getRealm();
-                    realm.beginTransaction();
-
-                    RealmTopic realmTopic = null;
-                    realmTopic = realm.where(RealmTopic.class).findFirst();
-                    if(realmTopic == null){
-                        realmTopic = realm.createObject(RealmTopic.class);
-                    }
-
-                    RealmList<RealmLevel> listRealmLevel = new RealmList<RealmLevel>();
-
-                    for(int i=0;i<listLevels.size();i++){
-                        RealmLevel rl = realm.createObject(RealmLevel.class);
-
-                        rl.setId(listLevels.get(i).getId());
-                        rl.setNew(true);
-                        rl.setVisitedQuiz(false);
-
-                        listRealmLevel.add(rl);
-                        realmTopic.setListLevels(listRealmLevel);
-                        realm.copyToRealmOrUpdate(realmTopic);
-                    }
-
-                    realm.commitTransaction();
-
                     adapter.notifyDataSetChanged();
 
                 }
@@ -216,6 +189,15 @@ public class LevelRootActivity extends AppCompatActivity {
     public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.MyViewHolder> {
 
         private List<Level> dataSet;
+        int count  = 0;
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
 
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -239,6 +221,7 @@ public class LevelRootActivity extends AppCompatActivity {
             LinearLayout layoutPlay;
 
             boolean isPlayClicked = false;
+
 
 
             public MyViewHolder(View itemView) {
@@ -265,7 +248,6 @@ public class LevelRootActivity extends AppCompatActivity {
 
         public LevelAdapter(List<Level> data) {
             this.dataSet = data;
-            countIsNowTopic = data.size();
         }
 
 
@@ -320,21 +302,18 @@ public class LevelRootActivity extends AppCompatActivity {
 
             if(realmLevel!=null){
                 imgNew.setVisibility(View.INVISIBLE);
-                countIsNowTopic--;
+                setCount(listPosition+1);
             }else{
                 imgNew.setVisibility(View.VISIBLE);
             }
 
-            RealmTopic realmTopic = realm.where(RealmTopic.class).findFirst();
-            if(countIsNowTopic <= 0){
+            RealmTopic realmTopic = realm.where(RealmTopic.class).equalTo("id", topicId+topicName).findFirst();
 
-                realmTopic.setId(topicId+topicName);
+            if(getCount() == dataSet.size()){
                 realmTopic.setNew(false);
-            }/*else {
-                realmTopic.setId("");
-            }*/
+            }
 
-            realm.copyToRealmOrUpdate(realmTopic);
+
             realm.commitTransaction();
 
             txtAttempts.setText(String.valueOf(getAttemptCount(dataSet.get(listPosition).getId())));
