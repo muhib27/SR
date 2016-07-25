@@ -21,12 +21,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.champs21.sciencerocks.models.LeaderList;
 import com.champs21.sciencerocks.models.ModelBase;
-import com.champs21.sciencerocks.networks.CustomVolleyRequestQueue;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
 import com.champs21.sciencerocks.utils.UrlHelper;
@@ -141,11 +138,11 @@ public class LeaderBoardActivity extends AppCompatActivity {
     public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.MyViewHolder> {
 
         private List<LeaderList> dataSet;
-        private ImageLoader mImageLoader;
+        //private ImageLoader mImageLoader;
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
-            NetworkImageView imgViewNetwork;
+            //NetworkImageView imgViewNetwork;
             TextView txtPosition;
             TextView txtName;
             TextView txtEmail;
@@ -156,7 +153,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                this.imgViewNetwork = (NetworkImageView)itemView.findViewById(R.id.imgViewNetwork);
+                //this.imgViewNetwork = (NetworkImageView)itemView.findViewById(R.id.imgViewNetwork);
                 this.txtPosition = (TextView) itemView.findViewById(R.id.txtPosition);
                 this.txtName = (TextView)itemView.findViewById(R.id.txtName);
                 this.txtEmail = (TextView) itemView.findViewById(R.id.txtEmail);
@@ -168,7 +165,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         public LeaderBoardAdapter(List<LeaderList> data) {
             this.dataSet = data;
-            this.mImageLoader = CustomVolleyRequestQueue.getInstance(LeaderBoardActivity.this).getImageLoader();
+            //this.mImageLoader = CustomVolleyRequestQueue.getInstance(LeaderBoardActivity.this).getImageLoader();
 
         }
 
@@ -186,7 +183,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
-            NetworkImageView imgViewNetwork = holder.imgViewNetwork;
+            //NetworkImageView imgViewNetwork = holder.imgViewNetwork;
             TextView txtPosition = holder.txtPosition;
             TextView txtName = holder.txtName;
             TextView txtEmail = holder.txtEmail;
@@ -194,8 +191,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
             TextView txtTime = holder.txtTime;
             CardView cardView = holder.cardView;
 
-            mImageLoader.get("", ImageLoader.getImageListener(imgViewNetwork, R.drawable.avatar, R.drawable.avatar));
-            imgViewNetwork.setImageUrl("", mImageLoader);
+            /*mImageLoader.get("", ImageLoader.getImageListener(imgViewNetwork, R.drawable.avatar, R.drawable.avatar));
+            imgViewNetwork.setImageUrl("", mImageLoader);*/
 
             int pos = listPosition;
             txtPosition.setText(String.valueOf(pos+1));

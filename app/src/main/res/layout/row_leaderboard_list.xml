@@ -42,8 +42,14 @@
 
             </LinearLayout>
 
-            <com.android.volley.toolbox.NetworkImageView
+            <!--<com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/imgViewNetwork"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/avatar"/>-->
+
+            <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
