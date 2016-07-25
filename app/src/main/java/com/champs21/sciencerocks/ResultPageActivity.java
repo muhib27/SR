@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInOptions gso;
     private GoogleApiClient mGoogleApiClient;
-    private AppCompatButton btnShare;
+    private AppCompatImageButton btnShare;
 
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
@@ -197,7 +198,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         btnSaveScore = (AppCompatButton)this.findViewById(R.id.btnSaveScore);
 
-        btnShare = (AppCompatButton) this.findViewById(R.id.btnShare);
+        btnShare = (AppCompatImageButton) this.findViewById(R.id.btnShare);
 
         btnSummery = (AppCompatButton)this.findViewById(R.id.btnSummery);
         btnTopScore = (AppCompatButton)this.findViewById(R.id.btnTopScore);

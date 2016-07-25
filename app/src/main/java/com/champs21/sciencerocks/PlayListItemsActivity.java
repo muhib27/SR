@@ -301,13 +301,15 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
             imgViewNetwork.setImageUrl(dataSet.get(listPosition).getSnippet().getThumbnails().getDefault().getUrl(), mImageLoader);
 
             txtPlayListTitle.setText(dataSet.get(listPosition).getSnippet().getTitle());
-            if(TextUtils.isEmpty(dataSet.get(listPosition).getSnippet().getDescription())){
+            /*if(TextUtils.isEmpty(dataSet.get(listPosition).getSnippet().getDescription())){
                 layoutDescription.setVisibility(View.GONE);
             }
             else{
                 layoutDescription.setVisibility(View.VISIBLE);
                 txtPlayListDescription.setText(dataSet.get(listPosition).getSnippet().getDescription());
-            }
+            }*/
+
+            layoutDescription.setVisibility(View.GONE);
 
             imgBtnShare.setOnClickListener(new View.OnClickListener() {
                 @Override

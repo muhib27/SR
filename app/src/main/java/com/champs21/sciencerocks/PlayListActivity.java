@@ -156,7 +156,21 @@ public class PlayListActivity extends AppCompatActivity {
 
                 YoutubeModelBase mb = YoutubeModelBase.getInstance().setResponse(response);
                 pageToken = mb.getPlaylistRoot().getNextPageToken();
-                listItems.addAll(mb.getPlaylistRoot().getItems());
+
+                for(int i=0;i<mb.getPlaylistRoot().getItems().size();i++){
+                    if(mb.getPlaylistRoot().getItems().get(i).getId().equals(AppConstants.PALYLIST_ID_ROCKING_EXP)){
+                        listItems.add(mb.getPlaylistRoot().getItems().get(i));
+                    }
+                }
+
+                if(listItems.size()<=0){
+                    txtMessage.setVisibility(View.VISIBLE);
+                }
+                else{
+                    txtMessage.setVisibility(View.GONE);
+                }
+
+                /*listItems.addAll(mb.getPlaylistRoot().getItems());
 
                 for (int i=0;i<listItems.size();i++){
                     if(listItems.get(i).getId().equals(AppConstants.PALYLIST_ID_FUNNY_VIDEOS)){
@@ -169,7 +183,7 @@ public class PlayListActivity extends AppCompatActivity {
                 }
                 else{
                     txtMessage.setVisibility(View.GONE);
-                }
+                }*/
 
                 if(adapter==null){
                     adapter = new PlayListAdapter(listItems);
@@ -248,13 +262,15 @@ public class PlayListActivity extends AppCompatActivity {
             imgViewNetwork.setImageUrl(dataSet.get(listPosition).getSnippet().getThumbnails().getDefault().getUrl(), mImageLoader);
 
             txtPlayListTitle.setText(dataSet.get(listPosition).getSnippet().getTitle());
-            if(TextUtils.isEmpty(dataSet.get(listPosition).getSnippet().getDescription())){
+            /*if(TextUtils.isEmpty(dataSet.get(listPosition).getSnippet().getDescription())){
                 layoutDescription.setVisibility(View.GONE);
             }
             else{
                 layoutDescription.setVisibility(View.VISIBLE);
                 txtPlayListDescription.setText(dataSet.get(listPosition).getSnippet().getDescription());
-            }
+            }*/
+
+            layoutDescription.setVisibility(View.GONE);
 
 
             cardView.setOnClickListener(new View.OnClickListener() {
