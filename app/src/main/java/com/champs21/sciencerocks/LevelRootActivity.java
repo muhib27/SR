@@ -32,6 +32,7 @@ import com.champs21.sciencerocks.models.Level;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.HighScoreAttempts;
 import com.champs21.sciencerocks.realm.RealmLevel;
 import com.champs21.sciencerocks.realm.RealmTopic;
 import com.champs21.sciencerocks.utils.AppConstants;
@@ -336,6 +337,10 @@ public class LevelRootActivity extends AppCompatActivity {
             realm.copyToRealmOrUpdate(realmTopic);
             realm.commitTransaction();
 
+            txtAttempts.setText(String.valueOf(getAttemptCount(dataSet.get(listPosition).getId())));
+            txtBestScore.setText(String.valueOf(getBestScore(dataSet.get(listPosition).getId())));
+
+
 
             /*cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -410,7 +415,6 @@ public class LevelRootActivity extends AppCompatActivity {
                         holder.txtTotalQuestion.setText(mb.getData().getTotalQuestion());
                         holder.txtTotalScore.setText(mb.getData().getTotalMark());
                         holder.txtHighScore.setText(mb.getData().getScore());
-                        holder.txtAttempts.setText("0");
                     }
 
 
@@ -435,6 +439,43 @@ public class LevelRootActivity extends AppCompatActivity {
             rq.add(jor);
         }
 
+        private int getAttemptCount(String key) {
+            int count = 0;
+            Realm realm = ApplicationSingleton.getInstance().getRealm();
+            HighScoreAttempts highScoreAttempts = null;
+            highScoreAttempts = realm.where(HighScoreAttempts.class).equalTo("keyAttempts", key).findFirst();
+            realm.beginTransaction();
+            if (highScoreAttempts == null) {
+                highScoreAttempts = realm.createObject(HighScoreAttempts.class);
+
+            }
+            count = highScoreAttempts.getValueAttempts();
+            realm.commitTransaction();
+
+            Log.e("ATTEMPTS", "is: "+highScoreAttempts.getValueAttempts());
+
+            return count;
+        }
+
+        private int getBestScore(String key){
+            int score = 0;
+
+            Realm realm = ApplicationSingleton.getInstance().getRealm();
+            HighScoreAttempts highScoreAttempts = null;
+            realm.beginTransaction();
+            highScoreAttempts = realm.where(HighScoreAttempts.class).equalTo("keyScore", key).findFirst();
+            if(highScoreAttempts == null){
+                highScoreAttempts = realm.createObject(HighScoreAttempts.class);
+
+            }
+
+            score = highScoreAttempts.getValueScore();
+            realm.commitTransaction();
+
+            Log.e("SCORE", "is: "+score);
+
+            return score;
+        }
 
 
     }

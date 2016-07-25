@@ -25,6 +25,7 @@ import com.champs21.sciencerocks.app.ApplicationSingleton;
 import com.champs21.sciencerocks.models.ModelBase;
 import com.champs21.sciencerocks.networks.MultiPartStack;
 import com.champs21.sciencerocks.networks.MultiPartStringRequest;
+import com.champs21.sciencerocks.realm.HighScoreAttempts;
 import com.champs21.sciencerocks.utils.AppConstants;
 import com.champs21.sciencerocks.utils.ScoreManager;
 import com.champs21.sciencerocks.utils.UrlHelper;
@@ -53,6 +54,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import io.realm.Realm;
 
 public class ResultPageActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -88,6 +91,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
     private TextView txtHighestScore;
     private MaterialDialog md = null;
+    private TextView txtBestScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +204,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         btnTryAgain = (AppCompatButton)this.findViewById(R.id.btnTryAgain);
 
         txtHighestScore = (TextView)this.findViewById(R.id.txtHighestScore);
+        txtBestScore = (TextView)this.findViewById(R.id.txtBestScore);
 
     }
 
@@ -278,6 +283,8 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
                 startActivity(intent);
             }
         });
+
+        txtBestScore.setText(String.valueOf(getBestScore(levelId)));
 
 
     }
@@ -485,5 +492,30 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         RequestQueue rq = Volley.newRequestQueue(ResultPageActivity.this, new MultiPartStack());
         rq.add(jor);
+    }
+
+    private int getBestScore(String key){
+        int score = 0;
+
+        Realm realm = ApplicationSingleton.getInstance().getRealm();
+        HighScoreAttempts highScoreAttempts = null;
+        realm.beginTransaction();
+        highScoreAttempts = realm.where(HighScoreAttempts.class).equalTo("keyScore", key).findFirst();
+        if(highScoreAttempts == null){
+            highScoreAttempts = realm.createObject(HighScoreAttempts.class);
+            highScoreAttempts.setValueScore(scoreManager.getScore());
+            highScoreAttempts.setKeyScore(key);
+        }
+
+        if(scoreManager.getScore() > highScoreAttempts.getValueScore()){
+            highScoreAttempts.setValueScore(scoreManager.getScore());
+        }
+
+        score = highScoreAttempts.getValueScore();
+        realm.commitTransaction();
+
+        Log.e("SCORE", "is: "+score);
+
+        return score;
     }
 }

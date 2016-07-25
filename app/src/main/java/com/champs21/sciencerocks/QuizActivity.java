@@ -163,6 +163,7 @@ public class QuizActivity extends AppCompatActivity {
         if (highScoreAttempts == null) {
             highScoreAttempts = realm.createObject(HighScoreAttempts.class);
             highScoreAttempts.setKeyAttempts(key);
+            highScoreAttempts.setValueAttempts(highScoreAttempts.getValueAttempts()+1);
         } else {
             highScoreAttempts.setValueAttempts(highScoreAttempts.getValueAttempts()+1);
         }
