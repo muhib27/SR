@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,7 +94,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
     private TextView txtHighestScore;
     private MaterialDialog md = null;
     private TextView txtBestScore;
-    private LinearLayout layoutShare;
+    private RelativeLayout layoutShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,7 +208,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         txtHighestScore = (TextView)this.findViewById(R.id.txtHighestScore);
         txtBestScore = (TextView)this.findViewById(R.id.txtBestScore);
-        layoutShare = (LinearLayout)this.findViewById(R.id.layoutShare);
+        layoutShare = (RelativeLayout) this.findViewById(R.id.layoutShare);
 
     }
 
