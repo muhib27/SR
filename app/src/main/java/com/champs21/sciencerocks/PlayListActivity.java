@@ -278,7 +278,7 @@ public class PlayListActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(PlayListActivity.this, PlayListItemsActivity.class);
                     intent.putExtra(AppConstants.ID_PLAY_LIST, dataSet.get(listPosition).getId());
-                    intent.putExtra(AppConstants.ID_PLAY_LIST_ITEM_TITLE, dataSet.get(listPosition).getSnippet().getTitle());
+                    intent.putExtra(AppConstants.PLAY_LIST_NAME, dataSet.get(listPosition).getSnippet().getTitle());
                     startActivity(intent);
                 }
             });

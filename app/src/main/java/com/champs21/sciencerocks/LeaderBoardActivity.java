@@ -145,7 +145,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
             //NetworkImageView imgViewNetwork;
             TextView txtPosition;
             TextView txtName;
-            TextView txtEmail;
             TextView txtScore;
             TextView txtTime;
             CardView cardView;
@@ -156,7 +155,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 //this.imgViewNetwork = (NetworkImageView)itemView.findViewById(R.id.imgViewNetwork);
                 this.txtPosition = (TextView) itemView.findViewById(R.id.txtPosition);
                 this.txtName = (TextView)itemView.findViewById(R.id.txtName);
-                this.txtEmail = (TextView) itemView.findViewById(R.id.txtEmail);
                 this.txtScore = (TextView) itemView.findViewById(R.id.txtScore);
                 this.txtTime = (TextView) itemView.findViewById(R.id.txtTime);
                 this.cardView = (CardView)itemView.findViewById(R.id.cardView);
@@ -186,7 +184,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
             //NetworkImageView imgViewNetwork = holder.imgViewNetwork;
             TextView txtPosition = holder.txtPosition;
             TextView txtName = holder.txtName;
-            TextView txtEmail = holder.txtEmail;
             TextView txtScore = holder.txtScore;
             TextView txtTime = holder.txtTime;
             CardView cardView = holder.cardView;
@@ -197,7 +194,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
             int pos = listPosition;
             txtPosition.setText(String.valueOf(pos+1));
             txtName.setText(dataSet.get(listPosition).getName());
-            txtEmail.setText(dataSet.get(listPosition).getEmail());
             txtScore.setText(dataSet.get(listPosition).getScore());
 
             Long time = Long.parseLong(dataSet.get(listPosition).getTime());

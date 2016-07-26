@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +94,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
     private TextView txtHighestScore;
     private MaterialDialog md = null;
     private TextView txtBestScore;
+    private LinearLayout layoutShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,6 +208,7 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
 
         txtHighestScore = (TextView)this.findViewById(R.id.txtHighestScore);
         txtBestScore = (TextView)this.findViewById(R.id.txtBestScore);
+        layoutShare = (LinearLayout)this.findViewById(R.id.layoutShare);
 
     }
 
@@ -239,6 +242,23 @@ public class ResultPageActivity extends AppCompatActivity implements GoogleApiCl
         });
 
 
+        layoutShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle(getString(R.string.app_name))
+                            .setContentDescription("I have scored "+String.valueOf(scoreManager.getScore()+". \n" +
+                                    "Watch Channel i every Friday morning at 11:05 am. Keep rocking with science!"))
+                            .setContentUrl(Uri.parse(getString(R.string.app_play_store_link)))
+                            .setImageUrl(Uri.parse(getString(R.string.app_play_store_image_link)))
+                            .build();
+
+                    shareDialog.show(linkContent);
+                }
+
+            }
+        });
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

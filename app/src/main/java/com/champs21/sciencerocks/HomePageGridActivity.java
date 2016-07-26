@@ -343,9 +343,10 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                             h.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListActivity.class);
+                                    Intent intent = new Intent(HomePageGridActivity.this, PlayListItemsActivity.class);
+                                    intent.putExtra(AppConstants.KEY_FUNNY_VIDEOS, AppConstants.PALYLIST_ID_ROCKING_EXP);
+                                    intent.putExtra(AppConstants.PLAY_LIST_NAME, getString(R.string.title_activity_play_list));
                                     startActivity(intent);
-                                    v.setEnabled(true);
                                 }
                             }, 500);
 
@@ -365,6 +366,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                                 public void run() {
                                     Intent intent = new Intent(HomePageGridActivity.this, PlayListItemsActivity.class);
                                     intent.putExtra(AppConstants.KEY_FUNNY_VIDEOS, AppConstants.PALYLIST_ID_FUNNY_VIDEOS);
+                                    intent.putExtra(AppConstants.PLAY_LIST_NAME, getString(R.string.home_page_grid_funny_videos));
                                     startActivity(intent);
                                     v.setEnabled(true);
                                 }

@@ -34,5 +34,6 @@ public class AppConstants {
     public static final String KEY_FUNNY_VIDEOS = "KEY_FUNNY_VIDEOS";
     public static final String PALYLIST_ID_FUNNY_VIDEOS = "PLCd9bO69-7d8JdIcIaSxQVBGCGWzcMSJG";
     public static final String PALYLIST_ID_ROCKING_EXP = "PLCd9bO69-7d8urplEu1tPIf2GUlmL2bEK";
+    public static final String PLAY_LIST_NAME = "PLAY_LIST_NAME";
 
 }

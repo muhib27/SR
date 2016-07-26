@@ -320,6 +320,11 @@ public class LevelRootActivity extends AppCompatActivity {
             txtBestScore.setText(String.valueOf(getBestScore(dataSet.get(listPosition).getId())));
 
 
+            if(getAttemptCount(dataSet.get(listPosition).getId()) <= 0){
+                txtPlay.setText(getString(R.string.play));
+            }else{
+                txtPlay.setText(getString(R.string.play_again));
+            }
 
             /*cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
