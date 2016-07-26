@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/layoutShare"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -35,14 +35,18 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center"
-                    android:id="@+id/linearLayout4">
+                    android:id="@+id/linearLayout4"
+                    android:layout_margin="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your Score"
-                        android:textSize="32sp"
+                        android:textSize="28sp"
                         android:textStyle="bold"
+                        android:layout_marginTop="5dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:id="@+id/textView7" />
 
@@ -55,6 +59,7 @@
                         android:layout_below="@+id/textView7"
                         android:layout_alignLeft="@+id/textView7"
                         android:layout_alignStart="@+id/textView7"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/linearLayout3">
 
                         <TextView
@@ -71,11 +76,13 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_gravity="right" >
+                    android:id="@+id/linearLayout6"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentEnd="true">
 
                     <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/btnShare"
@@ -95,13 +102,15 @@
                 </LinearLayout>
 
 
-            </LinearLayout>
+
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/layoutMid"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_above="@+id/linearLayout5">
 
 
