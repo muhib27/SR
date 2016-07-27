@@ -193,17 +193,7 @@ public class LevelRootActivity extends AppCompatActivity {
     public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.MyViewHolder> {
 
         private List<Level> dataSet;
-        int count  = 0;
         private Set<Integer> listVisibleCount;
-
-        public int getCount() {
-            return count;
-        }
-
-        public void setCount(int count) {
-            this.count = count;
-        }
-
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -309,20 +299,13 @@ public class LevelRootActivity extends AppCompatActivity {
 
             if(realmLevel!=null){
                 imgNew.setVisibility(View.INVISIBLE);
-                setCount(listPosition+1);
+
             }else{
                 imgNew.setVisibility(View.VISIBLE);
                 listVisibleCount.add(View.VISIBLE);
             }
 
-
-
             RealmTopic realmTopic = realm.where(RealmTopic.class).equalTo("id", topicId+topicName).findFirst();
-
-
-            /*if(getCount() == dataSet.size()){
-                realmTopic.setNew(false);
-            }*/
 
             if(listVisibleCount.size() > 0){
                 realmTopic.setNew(true);
