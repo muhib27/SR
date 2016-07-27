@@ -94,7 +94,7 @@
                         android:layout_weight="1"
                         android:textStyle="bold"
                         android:layout_marginRight="5dp"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         android:gravity="center"
                         android:textColor="@color/colorWhite"
                         android:text="Share your score"

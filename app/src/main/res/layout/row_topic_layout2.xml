@@ -53,6 +53,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:tint="@color/colorForNew"
                         android:src="@drawable/ic_fiber_new_white_24dp"/>
                 </LinearLayout>
 
