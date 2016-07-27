@@ -241,7 +241,7 @@ public class TopicRootActivity extends AppCompatActivity {
             if(realmTopic.isNew()){
                 imgNew.setVisibility(View.VISIBLE);
             }else{
-                imgNew.setVisibility(View.GONE);
+                imgNew.setVisibility(View.INVISIBLE);
             }
 
             realm.commitTransaction();
@@ -270,7 +270,11 @@ public class TopicRootActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_FROM_QUIZ_PAGE){
-            initApiCall();
+            //initApiCall();
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+
         }
     }
 }

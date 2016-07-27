@@ -44,8 +44,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import io.realm.Realm;
 
@@ -186,10 +188,13 @@ public class LevelRootActivity extends AppCompatActivity {
 
 
 
+
+
     public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.MyViewHolder> {
 
         private List<Level> dataSet;
         int count  = 0;
+        private Set<Integer> listVisibleCount;
 
         public int getCount() {
             return count;
@@ -248,6 +253,8 @@ public class LevelRootActivity extends AppCompatActivity {
 
         public LevelAdapter(List<Level> data) {
             this.dataSet = data;
+            this.listVisibleCount = new HashSet<Integer>();
+            this.listVisibleCount.clear();
         }
 
 
@@ -305,11 +312,21 @@ public class LevelRootActivity extends AppCompatActivity {
                 setCount(listPosition+1);
             }else{
                 imgNew.setVisibility(View.VISIBLE);
+                listVisibleCount.add(View.VISIBLE);
             }
+
+
 
             RealmTopic realmTopic = realm.where(RealmTopic.class).equalTo("id", topicId+topicName).findFirst();
 
-            if(getCount() == dataSet.size()){
+
+            /*if(getCount() == dataSet.size()){
+                realmTopic.setNew(false);
+            }*/
+
+            if(listVisibleCount.size() > 0){
+                realmTopic.setNew(true);
+            }else{
                 realmTopic.setNew(false);
             }
 
@@ -468,7 +485,12 @@ public class LevelRootActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_FROM_QUIZ_PAGE){
-            initApiCall();
+            Intent intent = getIntent();
+            intent.putExtra(AppConstants.QUIZ_TOPIC_ID, topicId);
+            intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, topicName);
+            finish();
+            startActivity(intent);
+            //initApiCall();
         }
     }
 
