@@ -31,7 +31,7 @@
     <string name="title_activity_daily_doze_new">Daily Doze</string>
     <string name="daily_doze_new_activity_no_previous_data">No previous data is found!</string>
     <string name="daily_doze_new_activity_no_next_data">No previous data is found!</string>
-    <string name="home_page_grid_quiz">Quiz</string>
+    <string name="home_page_grid_quiz">Quiz Challenge</string>
     <string name="home_page_grid_episodes">Episodes</string>
     <string name="home_page_grid_daily_doze">Daily Doze</string>
     <string name="home_page_grid_mta">Anchors</string>
