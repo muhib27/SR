@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ public class MeetTheAnchorsRootActivity extends AppCompatActivity {
     private RelativeLayout layoutFemaleHolder;
 
     private AppCompatButton btnQA;
+    private LinearLayout layoutRootMale;
+    private LinearLayout layoutRootFemale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,9 @@ public class MeetTheAnchorsRootActivity extends AppCompatActivity {
 
         txtDescription = (TextView)this.findViewById(R.id.txtDescription);
         btnQA = (AppCompatButton)this.findViewById(R.id.btnQA);
+
+        layoutRootMale = (LinearLayout)this.findViewById(R.id.layoutRootMale);
+        layoutRootFemale = (LinearLayout)this.findViewById(R.id.layoutRootFemale);
     }
 
     private void initAction(){
@@ -92,7 +98,25 @@ public class MeetTheAnchorsRootActivity extends AppCompatActivity {
             }
         });
 
+        layoutRootMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MeetTheAnchorsRootActivity.this, MeetTheAnchorsDetailsActivity.class);
+                intent.putExtra(AppConstants.SELECTED_ANCHOR, AppConstants.ANCHOR_MALE);
+                startActivity(intent);
+            }
+        });
+
         layoutFemaleHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MeetTheAnchorsRootActivity.this, MeetTheAnchorsDetailsActivity.class);
+                intent.putExtra(AppConstants.SELECTED_ANCHOR, AppConstants.ANCHOR_FEMALE);
+                startActivity(intent);
+            }
+        });
+
+        layoutRootFemale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MeetTheAnchorsRootActivity.this, MeetTheAnchorsDetailsActivity.class);

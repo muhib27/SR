@@ -301,44 +301,46 @@ public class QaRootActivity extends AppCompatActivity {
     }
 
     private void showAskPopup(){
-        final MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title(R.string.dialog_ask_question)
-                .customView(R.layout.layout_dialog_ask_question, false)
-                .cancelable(true)
-                .show();
+        if(!isFinishing()){
+            final MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title(R.string.dialog_ask_question_title)
+                    .customView(R.layout.layout_dialog_ask_question, false)
+                    .cancelable(true)
+                    .show();
 
-        View dialogView = dialog.getCustomView();
-        final EditText txtName = (EditText) dialogView.findViewById(R.id.txtName);
-        final EditText txtQuestion = (EditText) dialogView.findViewById(R.id.txtQuestion);
-        AppCompatButton btnSubmit = (AppCompatButton)dialogView.findViewById(R.id.btnSubmit);
-        AppCompatButton btnCancel = (AppCompatButton)dialogView.findViewById(R.id.btnCancel);
+            View dialogView = dialog.getCustomView();
+            final EditText txtName = (EditText) dialogView.findViewById(R.id.txtName);
+            final EditText txtQuestion = (EditText) dialogView.findViewById(R.id.txtQuestion);
+            AppCompatButton btnSubmit = (AppCompatButton)dialogView.findViewById(R.id.btnSubmit);
+            AppCompatButton btnCancel = (AppCompatButton)dialogView.findViewById(R.id.btnCancel);
 
-        if(!TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME))){
-            txtName.setText(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME));
-        }
+            if(!TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME))){
+                txtName.setText(ApplicationSingleton.getInstance().getPrefString(AppConstants.GOOGLE_AUTH_DISPLAY_NAME));
+            }
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isValidPopupForm(txtName, txtQuestion)){
-                    //call ask api
-                    if(dialog!=null){
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(isValidPopupForm(txtName, txtQuestion)){
+                        //call ask api
+                        if(dialog!=null){
+                            dialog.dismiss();
+                        }
+
+                        initApiCallSubmitQuestion(txtName.getText().toString(), txtQuestion.getText().toString());
+                    }
+                }
+            });
+
+            btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(dialog != null){
                         dialog.dismiss();
                     }
-
-                    initApiCallSubmitQuestion(txtName.getText().toString(), txtQuestion.getText().toString());
                 }
-            }
-        });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(dialog != null){
-                    dialog.dismiss();
-                }
-            }
-        });
+            });
+        }
 
     }
 

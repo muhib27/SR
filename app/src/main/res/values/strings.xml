@@ -26,7 +26,8 @@
     <string name="title_activity_result_page">Result</string>
     <string name="title_activity_daily_doze">Daily Doze</string>
     <string name="toast_no_internet">Connect to internet please.</string>
-    <string name="title_activity_qa_root">Q\u0026A</string>
+    <string name="title_activity_qa_root">Ask Them</string>
+    <string name="title_activity_qa_title">Q\u0026A</string>
     <string name="title_activity_daily_doze_new">Daily Doze</string>
     <string name="daily_doze_new_activity_no_previous_data">No previous data is found!</string>
     <string name="daily_doze_new_activity_no_next_data">No previous data is found!</string>
@@ -46,7 +47,8 @@
     <string name="mta_female_anchor_age">২১ বছর,</string>
     <string name="mta_female_anchor_job_title">শিক্ষার্থী</string>
     <string name="youtube_player_error">Youtube player error, please try again later.</string>
-    <string name="dialog_ask_question">Ask question</string>
+    <string name="dialog_ask_question">Have More Questions?</string>
+    <string name="dialog_ask_question_title">Ask Question</string>
     <string name="dialog_name_empty">Name cannot be empty!</string>
     <string name="dialog_question_empty">Question cannot be empty!</string>
     <string name="msg_please_wait">Please wait!</string>

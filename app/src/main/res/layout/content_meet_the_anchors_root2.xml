@@ -26,6 +26,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layoutRootMale"
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -47,7 +48,7 @@
                     </RelativeLayout>
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center_vertical"
@@ -62,11 +63,20 @@
                             android:textColor="@color/colorPrimary"
                             android:layout_marginLeft="10dp"
                             android:text="@string/mta_male_anchor_nick_name"/>
-                    </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@android:color/transparent"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_open_with_white_24dp"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutRootFemale"
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -88,7 +98,7 @@
 
                     </RelativeLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center_vertical"
@@ -103,7 +113,16 @@
                             android:textColor="@color/colorPrimary"
                             android:layout_marginLeft="10dp"
                             android:text="@string/mta_female_anchor_nick_name"/>
-                    </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@android:color/transparent"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_open_with_white_24dp"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
             </LinearLayout>
