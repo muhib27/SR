@@ -1,6 +1,7 @@
 package com.champs21.sciencerocks;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -77,7 +78,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
-    YouTubePlayer mYoutubePlayer;
+    private YouTubePlayer mYoutubePlayer = null;
 
     private boolean isFirstCardCliceked = false;
     private CallbackManager callbackManager;
@@ -88,6 +89,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -141,6 +143,59 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
             }
         });
 
+
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        /*if(playListId.equals(AppConstants.PALYLIST_ID_ROCKING_EXP)){
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+                if(mYoutubePlayer!=null){
+                    getSupportActionBar().hide();
+                    btnWinnerList.setVisibility(View.GONE);
+                }
+
+            } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+                getSupportActionBar().show();
+                btnWinnerList.setVisibility(View.VISIBLE);
+            }
+        }else{
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+                if(mYoutubePlayer!=null){
+                    getSupportActionBar().hide();
+                    btnWinnerList.setVisibility(View.GONE);
+                }
+
+            } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+                getSupportActionBar().show();
+                btnWinnerList.setVisibility(View.GONE);
+            }
+        }*/
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            if(mYoutubePlayer != null){
+                mYoutubePlayer.setFullscreen(true);
+
+                getSupportActionBar().hide();
+                btnWinnerList.setVisibility(View.GONE);
+            }
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if(mYoutubePlayer != null){
+                mYoutubePlayer.setFullscreen(false);
+
+                getSupportActionBar().show();
+                if(playListId.equals(AppConstants.PALYLIST_ID_ROCKING_EXP))
+                    btnWinnerList.setVisibility(View.VISIBLE);
+                else
+                    btnWinnerList.setVisibility(View.GONE);
+            }
+        }
 
     }
 
