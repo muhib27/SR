@@ -404,14 +404,20 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
                     //meet the anchors
                     else if(listPosition == 3){
 
-                        h.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
-                                startActivity(intent);
-                                v.setEnabled(true);
-                            }
-                        }, 500);
+                        if(ApplicationSingleton.getInstance().isNetworkConnected() == true) {
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(HomePageGridActivity.this, DailyDozeNewActivity.class);
+                                    startActivity(intent);
+                                    v.setEnabled(true);
+                                }
+                            }, 500);
+                        }
+                        else {
+                            Toast.makeText(HomePageGridActivity.this, R.string.toast_no_internet, Toast.LENGTH_SHORT).show();
+                        }
+
 
                     }
 

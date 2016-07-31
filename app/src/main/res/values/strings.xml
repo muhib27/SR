@@ -104,7 +104,7 @@
     <string name="txt_winner1">Winner1</string>
     <string name="txt_winner2">Winner2</string>
     <string name="txt_btn_ok">OK</string>
-    <string name="txt_button_winner_quiz_answer">Quiz Answers</string>
+    <string name="txt_button_winner_quiz_answer"> TV Quiz Answers</string>
     <string name="winner_list_list_title">Winner List</string>
     <string name="winner_list_winner1">Winner 1</string>
     <string name="winner_list_winner2">Winner 2</string>

@@ -18,9 +18,9 @@
         android:id="@+id/swipyrefreshlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/youtube_fragment"
-        android:layout_marginTop="10dp"
-        app:srl_direction="bottom">
+        app:srl_direction="bottom"
+        android:layout_above="@+id/btnWinnerList"
+        android:layout_alignParentTop="true">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -30,6 +30,13 @@
 
     </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnWinnerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/txt_button_episode_winner_list"/>
 
     <TextView
         android:id="@+id/txtMessage"

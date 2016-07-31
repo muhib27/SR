@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,6 +84,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
     private ShareDialog shareDialog;
     private String funnyVideoPlayListId = "";
     private String title = "Videos";
+    private AppCompatButton btnWinnerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +173,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
 
         myYouTubePlayerFragment = (YouTubePlayerSupportFragment)getSupportFragmentManager().findFragmentById(R.id.youtube_fragment);
         myYouTubePlayerFragment.getView().setVisibility(View.GONE);
+        btnWinnerList = (AppCompatButton)this.findViewById(R.id.btnWinnerList);
 
     }
     private void initAction(){
@@ -195,6 +198,22 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
                 }
             }
         });
+
+
+        if(playListId.equals(AppConstants.PALYLIST_ID_ROCKING_EXP)){
+            btnWinnerList.setVisibility(View.VISIBLE);
+            btnWinnerList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(PlayListItemsActivity.this, WinnerListRootActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+        }else {
+            btnWinnerList.setVisibility(View.GONE);
+        }
+
     }
 
     private void initApiCall(){
