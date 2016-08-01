@@ -15,6 +15,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -90,6 +91,9 @@ public class QuizActivity extends AppCompatActivity {
     private int ranNum = 0;
     private TextView txtToolbarTitle;
 
+    private String currentLanguage = AppConstants.LANG_BN;
+
+
 
 
 
@@ -113,6 +117,12 @@ public class QuizActivity extends AppCompatActivity {
 
         setTitle(ApplicationSingleton.getInstance().getPrefString(AppConstants.QUIZ_PLAY_TITLE));
 
+        if(TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER))){
+            currentLanguage = AppConstants.LANG_BN;
+            ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+        }else{
+            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+        }
 
         initView();
         initApiCall();
@@ -147,10 +157,10 @@ public class QuizActivity extends AppCompatActivity {
 
         }*/
         RealmLevel realmLevel = null;
-        realmLevel = realm.where(RealmLevel.class).equalTo("id", levelId+getIntent().getExtras().getString(AppConstants.QUIZ_LEVEL_NAME)).findFirst();
+        realmLevel = realm.where(RealmLevel.class).equalTo("id", levelId).findFirst();
         if(realmLevel==null){
             realmLevel = realm.createObject(RealmLevel.class);
-            realmLevel.setId(levelId+getIntent().getExtras().getString(AppConstants.QUIZ_LEVEL_NAME));
+            realmLevel.setId(levelId);
             realmLevel.setVisitedQuiz(true);
             realmLevel.setNew(false);
         }
@@ -270,7 +280,12 @@ public class QuizActivity extends AppCompatActivity {
 
     private void populateData(int currentPosition){
         txtTimer.setText(listQuestion.get(currentPosition).getTime());
-        txtQuestion.setText(listQuestion.get(currentPosition).getQuestion());
+        if(currentLanguage.equals(AppConstants.LANG_EN)){
+            txtQuestion.setText(listQuestion.get(currentPosition).getEnQuestion());
+        }else{
+            txtQuestion.setText(listQuestion.get(currentPosition).getQuestion());
+        }
+
         initTimer((Long.parseLong(listQuestion.get(currentPosition).getTime()) * 1000)+1*1000);
 
         if(adapter==null){
@@ -442,7 +457,12 @@ public class QuizActivity extends AppCompatActivity {
             TextView txtOption = holder.txtOption;
             final CardView cardView = holder.cardView;
 
-            txtOption.setText(dataSet.get(listPosition).getAnswer());
+            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                txtOption.setText(dataSet.get(listPosition).getEnAnswer());
+            }else{
+                txtOption.setText(dataSet.get(listPosition).getAnswer());
+            }
+
 
             if(dataSet.get(listPosition).getCorrect().equalsIgnoreCase("1")){
                 setRightAnswerCardView(cardView);
@@ -495,10 +515,20 @@ public class QuizActivity extends AppCompatActivity {
 
             AppCompatButton btnNext = (AppCompatButton) dialogView.findViewById(R.id.btnNext);
             if(isLastQuestion){
-                txtExplanation.setText(listQuestion.get(currentPosition-1).getExplanation());
+                if(currentLanguage.equals(AppConstants.LANG_EN)){
+                    txtExplanation.setText(listQuestion.get(currentPosition-1).getEnExplanation());
+                }else{
+                    txtExplanation.setText(listQuestion.get(currentPosition-1).getExplanation());
+                }
+
                 for(Option op : listQuestion.get(currentPosition-1).getOptions()){
                    if(op.getCorrect().equalsIgnoreCase("1"))
-                        txtAnswer.setText(op.getAnswer());
+                       if(currentLanguage.equals(AppConstants.LANG_EN)){
+                           txtAnswer.setText(op.getEnAnswer());
+                       }else{
+                           txtAnswer.setText(op.getAnswer());
+                       }
+
                     }
                 btnNext.setText(R.string.btn_text_finish);
 
@@ -520,10 +550,20 @@ public class QuizActivity extends AppCompatActivity {
                 }
             else {
                 if(currentPosition-1<listQuestion.size()) {
-                    txtExplanation.setText(listQuestion.get(currentPosition - 1).getExplanation());
+                    if(currentLanguage.equals(AppConstants.LANG_EN)){
+                        txtExplanation.setText(listQuestion.get(currentPosition - 1).getEnExplanation());
+                    }else{
+                        txtExplanation.setText(listQuestion.get(currentPosition - 1).getExplanation());
+                    }
+
                     for(Option op : listQuestion.get(currentPosition-1).getOptions()){
                         if(op.getCorrect().equalsIgnoreCase("1"))
-                            txtAnswer.setText(op.getAnswer());
+                            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                                txtAnswer.setText(op.getEnAnswer());
+                            }else{
+                                txtAnswer.setText(op.getAnswer());
+                            }
+
                         }
 
                     btnNext.setOnClickListener(new View.OnClickListener() {

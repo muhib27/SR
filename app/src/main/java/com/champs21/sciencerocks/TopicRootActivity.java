@@ -55,6 +55,8 @@ public class TopicRootActivity extends AppCompatActivity {
     private boolean isNew = true;
     private static final int REQUEST_FROM_QUIZ_PAGE = 457;
 
+    private String currentLanguage = AppConstants.LANG_BN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +67,18 @@ public class TopicRootActivity extends AppCompatActivity {
 
         listTopic = new ArrayList<Topic>();
 
+        if(TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER))){
+            currentLanguage = AppConstants.LANG_BN;
+            ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+        }else{
+            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+        }
+
         initView();
         initApiCall();
         initAction();
+
+
 
         ApplicationSingleton.getInstance().requestAdMob(this);
 
@@ -76,7 +87,13 @@ public class TopicRootActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_champs, menu);
+        getMenuInflater().inflate(R.menu.menu_lang, menu);
+
+        if(currentLanguage.equals(AppConstants.LANG_BN)){
+            menu.getItem(0).setIcon(R.drawable.icon_en_lang);
+        }else{
+            menu.getItem(0).setIcon(R.drawable.icon_bn_lang);
+        }
 
         return true;
     }
@@ -89,6 +106,19 @@ public class TopicRootActivity extends AppCompatActivity {
         else if(menuItem.getItemId() == R.id.action_champs){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.champs21.schoolapp"));
             startActivity(browserIntent);
+        }else if(menuItem.getItemId() == R.id.action_lang){
+
+            if(currentLanguage.equals(AppConstants.LANG_BN)){
+                ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_EN);
+                menuItem.setIcon(R.drawable.icon_bn_lang);
+            }else{
+                ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+                menuItem.setIcon(R.drawable.icon_en_lang);
+            }
+
+            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+            adapter.refresh();
+
         }
         return super.onOptionsItemSelected(menuItem);
     }
@@ -192,6 +222,10 @@ public class TopicRootActivity extends AppCompatActivity {
             this.dataSet = data;
         }
 
+        public void refresh(){
+            notifyDataSetChanged();
+        }
+
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
@@ -214,16 +248,24 @@ public class TopicRootActivity extends AppCompatActivity {
             ImageView imgNew = holder.imgNew;
 
 
-            if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
+            /*if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
                 layoutDescriptionHolder.setVisibility(View.GONE);
                 layoutTopProceedHolder.setVisibility(View.VISIBLE);
             }
             else {
                 layoutDescriptionHolder.setVisibility(View.VISIBLE);
                 layoutTopProceedHolder.setVisibility(View.GONE);
+            }*/
+
+            layoutDescriptionHolder.setVisibility(View.GONE);
+            layoutTopProceedHolder.setVisibility(View.VISIBLE);
+
+            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                txtTopicTitle.setText(dataSet.get(listPosition).getEnName());
+            }else{
+                txtTopicTitle.setText(dataSet.get(listPosition).getName());
             }
 
-            txtTopicTitle.setText(dataSet.get(listPosition).getName());
             txtTopicDetails.setText(dataSet.get(listPosition).getDetails());
 
 
@@ -231,10 +273,10 @@ public class TopicRootActivity extends AppCompatActivity {
             realm.beginTransaction();
 
             RealmTopic realmTopic = null;
-            realmTopic = realm.where(RealmTopic.class).equalTo("id", dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName()).findFirst();
+            realmTopic = realm.where(RealmTopic.class).equalTo("id", dataSet.get(listPosition).getId()).findFirst();
             if(realmTopic == null){
                 realmTopic = realm.createObject(RealmTopic.class);
-                realmTopic.setId(dataSet.get(listPosition).getId()+dataSet.get(listPosition).getName());
+                realmTopic.setId(dataSet.get(listPosition).getId());
                 realmTopic.setNew(true);
             }
 
@@ -251,7 +293,12 @@ public class TopicRootActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(TopicRootActivity.this, LevelRootActivity.class);
                     intent.putExtra(AppConstants.QUIZ_TOPIC_ID, dataSet.get(listPosition).getId());
-                    intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
+                    if(currentLanguage.equals(AppConstants.LANG_EN)){
+                        intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getEnName());
+                    }else{
+                        intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
+                    }
+
                     startActivityForResult(intent, REQUEST_FROM_QUIZ_PAGE);
                 }
             });

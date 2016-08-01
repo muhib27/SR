@@ -35,5 +35,8 @@ public class AppConstants {
     public static final String PALYLIST_ID_FUNNY_VIDEOS = "PLCd9bO69-7d8JdIcIaSxQVBGCGWzcMSJG";
     public static final String PALYLIST_ID_ROCKING_EXP = "PLCd9bO69-7d8urplEu1tPIf2GUlmL2bEK";
     public static final String PLAY_LIST_NAME = "PLAY_LIST_NAME";
+    public static final String LANG_IDENTIFIER = "LANG_IDENTIFIER";
+    public static final String LANG_EN = "en";
+    public static final String LANG_BN = "bn";
 
 }

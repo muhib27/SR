@@ -8,12 +8,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class Option {
 
+
+    @SerializedName("en_answer")
+    @Expose
+    private String enAnswer;
     @SerializedName("answer")
     @Expose
     private String answer;
     @SerializedName("correct")
     @Expose
     private String correct;
+
+
+    /**
+     *
+     * @return
+     * The enAnswer
+     */
+    public String getEnAnswer() {
+        return enAnswer;
+    }
+
+    /**
+     *
+     * @param enAnswer
+     * The en_answer
+     */
+    public void setEnAnswer(String enAnswer) {
+        this.enAnswer = enAnswer;
+    }
 
     /**
      *

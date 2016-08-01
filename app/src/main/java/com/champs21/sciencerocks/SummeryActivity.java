@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,8 @@ public class SummeryActivity extends AppCompatActivity {
     private TextView txtMessage;
     private CircularProgressView progressView;
 
+    private String currentLanguage = AppConstants.LANG_BN;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,13 @@ public class SummeryActivity extends AppCompatActivity {
         listQuestion = new ArrayList<Question>();
         listQuestion.clear();
         listQuestion = gson.fromJson(value, new TypeToken<List<Question>>(){}.getType());
+
+        if(TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER))){
+            currentLanguage = AppConstants.LANG_BN;
+            ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+        }else{
+            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+        }
 
         initView();
         initAction();
@@ -133,15 +143,31 @@ public class SummeryActivity extends AppCompatActivity {
             TextView txtExplanation = holder.txtExplanation;
             CardView cardView = holder.cardView;
 
+            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                txtQuestion.setText(dataSet.get(listPosition).getEnQuestion());
+            }else{
+                txtQuestion.setText(dataSet.get(listPosition).getQuestion());
+            }
 
-            txtQuestion.setText(dataSet.get(listPosition).getQuestion());
+
 
             for(int i=0;i<dataSet.get(listPosition).getOptions().size();i++){
                 if(dataSet.get(listPosition).getOptions().get(i).getCorrect().equalsIgnoreCase("1")){
-                    txtAnswer.setText(dataSet.get(listPosition).getOptions().get(i).getAnswer());
+                    if(currentLanguage.equals(AppConstants.LANG_EN)){
+                        txtAnswer.setText(dataSet.get(listPosition).getOptions().get(i).getEnAnswer());
+                    }else{
+                        txtAnswer.setText(dataSet.get(listPosition).getOptions().get(i).getAnswer());
+                    }
+
                 }
             }
-            txtExplanation.setText(dataSet.get(listPosition).getExplanation());
+
+            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                txtExplanation.setText(dataSet.get(listPosition).getEnExplanation());
+            }else{
+                txtExplanation.setText(dataSet.get(listPosition).getExplanation());
+            }
+
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override

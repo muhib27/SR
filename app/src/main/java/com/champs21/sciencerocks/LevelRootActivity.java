@@ -64,6 +64,8 @@ public class LevelRootActivity extends AppCompatActivity {
     private static final int REQUEST_FROM_QUIZ_PAGE = 450;
     private MaterialDialog md = null;
 
+    private String currentLanguage = AppConstants.LANG_BN;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +83,13 @@ public class LevelRootActivity extends AppCompatActivity {
         ApplicationSingleton.getInstance().savePrefString(AppConstants.QUIZ_PLAY_TITLE, topicName);
 
         listLevels = new ArrayList<Level>();
+
+        if(TextUtils.isEmpty(ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER))){
+            currentLanguage = AppConstants.LANG_BN;
+            ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+        }else{
+            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+        }
 
         initView();
         initApiCall();
@@ -281,21 +290,31 @@ public class LevelRootActivity extends AppCompatActivity {
             LinearLayout layoutPlay = holder.layoutPlay;
 
 
-            if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
+            /*if(TextUtils.isEmpty(dataSet.get(listPosition).getDetails())){
                 layoutDescriptionHolder.setVisibility(View.GONE);
                 layoutTopProceedHolder.setVisibility(View.VISIBLE);
             }
             else {
                 layoutDescriptionHolder.setVisibility(View.VISIBLE);
                 layoutTopProceedHolder.setVisibility(View.GONE);
+            }*/
+
+            layoutDescriptionHolder.setVisibility(View.GONE);
+            layoutTopProceedHolder.setVisibility(View.VISIBLE);
+
+
+            if(currentLanguage.equals(AppConstants.LANG_EN)){
+                txtLevelName.setText(dataSet.get(listPosition).getEnName());
+            }else{
+                txtLevelName.setText(dataSet.get(listPosition).getName());
             }
 
-            txtLevelName.setText(dataSet.get(listPosition).getName());
+
             txtLevelDetails.setText(dataSet.get(listPosition).getDetails());
 
             Realm realm = ApplicationSingleton.getInstance().getRealm();
             realm.beginTransaction();
-            RealmLevel realmLevel = realm.where(RealmLevel.class).equalTo("id", dataSet.get(listPosition).getId()+topicName).findFirst();
+            RealmLevel realmLevel = realm.where(RealmLevel.class).equalTo("id", dataSet.get(listPosition).getId()).findFirst();
 
             if(realmLevel!=null){
                 imgNew.setVisibility(View.INVISIBLE);
@@ -305,7 +324,12 @@ public class LevelRootActivity extends AppCompatActivity {
                 listVisibleCount.add(View.VISIBLE);
             }
 
-            RealmTopic realmTopic = realm.where(RealmTopic.class).equalTo("id", topicId+topicName).findFirst();
+            RealmTopic realmTopic = null;
+            realmTopic = realm.where(RealmTopic.class).equalTo("id", topicId).findFirst();
+            if(realmTopic == null){
+                realmTopic = realm.createObject(RealmTopic.class);
+                realmTopic.setId(topicId);
+            }
 
             if(listVisibleCount.size() > 0){
                 realmTopic.setNew(true);

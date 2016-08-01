@@ -11,9 +11,15 @@ import java.util.List;
 
 public class Question {
 
+    @SerializedName("en_question")
+    @Expose
+    private String enQuestion;
     @SerializedName("question")
     @Expose
     private String question;
+    @SerializedName("en_explanation")
+    @Expose
+    private String enExplanation;
     @SerializedName("explanation")
     @Expose
     private String explanation;
@@ -29,6 +35,25 @@ public class Question {
     @SerializedName("options")
     @Expose
     private List<Option> options = new ArrayList<Option>();
+
+
+    /**
+     *
+     * @return
+     * The enQuestion
+     */
+    public String getEnQuestion() {
+        return enQuestion;
+    }
+
+    /**
+     *
+     * @param enQuestion
+     * The en_question
+     */
+    public void setEnQuestion(String enQuestion) {
+        this.enQuestion = enQuestion;
+    }
 
     /**
      *
@@ -46,6 +71,25 @@ public class Question {
      */
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+
+    /**
+     *
+     * @return
+     * The enExplanation
+     */
+    public String getEnExplanation() {
+        return enExplanation;
+    }
+
+    /**
+     *
+     * @param enExplanation
+     * The en_explanation
+     */
+    public void setEnExplanation(String enExplanation) {
+        this.enExplanation = enExplanation;
     }
 
     /**

@@ -15,6 +15,9 @@ public class Level {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("en_name")
+    @Expose
+    private String enName;
     @SerializedName("details")
     @Expose
     private String details;
@@ -74,6 +77,25 @@ public class Level {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    /**
+     *
+     * @return
+     * The enName
+     */
+    public String getEnName() {
+        return enName;
+    }
+
+    /**
+     *
+     * @param enName
+     * The en_name
+     */
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
     /**
