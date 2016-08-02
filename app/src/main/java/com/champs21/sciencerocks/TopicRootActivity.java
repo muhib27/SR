@@ -56,6 +56,7 @@ public class TopicRootActivity extends AppCompatActivity {
     private static final int REQUEST_FROM_QUIZ_PAGE = 457;
 
     private String currentLanguage = AppConstants.LANG_BN;
+    private boolean isFlagIconClickable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +109,19 @@ public class TopicRootActivity extends AppCompatActivity {
             startActivity(browserIntent);
         }else if(menuItem.getItemId() == R.id.action_lang){
 
-            if(currentLanguage.equals(AppConstants.LANG_BN)){
-                ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_EN);
-                menuItem.setIcon(R.drawable.icon_bn_lang);
-            }else{
-                ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
-                menuItem.setIcon(R.drawable.icon_en_lang);
-            }
+            if(isFlagIconClickable == true){
+                if(currentLanguage.equals(AppConstants.LANG_BN)){
+                    ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_EN);
+                    menuItem.setIcon(R.drawable.icon_bn_lang);
+                }else{
+                    ApplicationSingleton.getInstance().savePrefString(AppConstants.LANG_IDENTIFIER, AppConstants.LANG_BN);
+                    menuItem.setIcon(R.drawable.icon_en_lang);
+                }
 
-            currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
-            adapter.refresh();
+                currentLanguage = ApplicationSingleton.getInstance().getPrefString(AppConstants.LANG_IDENTIFIER);
+                if(adapter!=null)
+                    adapter.refresh();
+            }
 
         }
         return super.onOptionsItemSelected(menuItem);
@@ -175,6 +179,8 @@ public class TopicRootActivity extends AppCompatActivity {
 
 
                     adapter.notifyDataSetChanged();
+
+                    isFlagIconClickable = true;
 
                 }
 
