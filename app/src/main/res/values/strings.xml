@@ -192,5 +192,8 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="play_again">Play Again</string>
     <string name="score">Score:</string>
     <string name="time">Time:</string>
+    <string name="exit_message">Would you like to exit now?</string>
+    <string name="msg_no">No</string>
+    <string name="msg_yes">Yes</string>
 
 </resources>

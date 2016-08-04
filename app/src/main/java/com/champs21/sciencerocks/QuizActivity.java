@@ -1,12 +1,14 @@
 package com.champs21.sciencerocks;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -17,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -796,4 +800,56 @@ public class QuizActivity extends AppCompatActivity {
         return num;
     }
 
+    private void showExitPopup(){
+
+        if(timer!=null && !timer.isPaused()) {
+            timer.pause();
+        }
+
+        if(!isFinishing()){
+
+            final MaterialDialog dialog = new MaterialDialog.Builder(this)
+                    .title(R.string.dialog_title_quiz)
+                    .content(R.string.exit_message)
+                    .cancelable(true)
+                    .positiveText(R.string.msg_no)
+                    .negativeText(R.string.msg_yes)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
+                            if(timer!=null && timer.isPaused()) {
+                                timer.start();
+                            }
+                        }
+                    })
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    })
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            if(timer!=null && timer.isPaused()) {
+                                timer.start();
+                            }
+                        }
+                    })
+                    .show();
+
+            dialog.show();
+        }
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            showExitPopup();
+        }
+        return true;
+    }
 }
