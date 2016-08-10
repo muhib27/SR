@@ -178,6 +178,7 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
 ]]></string>
     <string name="title_activity_about_science_rocks">About Science Rocks</string>
     <string name="title_go_to_champs">Champs21.com</string>
+    <string name="title_search">Search</string>
     <string name="title_lang">Language</string>
     <string name="title_share">Share</string>
     <string name="title_download">Download</string>
@@ -195,5 +196,7 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="exit_message">Would you like to exit now?</string>
     <string name="msg_no">No</string>
     <string name="msg_yes">Yes</string>
+    <string name="search_hint">Search about quiz, dailydoze and videos</string>
+    <string name="title_activity_search_result">Search Results</string>
 
 </resources>

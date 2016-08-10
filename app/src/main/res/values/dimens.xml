@@ -9,4 +9,5 @@
     <dimen name="recyclerView_divider">10dp</dimen>
     <dimen name="recyclerViewPlayList_divider">5dp</dimen>
     <dimen name="recyclerViewQaList_divider">1dp</dimen>
+    <dimen name="recyclerViewQaList_divider_search">2dp</dimen>
 </resources>

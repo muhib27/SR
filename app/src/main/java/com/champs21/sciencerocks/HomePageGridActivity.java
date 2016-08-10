@@ -3,11 +3,14 @@ package com.champs21.sciencerocks;
 import android.Manifest;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +38,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.champs21.sciencerocks.app.ApplicationSingleton;
+import com.champs21.sciencerocks.app.MySuggestionProvider;
 import com.champs21.sciencerocks.utils.AppConstants;
 
 import java.util.ArrayList;
@@ -115,13 +120,42 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
 
 
         //ApplicationSingleton.getInstance().requestAdMob(this);
+
+        Intent intent  = getIntent();
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
+            suggestions.saveRecentQuery(query, null);
+
+            Intent intent1 = new Intent(this, SearchResultActivity.class);
+            intent1.putExtra(AppConstants.SEARCH_STRING, query);
+            startActivity(intent1);
+
+            finish();
+
+        }
     }
 
    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page_grid, menu);
-        return true;
+       getMenuInflater().inflate(R.menu.menu_home_page_grid, menu);
+
+       MenuItem searchItem = menu.findItem(R.id.action_search);
+       SearchManager searchManager = (SearchManager) HomePageGridActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+       SearchView searchView = null;
+       if (searchItem != null) {
+           searchView = (SearchView) searchItem.getActionView();
+       }
+       if (searchView != null) {
+           searchView.setSearchableInfo(searchManager.getSearchableInfo(HomePageGridActivity.this.getComponentName()));
+       }
+
+
+       return true;
     }
 
     @Override
@@ -153,6 +187,9 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         }
         else if(menuItem.getItemId() == R.id.action_banner_page){
             showBannerPopup();
+        }
+        else if(menuItem.getItemId() == R.id.action_search){
+
         }
         /*else if (menuItem.getItemId() == R.id.action_skin_choose) {
             Intent intent = new Intent(HomePageGridActivity.this, AppPreferences.class);
@@ -490,4 +527,5 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
             startActivity(getIntent());
         }
     }
+
 }

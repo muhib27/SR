@@ -9,15 +9,23 @@
         app:showAsAction="never" />-->
 
     <item
-        android:id="@+id/action_about_sr"
+        android:id="@+id/action_search"
         android:orderInCategory="100"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/title_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_about_sr"
+        android:orderInCategory="200"
         android:icon="@drawable/ic_about"
         android:title="@string/title_activity_about_science_rocks"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_banner_page"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         android:icon="@drawable/ic_visibility_white_24dp"
         android:title="@string/title_action_banner_page"
         app:showAsAction="always"/>

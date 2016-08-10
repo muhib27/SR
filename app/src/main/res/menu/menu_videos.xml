@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.champs21.sciencerocks.HomePageGridActivity">
+
+    <item
+        android:id="@+id/action_champs"
+        android:orderInCategory="200"
+        android:icon="@drawable/champs21"
+        android:title="@string/title_go_to_champs"
+        app:showAsAction="always"/>
+
+
+
+</menu>

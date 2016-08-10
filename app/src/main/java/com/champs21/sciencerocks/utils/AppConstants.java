@@ -38,5 +38,6 @@ public class AppConstants {
     public static final String LANG_IDENTIFIER = "LANG_IDENTIFIER";
     public static final String LANG_EN = "en";
     public static final String LANG_BN = "bn";
+    public static final String SEARCH_STRING = "SEARCH_STRING";
 
 }
