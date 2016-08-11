@@ -1,5 +1,7 @@
 package com.champs21.sciencerocks;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,6 +45,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -96,6 +102,26 @@ public class TopicRootActivity extends AppCompatActivity {
             menu.getItem(0).setIcon(R.drawable.icon_bn_lang);
         }
 
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) TopicRootActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -122,6 +148,9 @@ public class TopicRootActivity extends AppCompatActivity {
                 if(adapter!=null)
                     adapter.refresh();
             }
+
+        }
+        else if(menuItem.getItemId() == R.id.action_search){
 
         }
         return super.onOptionsItemSelected(menuItem);
@@ -199,7 +228,7 @@ public class TopicRootActivity extends AppCompatActivity {
     }
 
 
-    public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.MyViewHolder> {
+    public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.MyViewHolder> implements Filterable {
 
         private List<Topic> dataSet;
 
@@ -317,6 +346,67 @@ public class TopicRootActivity extends AppCompatActivity {
             return dataSet.size();
         }
 
+        private UserFilter userFilter;
+
+        @Override
+        public Filter getFilter() {
+            if(userFilter == null)
+                userFilter = new UserFilter(this, dataSet);
+            return userFilter;
+        }
+
+        private  class UserFilter extends Filter {
+
+            private final TopicAdapter adapter;
+
+            private final List<Topic> originalList;
+
+            private final List<Topic> filteredList;
+
+            private UserFilter(TopicAdapter adapter, List<Topic> originalList) {
+                super();
+                this.adapter = adapter;
+                this.originalList = new LinkedList<>(originalList);
+                this.filteredList = new ArrayList<>();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                filteredList.clear();
+                final FilterResults results = new FilterResults();
+
+                if (constraint.length() == 0) {
+                    filteredList.addAll(originalList);
+                } else {
+                    final String filterPattern = constraint.toString().toLowerCase().trim();
+
+                    for (final Topic user : originalList) {
+
+                        if(currentLanguage.equals(AppConstants.LANG_EN)){
+
+                            if (user.getEnName().toLowerCase().contains(filterPattern.toLowerCase())) {
+                                filteredList.add(user);
+                            }
+                        }else{
+                            if (user.getName().toLowerCase().contains(filterPattern.toLowerCase())) {
+                                filteredList.add(user);
+                            }
+                        }
+
+                    }
+                }
+                results.values = filteredList;
+                results.count = filteredList.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                adapter.dataSet.clear();
+                adapter.dataSet.addAll((ArrayList<Topic>) results.values);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override

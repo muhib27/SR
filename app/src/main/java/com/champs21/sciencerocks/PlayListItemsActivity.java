@@ -1,5 +1,7 @@
 package com.champs21.sciencerocks;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -12,6 +14,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -58,6 +63,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PlayListItemsActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener{
@@ -204,6 +210,26 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_videos, menu);
 
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) PlayListItemsActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -215,6 +241,9 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
         else if(menuItem.getItemId() == R.id.action_champs){
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.champs21.schoolapp"));
             startActivity(browserIntent);
+        }
+        else if(menuItem.getItemId() == R.id.action_search){
+
         }
         return super.onOptionsItemSelected(menuItem);
     }
@@ -320,7 +349,7 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
 
     }
 
-    public class PlayListItemAdapter extends RecyclerView.Adapter<PlayListItemAdapter.MyViewHolder> {
+    public class PlayListItemAdapter extends RecyclerView.Adapter<PlayListItemAdapter.MyViewHolder> implements Filterable {
 
         private List<Item> dataSet;
         private ImageLoader mImageLoader;
@@ -432,6 +461,61 @@ public class PlayListItemsActivity extends AppCompatActivity implements YouTubeP
             return dataSet.size();
         }
 
+        private UserFilter userFilter;
+
+        @Override
+        public Filter getFilter() {
+            if(userFilter == null)
+                userFilter = new UserFilter(this, dataSet);
+            return userFilter;
+        }
+
+        private  class UserFilter extends Filter {
+
+            private final PlayListItemAdapter adapter;
+
+            private final List<Item> originalList;
+
+            private final List<Item> filteredList;
+
+            private UserFilter(PlayListItemAdapter adapter, List<Item> originalList) {
+                super();
+                this.adapter = adapter;
+                this.originalList = new LinkedList<>(originalList);
+                this.filteredList = new ArrayList<>();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                filteredList.clear();
+                final FilterResults results = new FilterResults();
+
+                if (constraint.length() == 0) {
+                    filteredList.addAll(originalList);
+                } else {
+                    final String filterPattern = constraint.toString().toLowerCase().trim();
+
+                    for (final Item user : originalList) {
+
+                        if (user.getSnippet().getTitle().toLowerCase().contains(filterPattern.toLowerCase())) {
+                        filteredList.add(user);
+                    }
+
+
+                    }
+                }
+                results.values = filteredList;
+                results.count = filteredList.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                adapter.dataSet.clear();
+                adapter.dataSet.addAll((ArrayList<Item>) results.values);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
     private void stopLoader(){

@@ -4,6 +4,14 @@
     tools:context="com.champs21.sciencerocks.HomePageGridActivity">
 
     <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/title_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_champs"
         android:orderInCategory="200"
         android:icon="@drawable/champs21"
@@ -12,7 +20,7 @@
 
     <item
         android:id="@+id/action_lang"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         android:icon="@drawable/icon_en_lang"
         android:title="@string/title_lang"
         app:showAsAction="always"/>
