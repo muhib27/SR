@@ -198,5 +198,10 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="msg_yes">Yes</string>
     <string name="search_hint">Search about quiz, dailydoze and videos</string>
     <string name="title_activity_search_result">Search Results</string>
+    <string name="your_score">Your Score</string>
+    <string name="share_your_score">Share your score</string>
+    <string name="your_best">Your Best</string>
+    <string name="highest_score">Highest Score</string>
+    <string name="search_for">"Search results for "</string>
 
 </resources>

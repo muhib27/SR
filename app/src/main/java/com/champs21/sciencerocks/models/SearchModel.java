@@ -51,6 +51,8 @@ public class SearchModel {
     @Expose
     private String videoId;
 
+    private boolean fromYoutube = false;
+
     public String getId() {
         return id;
     }
@@ -161,5 +163,13 @@ public class SearchModel {
 
     public void setVideoId(String videoId) {
         this.videoId = videoId;
+    }
+
+    public boolean isFromYoutube() {
+        return fromYoutube;
+    }
+
+    public void setFromYoutube(boolean fromYoutube) {
+        this.fromYoutube = fromYoutube;
     }
 }
