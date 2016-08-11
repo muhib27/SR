@@ -39,6 +39,7 @@ public class UrlHelper {
     public static final String URL_GET_HIGH_SCORE = "gethighscore";
     public static final String URL_GET_LEADER_BOARD = "getscoreboard";
     public static final String URL_SEARCH = "search";
+    public static final String URL_SINGLE_DAILY_DOZE = "getdailydosesingle";
 
 
 

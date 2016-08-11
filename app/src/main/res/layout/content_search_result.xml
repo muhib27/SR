@@ -9,21 +9,13 @@
     tools:context="com.champs21.sciencerocks.SearchResultActivity"
     tools:showIn="@layout/activity_search_result">
 
-    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-        android:id="@+id/swipyrefreshlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srl_direction="bottom"
-        android:layout_above="@+id/btnWinnerList"
-        android:layout_alignParentTop="true">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
-    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
     <TextView
         android:id="@+id/txtMessage"

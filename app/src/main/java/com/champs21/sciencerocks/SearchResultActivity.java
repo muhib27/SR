@@ -1,5 +1,6 @@
 package com.champs21.sciencerocks;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import org.json.JSONObject;
@@ -53,7 +53,6 @@ public class SearchResultActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private CircularProgressView progressView;
     private TextView txtMessage;
-    private SwipyRefreshLayout mSwipyRefreshLayout;
     private List<SearchModel> listItems;
     private Gson gson;
     private String pageToken = "";
@@ -397,6 +396,17 @@ public class SearchResultActivity extends AppCompatActivity {
                     txtTitle.setText(dataSet.get(listPosition).getTitle());
                     imgViewNetwork.setImageResource(R.drawable.grid_1);
                     txtCategory.setText("Toutube Video");
+                    cardView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intent = new Intent(SearchResultActivity.this, PlayerActivity.class);
+                            intent.putExtra(AppConstants.ID_VIDEO, dataSet.get(listPosition).getVideoId());
+                            startActivity(intent);
+                        }
+                    });
+
+
                 }
 
             }else {
@@ -404,10 +414,31 @@ public class SearchResultActivity extends AppCompatActivity {
                     txtTitle.setText(dataSet.get(listPosition).getTitle());
                     imgViewNetwork.setImageResource(R.drawable.grid_4);
                     txtCategory.setText("Daily Doze");
+
+                    cardView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intent = new Intent(SearchResultActivity.this, SingleDailyDozeActivity.class);
+                            intent.putExtra(AppConstants.SEARCH_DATA_TO_PAGE, dataSet.get(listPosition).getId());
+                            startActivity(intent);
+                        }
+                    });
+
                 }else{
                     txtTitle.setText("Daily Doze");
                     txtCategory.setText("Daily Doze");
                     imgViewNetwork.setImageResource(R.drawable.grid_4);
+
+                    cardView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intent = new Intent(SearchResultActivity.this, SingleDailyDozeActivity.class);
+                            intent.putExtra(AppConstants.SEARCH_DATA_TO_PAGE, dataSet.get(listPosition).getId());
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 if(currentLanguage.equals(AppConstants.LANG_EN)){
@@ -416,24 +447,40 @@ public class SearchResultActivity extends AppCompatActivity {
                         txtTitle.setText(dataSet.get(listPosition).getEnName());
                         imgViewNetwork.setImageResource(R.drawable.grid_3);
                         txtCategory.setText("Quiz");
+
+                        cardView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Intent intent = new Intent(SearchResultActivity.this, LevelRootActivity.class);
+                                intent.putExtra(AppConstants.QUIZ_TOPIC_ID, dataSet.get(listPosition).getId());
+                                intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }else{
                     if(!TextUtils.isEmpty(dataSet.get(listPosition).getName())){
                         txtTitle.setText(dataSet.get(listPosition).getName());
                         imgViewNetwork.setImageResource(R.drawable.grid_3);
                         txtCategory.setText("Quiz");
+
+                        cardView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Intent intent = new Intent(SearchResultActivity.this, LevelRootActivity.class);
+                                intent.putExtra(AppConstants.QUIZ_TOPIC_ID, dataSet.get(listPosition).getId());
+                                intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }
 
 
             }
 
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
 
 
         }

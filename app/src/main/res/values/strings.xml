@@ -203,5 +203,6 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="your_best">Your Best</string>
     <string name="highest_score">Highest Score</string>
     <string name="search_for">"Search results for "</string>
+    <string name="title_activity_single_daily_doze">Daily Doze</string>
 
 </resources>
