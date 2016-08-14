@@ -13,8 +13,6 @@ import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
@@ -258,7 +256,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         return true;
     }*/
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -266,7 +264,7 @@ public class HomePageGridActivity extends AppCompatActivity {//implements Naviga
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     private void initView(){
         recyclerView = (RecyclerView)this.findViewById(R.id.recyclerView);
