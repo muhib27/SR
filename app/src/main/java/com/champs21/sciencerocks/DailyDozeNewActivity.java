@@ -291,7 +291,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
                     progressView.setVisibility(View.GONE);
 
                 isOptionIconClickable = true;
-                
+
                 ModelBase mb = ModelBase.getInstance().setResponse(response);
                 if(mb.getStatus().getCode() == 200){
 
