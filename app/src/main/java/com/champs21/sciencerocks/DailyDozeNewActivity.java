@@ -65,6 +65,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
+    private boolean isOptionIconClickable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,21 +128,26 @@ public class DailyDozeNewActivity extends AppCompatActivity {
         }
         else if(menuItem.getItemId() == R.id.action_share){
 
-            if (ShareDialog.canShow(ShareLinkContent.class)) {
+            if(isOptionIconClickable == true){
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
 
-                String str = "http://api.champs21.com/api/sciencerocks/sharedaildose?id="+listItems.get(currentPosition).getId();
-                ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                        .setContentTitle(getString(R.string.app_name))
-                        .setContentUrl(Uri.parse(str))
-                        .build();
+                    String str = "http://api.champs21.com/api/sciencerocks/sharedaildose?id="+listItems.get(currentPosition).getId();
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle(getString(R.string.app_name))
+                            .setContentUrl(Uri.parse(str))
+                            .build();
 
-                shareDialog.show(linkContent);
+                    shareDialog.show(linkContent);
+                }
             }
         }
 
         else if(menuItem.getItemId() == R.id.action_download){
-            String str = "http://api.champs21.com/api/sciencerocks/Download?id="+listItems.get(currentPosition).getId();
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
+            if(isOptionIconClickable == true){
+                String str = "http://api.champs21.com/api/sciencerocks/Download?id="+listItems.get(currentPosition).getId();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
+            }
+
         }
 
         return super.onOptionsItemSelected(menuItem);
@@ -267,6 +273,7 @@ public class DailyDozeNewActivity extends AppCompatActivity {
 
 
     private void initApiCall(){
+        isOptionIconClickable = false;
 
         progressView.setVisibility(View.VISIBLE);
         progressView.startAnimation();
@@ -283,8 +290,8 @@ public class DailyDozeNewActivity extends AppCompatActivity {
                 if(progressView!=null)
                     progressView.setVisibility(View.GONE);
 
-
-
+                isOptionIconClickable = true;
+                
                 ModelBase mb = ModelBase.getInstance().setResponse(response);
                 if(mb.getStatus().getCode() == 200){
 
