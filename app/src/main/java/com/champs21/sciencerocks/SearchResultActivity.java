@@ -410,8 +410,8 @@ public class SearchResultActivity extends AppCompatActivity {
                 }
 
             }else {
-                if(!TextUtils.isEmpty(dataSet.get(listPosition).getTitle())){
-                    txtTitle.setText(dataSet.get(listPosition).getTitle());
+                if(!TextUtils.isEmpty(dataSet.get(listPosition).getSummary())){
+                    txtTitle.setText(dataSet.get(listPosition).getSummary());
                     imgViewNetwork.setImageResource(R.drawable.grid_4);
                     txtCategory.setText("Daily Doze");
 
