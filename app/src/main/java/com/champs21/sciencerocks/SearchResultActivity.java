@@ -454,7 +454,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(SearchResultActivity.this, LevelRootActivity.class);
                                 intent.putExtra(AppConstants.QUIZ_TOPIC_ID, dataSet.get(listPosition).getId());
-                                intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getName());
+                                intent.putExtra(AppConstants.QUIZ_LEVEL_NAME, dataSet.get(listPosition).getEnName());
                                 startActivity(intent);
                             }
                         });
