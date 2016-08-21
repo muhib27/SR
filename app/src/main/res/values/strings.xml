@@ -204,5 +204,8 @@ Doze</B></FONT>’<FONT FACE=""><SPAN LANG="ar-SA"><FONT FACE="Vrinda"><FONT SIZ
     <string name="highest_score">Highest Score</string>
     <string name="search_for">"Search results for "</string>
     <string name="title_activity_single_daily_doze">Daily Doze</string>
+    <string name="cat_youtube_video">YouTube Video</string>
+    <string name="cat_daily_doze">Daily Doze</string>
+    <string name="cat_quiz">Quiz</string>
 
 </resources>

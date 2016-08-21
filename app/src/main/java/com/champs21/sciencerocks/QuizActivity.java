@@ -210,7 +210,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == android.R.id.home) {
-            finish();
+            showExitPopup();
         }
         else if(menuItem.getItemId() == R.id.action_quiz_music){
 

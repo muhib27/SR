@@ -11,18 +11,20 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_champs"
-        android:orderInCategory="200"
-        android:icon="@drawable/champs21"
-        android:title="@string/title_go_to_champs"
-        app:showAsAction="always"/>
+
 
     <item
         android:id="@+id/action_lang"
-        android:orderInCategory="300"
+        android:orderInCategory="200"
         android:icon="@drawable/icon_en_lang"
         android:title="@string/title_lang"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_champs"
+        android:orderInCategory="300"
+        android:icon="@drawable/champs21"
+        android:title="@string/title_go_to_champs"
         app:showAsAction="always"/>
 
 

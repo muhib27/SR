@@ -395,7 +395,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(dataSet.get(listPosition).getTitle())){
                     txtTitle.setText(dataSet.get(listPosition).getTitle());
                     imgViewNetwork.setImageResource(R.drawable.grid_1);
-                    txtCategory.setText("Toutube Video");
+                    txtCategory.setText(R.string.cat_youtube_video);
                     cardView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -413,7 +413,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(dataSet.get(listPosition).getSummary())){
                     txtTitle.setText(dataSet.get(listPosition).getSummary());
                     imgViewNetwork.setImageResource(R.drawable.grid_4);
-                    txtCategory.setText("Daily Doze");
+                    txtCategory.setText(R.string.cat_daily_doze);
 
                     cardView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -426,8 +426,8 @@ public class SearchResultActivity extends AppCompatActivity {
                     });
 
                 }else{
-                    txtTitle.setText("Daily Doze");
-                    txtCategory.setText("Daily Doze");
+                    txtTitle.setText(R.string.cat_daily_doze);
+                    txtCategory.setText(R.string.cat_daily_doze);
                     imgViewNetwork.setImageResource(R.drawable.grid_4);
 
                     cardView.setOnClickListener(new View.OnClickListener() {
@@ -446,7 +446,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     if(!TextUtils.isEmpty(dataSet.get(listPosition).getEnName())){
                         txtTitle.setText(dataSet.get(listPosition).getEnName());
                         imgViewNetwork.setImageResource(R.drawable.grid_3);
-                        txtCategory.setText("Quiz");
+                        txtCategory.setText(R.string.cat_quiz);
 
                         cardView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -463,7 +463,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     if(!TextUtils.isEmpty(dataSet.get(listPosition).getName())){
                         txtTitle.setText(dataSet.get(listPosition).getName());
                         imgViewNetwork.setImageResource(R.drawable.grid_3);
-                        txtCategory.setText("Quiz");
+                        txtCategory.setText(R.string.cat_quiz);
 
                         cardView.setOnClickListener(new View.OnClickListener() {
                             @Override
